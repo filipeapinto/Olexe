@@ -1,0 +1,61 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>KnowledgeBase Documents</h2>
+
+<!-- List of Tasks --> 
+<a href="updDocument?cmd=ADD">Add New Document Manually</a>
+<br/><br/>
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Keywords</th>
+  <th>Select</th>
+  <th>Filename<BR>From Google Apps</th>
+  <th>Published<BR>Date</th>
+  <th>On Database?</th>
+</tr>
+
+<form action=/updDocuments method=post>
+{%for googleFile in googleFiles%} 
+<tr>
+  <td>
+    {%if googleFile.key%}&nbsp;<a href="updDocument?key={{googleFile.key}}">&nbsp;{{forloop.counter}}&nbsp;</a>
+    {%else%}
+    &nbsp;{{forloop.counter}}&nbsp;
+    {%endif%}
+  </td> 
+  <td>
+    {%if googleFile.key%}
+    &nbsp;<a href="updDocumentKeywords?key={{googleFile.key}}">keywords</a>
+    {%else%}
+    &nbsp;
+    {%endif%}
+  </td> 
+  <td>&nbsp;<input type=checkbox name=checkbox{{forloop.counter}}
+  {% if not googleFile.foundMatch %}checked{% endif %}
+  ></td> 
+  <td>{{googleFile.docName}}</td>
+  <td>{{googleFile.dateTimePublished|date:_("m/d/y h:i:s")}}</td>
+  <td>{{googleFile.foundMatch}}</td>
+  <input type=hidden name=docName{{forloop.counter}}       value="{{googleFile.docName}}">
+  <input type=hidden name=docId{{forloop.counter}}         value="{{googleFile.docId}}">
+  <input type=hidden name=publishedDate{{forloop.counter}} value="{{googleFile.dateTimePublished}}">
+  <input type=hidden name=key{{forloop.counter}} value="{{googleFile.key}}">
+</tr>
+{%endfor%}
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <input type=submit value="Import checked items into Database"<BR>
+	If you want to delete selected items, type in "DELETE" in the text box:<BR> 
+    <input type=text name=DeleteCode value=""> <input type=submit value="Delete"> 
+  </td>
+  <input type=hidden name=numDocs value="{{numDocs}}">
+  <td>&nbsp;</td>
+</tr>
+</form>
+</table>
+
+{%endblock%}

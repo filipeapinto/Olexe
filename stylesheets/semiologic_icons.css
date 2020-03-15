@@ -1,0 +1,156 @@
+/*
+Notice
+------
+
+YOU MAY NOT COPY OR USE THIS FILE IF YOU HAVE NOT PURCHASED RIGHTS FOR IT
+
+
+Terms of use
+------------
+
+This software is copyright Mesoconcepts Ltd, and is distributed under the terms of the Mesoconcepts license. In a nutshell, you may freely use it for any purpose, but may not redistribute it without written permission.
+
+http://www.mesoconcepts.com/license/
+**/
+
+.link_entry a,
+.link_comment a
+{
+	background: url(file.gif) center left no-repeat;
+	padding-left: 13px;
+	padding-right: 0px;
+}
+
+.admin_link a,
+.edit_entry a,
+.edit_comment a
+{
+	background: url(edit.gif) center left no-repeat;
+	padding-left: 13px;
+	padding-right: 0px;
+}
+
+.entry_comment a
+{
+	background: url(comment.gif) center left no-repeat;
+	padding-left: 13px;
+	padding-right: 0px;
+}
+
+.comment_entry a,
+.reply_comment a
+{
+	background: url(add_comment.gif) center left no-repeat;
+	padding-left: 13px;
+	padding-right: 0px;
+}
+
+.email_entry a
+{
+	background: url(email.gif) center left no-repeat;
+	padding-left: 13px;
+	padding-right: 0px;
+}
+
+.print_entry a
+{
+	background: url(print.gif) center left no-repeat;
+	padding-left: 13px;
+	padding-right: 0px;
+}
+
+.entry_tags a,
+.entry_categories a
+{
+	background: url(folder.gif) center left no-repeat;
+	padding-left: 13px;
+	padding-right: 0px;
+}
+
+.entry_author a,
+.comment_author a,
+.loginout a,
+a.entry_author
+{
+	background: url(user.gif) center left no-repeat;
+	padding-left: 13px;
+	padding-right: 0px;
+}
+
+.sidebar ul ul,
+.fuzzy_widget ul
+{
+	list-style-image: url(file.gif);
+}
+
+.widget_categories ul,
+.widget_archive ul
+{
+	list-style-image: url(folder.gif);
+}
+
+.sem_subscribe_me ul,
+.now-reading ul
+{
+	list-style-image: none;
+}
+
+.now-reading li
+{
+	list-style-type: none;
+	margin-left: 0px;
+}
+
+.post_list ul
+{
+	list-style-image: url(file.gif);
+}
+
+.skin .bullet ul,
+.skin ul.bullet
+{
+	list-style-image: url(bullet.gif);
+}
+
+.skin p.bullet
+{
+	background: url(bullet.gif) center left no-repeat;
+	padding-left: 16px;
+	padding-right: 0px;
+}
+
+.skin .checked ul,
+.skin .check ul,
+.skin ul.checked,
+.skin ul.check,
+.skin .bullet ul ul,
+.skin ul.bullet ul
+{
+	list-style-image: url(check.gif);
+}
+
+.skin p.checked,
+.skin p.check
+{
+	background: url(check.gif) center left no-repeat;
+	padding-left: 16px;
+	padding-right: 0px;
+}
+
+#democracy ul
+{
+	list-style-image: none;
+}
+
+li.nav_home,
+li.nav_blog,
+li.nav_branch
+{
+	list-style-image: url(folder.gif);
+}
+
+li.nav_leaf,
+li.page_item
+{
+	list-style-image: url(file.gif);
+}

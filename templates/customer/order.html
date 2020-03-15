@@ -1,0 +1,65 @@
+{%extends "../baseOrder.html"%}
+{%block body%}
+
+{%if serviceTypeDetail%}
+<h3>Details of related product/service:</h3>
+
+<style type='text/css'>
+.data {
+  color: blue;
+}
+.label {
+  color "black;
+}
+.dataBold {
+  color: blue;
+  font-weight: bold; 
+}
+</style>
+<br>
+<table border=1  cellpadding=1>
+
+<tr>
+  <td class='label'>Name</td>
+  <td class='dataBold'>{{serviceTypeDetail.name}}</td>
+<tr> 
+
+<tr>
+  <td class='label'>What is it?</td>
+  <td class='data'>{{serviceTypeDetail.salesWhatIsIt}}</td>
+<tr> 
+
+<tr>
+  <td class='label'>Why you need it?</td>
+  <td class='data'>{{serviceTypeDetail.salesWhyYouNeedIt}}</td>
+<tr> 
+
+<tr>
+  <td class='label'>What's in it for me?</td>
+  <td class='data'>{{serviceTypeDetail.salesWhatsInItForYou}}</td>
+<tr> 
+
+<tr>
+  <td class='label'>How does it work?</td>
+  <td class='data'>{{serviceTypeDetail.salesHowDoesItWork}}</td>
+<tr> 
+
+<tr>
+  <td class='label'>Stand Alone Cost</td>
+  <td class='data'>Coming Soon - When RatePlans Are Added</td>
+<tr> 
+
+<tr>
+  <td class='label'>Special Instructions</td>
+  <td class='data'>{{serviceTypeDetail.salesSpecialInstructions}}</td>
+<tr> 
+
+</table> 
+<br/>
+<br/>
+<br/>
+{%else%}
+<h3>Click on the optional products on the left to view more details, or click the "Order" button to continue</h3>
+{%endif%}
+
+{%endblock%}

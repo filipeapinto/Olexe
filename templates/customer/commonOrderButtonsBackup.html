@@ -1,0 +1,22 @@
+<hr/>
+<h3>Common Order Buttons NRW </h3> 
+<p> Please click <strong>Continue</strong> to submit the above data and continue to page 
+{{pagenum}} of 4.</p>
+After all required fields have been entered, the "Submit Order" button will appear below.
+<p>
+{% ifnotequal pagenum "1" %}
+<input type="submit" name="submit" value="Back" />
+{% endifnotequal%}
+<input type="submit" name="submit" value="Continue" />
+<input type="submit" name="submit" value="Save Data and Come Back Later" />
+<% if skipErrorsAtBottom %>
+<! -- on final page where we submit - errors are shown above instead of at the bottom --> 
+<% else %> 
+{% if showSubmitErrors  %}
+<BR>
+<font color=red>{{showSubmitErrors}}</font>
+{% else %} 
+<input type="submit" name="submit" value="Submit Order" />
+{% endif%}
+{% endif%}
+</p>

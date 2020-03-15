@@ -1,0 +1,39 @@
+<hr/>
+{% ifnotequal pagenum maxPagenum %}
+<!--
+<p> Please click <strong>Continue</strong> to submit the above data and continue to page 
+{{pagenum}} of {{maxPagenum}}.</p>--> 
+{% endifnotequal %}
+<p>
+{% if showSubmitErrors  %}
+<!--
+You currently have validation errors. Click the "View Errors" button below to see them listed. 
+After all required fields have been entered, the "Submit Order" button will appear below.--> 
+{% endif %}
+{% ifnotequal pagenum "1" %}
+<input type="submit" name="submit" value="Back" />
+{% endifnotequal%}
+{% ifnotequal pagenum maxPagenum %}
+{% if askNewReturningCustomer %}
+<input type="submit" name="submit" value="Continue as Returning Customer" />
+<input type="submit" name="submit" value="Continue as New Customer" />
+{%else%}
+<input type="submit" name="submit" value="Continue" />
+{% endif %}
+{% endifnotequal %}
+{% ifnotequal serviceCode "register" %}
+<input type="submit" name="submit" value="Save Data and Come Back Later" />
+{% endifnotequal %}
+{% ifnotequal showSubmitErrors 'NoButton' %} 
+{% ifnotequal skipErrorsAtBottom "Y" %}
+{% if showSubmitErrors  %}
+{% ifnotequal showSubmitErrors 'NoData'  %}
+<input type="submit" name="submit" value="Validate Form" />
+{% endifnotequal %}
+{% else %} 
+<input type="submit" name="submit" value="Submit Order" />
+{% endif %}
+{% endifnotequal %}
+{% endifnotequal %}
+</p>
+

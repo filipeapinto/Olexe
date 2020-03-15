@@ -1,0 +1,38 @@
+{%extends "base.html"%}
+{%block body%}
+<h2>Add/Update CustomerOrder</h2>
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="updTask">
+<table border=1>
+<tr>
+  <td>Process Code</td>
+  <td><input type=text size=15 value='{{task.processCode}}' name=processCode></td>
+</tr>
+<tr>
+  <td>Sequence</td>
+  <td><input type=text size=4 value='{{task.sequence}}' name=sequence></td>
+</tr>
+<tr>
+  <td>TaskCode</td>
+  <td><input type=text size=15 value='{{task.taskCode}}' name=taskCode></td>
+</tr>
+<tr>
+  <td>Task Description</td>
+  <td><input type=text size=45 value='{{task.taskDescription}}' name=taskDescription></td>
+</tr>
+<tr>
+  <td>Estimated competion time<br/>(Minutes)</td>
+  <td><input type=text size=4 value='{{task.estimatedCompletionTime}}' name=estimatedCompletionTime></td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td><input type=submit></td>
+</tr>
+</table>
+<input type=hidden name=key value='{{task.key}}'>
+
+</form>
+
+
+{%endblock%}

@@ -1,0 +1,44 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>CumulusLog Detail</h2>
+
+
+<table border=1>
+<tr>
+  <td>Key</td>
+  <td>{{log.key}}</td>
+</tr>
+<tr>
+  <td>Id</td>
+  <td>{{log.key.id}}</td>
+</tr>
+<tr>
+  <td>DateTime</td>
+  <td>{{log.dateTime}}</td>
+</tr>
+<tr>
+  <td>IP-Address</td>
+  <td>{{log.ipaddress}}</td>
+</tr>
+<tr>
+  <td>Username</td>
+  <td>{{log.username}}</td>
+</tr>
+<tr>
+  <td>Category</td>
+  <td>{{log.category}}</td>
+</tr>
+<tr>
+  <td>Message</td>
+  <td>{{log.message}}</td>
+</tr>
+<tr>
+  <td>LargeText</td>
+  <td>{{log.largeText}}</td>
+</tr>
+</table>
+
+</form>
+
+
+{%endblock%}

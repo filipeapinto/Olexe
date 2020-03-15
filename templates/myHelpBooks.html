@@ -1,0 +1,24 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>My Help Books</h2>
+
+<a href="/myHelpKeywords">Alternative Help: Search our knowledge base of articles by keyword</a> 
+<br/><br/>
+
+<table border=1>
+
+<tr>
+  <th>Row</th>
+  <th>Name</th>
+</tr>
+
+{%for book in bookList%} 
+<tr>
+    <td>&nbsp;{{forloop.counter}}&nbsp;</td>
+    <td><a href='/bookChapters?key={{book.key}}'>{{book.name}}</a></td>
+</tr>
+{%endfor%}
+
+</table>
+
+{%endblock%}

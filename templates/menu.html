@@ -1,0 +1,85 @@
+{%extends "base.html"%}
+{%block body%}
+<!-- The menu is actually in the base.html file and appears at the bottom of every page
+that inherits from base. --> 
+<h3>Menu</h3>
+<table border=1>
+<tr>
+<td>User Info</td>
+<td>CurrentUser={{user}} 
+<!-- &nbsp;&nbsp;&nbsp;&nbsp;isAdmin={{is_admin}} --> 
+</td>
+</tr>
+
+<tr>
+<td>Admin</td>
+<td>
+<a href="menu">Menu</a>
+{% ifequal environment 'test' %}
+| <a href="_ah/admin/datastore">Administrator Panel</a>
+{% endifequal %}
+{% ifequal environment 'production' %}
+| <a href="http://appengine.google.com/a/3wcloud.com">Administrator Panel</a>
+{% endifequal %}
+
+| <a href="login">Sign-in</a> 
+| <a href="logout">Sign-out</a> 
+<!-- if using Google Signin: 
+| <a href="http://localhost:8080/_ah/login?continue=http%3A//localhost%3A8080/menu">Sign in</a> -->
+</td>
+</tr>
+
+<tr>
+<td>Provisioning:</td>
+<td>
+<a href="provision?processCode=iCloud">Provision iCloud</a>
+| <a href="provision?processCode=weCloud">Provision weCloud</a>
+</td>
+</tr>
+
+<td>Updates</td>
+<td>
+<a href="updCustomerOrder">Add CustomerOrder</a>
+| <a href="updWorker">Add Worker</a>
+</td>
+</tr>
+
+<tr>
+<td>Reports:</td>
+<td>
+  <a href="reportServiceTypes">ServiceTypes</a>
+| <a href="reportSubscribers">Subscribers</a>
+| <a href="reportOrders">Orders</a>
+| <a href="reportServices">Services</a>
+| <a href="reportCustomerOrders">CustomerOrders (Old)</a>
+| <a href="reportWorkers">Workers</a>
+| <a href="reportTaskLogs">TaskLogs</a>
+| <a href="reportBundle">Product Bundles (Sellable)</a>
+| <a href="reportBundle?parm=ALL">Product Bundles (All)</a>
+</td>
+</tr>
+
+
+<tr>
+<td>Processes:</td>
+<td>
+  <a href="reportTasks?processCode=oneCloudIndiv">oneCloudIndiv</a>
+| <a href="reportTasks?processCode=oneCloudOrg">oneCloudOrg</a>
+</td>
+</tr>
+
+
+<tr>
+<td/>Backup/Extracts/Uploads:</td>
+<td>
+<a href="xmlExtract?tablename=CustomerOrders">Customer XML Extract</a>
+| <a href="xmlExtract?tablename=Tasks">Task XML Extract</a>
+| <a href="xmlExtract?tablename=TaskLog">TaskLogs XML Extract</a>
+| <a href="xmlExtract?tablename=Workers">Workers XML Extract</a>
+| <a href="fileUpload">Upload/import an XML File</a>
+</td>
+</tr>
+
+</table>
+
+{%endblock%}

@@ -1,0 +1,30 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Newsletters</h2>
+
+<!-- List of Tasks --> 
+<a href="http://docs.3wcloud.com">Add New Newsletters Using Google Docs</a>
+<br/>
+Preview the newsletter that you wish to send (by clicking on the row), 
+then you can send it on the next page.
+<br/>
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Filename<BR>From Google Apps</th>
+  <th>Published<BR>Date</th>
+</tr>
+
+{%for googleFile in googleFiles%} 
+<tr>
+  <td><a href='detailNewsletter?docName={{googleFile.docName}}&docId={{googleFile.docId}}'>&nbsp;{{forloop.counter}}&nbsp;</a></td>
+  <td>{{googleFile.docName}}</td>
+  <td>{{googleFile.dateTimePublished}}</td>
+  <input type=hidden name=docName{{forloop.counter}}       value="{{googleFile.docName}}">
+  <input type=hidden name=docId{{forloop.counter}}         value="{{googleFile.docId}}">
+</tr>
+{%endfor%}
+</table>
+<br/>
+Number Newsletters={{numDocs}}
+{%endblock%}

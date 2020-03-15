@@ -1,0 +1,95 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Update ServiceType</h2>
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="/updServiceType">
+<table border=1>
+<tr>
+  <td>Code</td>
+  <td><input type=text size=15 value='{{serviceType.code}}' name=code></td>
+</tr>
+
+<tr>
+  <td>Name</td>
+  <td><input type=text size=24 value='{{serviceType.name}}' name=name></td>
+</tr>
+
+<tr>
+  <td>InfrastructureName</td>
+  <td><input type=text size=24 value='{{serviceType.infrastructureName}}' name=infrastructureName></td>
+</tr>
+
+<tr>
+  <td>Description</td>
+  <td><input type=text size=40 value='{{serviceType.description}}' name=description></td>
+</tr>
+
+<tr>
+  <td>IsSellable</td>
+  <td><input type=checkbox name=isSellable 
+  {%if serviceType.isSellable%} checked {%endif%} ></td>
+</tr>
+
+<tr>
+  <td>Sales Text - "What is It?"</td>
+  <td>
+    <textarea name='salesWhatIsIt' rows=5 cols=60>{{serviceType.salesWhatIsIt}}</textarea>
+  </td>
+</tr>
+
+<tr>
+  <td>Sales Text - "Why You Need It?"</td>
+  <td>
+    <textarea name='salesWhyYouNeedIt' rows=5 cols=60>{{serviceType.salesWhyYouNeedIt}}</textarea>
+  </td>
+</tr>
+
+<tr>
+  <td>Sales Text - "What's In It For You?"</td>
+  <td>
+    <textarea name='salesWhatsInItForYou' rows=5 cols=60>{{serviceType.salesWhatsInItForYou}}</textarea>
+  </td>
+</tr>
+
+<tr>
+  <td>Sales Text - "How Does It Work?"</td>
+  <td>
+    <textarea name='salesHowDoesItWork' rows=5 cols=60>{{serviceType.salesHowDoesItWork}}</textarea>
+  </td>
+</tr>
+
+<tr>
+  <td>Sales Text - "Special Instructions"</td>
+  <td>
+    <textarea name='salesSpecialInstructions' rows=5 cols=60>{{serviceType.salesSpecialInstructions}}</textarea>
+  </td>
+</tr>
+
+<tr>
+  <td>Current Rate Plan</td>
+  <td>
+<select id="ratePlan" name="ratePlan">
+    <option value="">Select One</option>
+	{% for ratePlan in ratePlanList %}
+	<option value="{{ratePlan.dbkey}}" {% if ratePlan.isSelected %}selected{% endif %}>{{ratePlan.code}} / {{ratePlan.description}}</option>  
+	{% endfor %}
+</select>
+  </td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td><input type=submit value="Submit Update"></td>
+</tr>
+</table>
+
+ <input type=hidden name=command value='{{command}}'>  
+{% ifnotequal command 'ADD' %} 
+ <input type=hidden name=key value='{{serviceType.key}}'>  
+{% endifnotequal %} 
+
+</form>
+
+
+{%endblock%}
+

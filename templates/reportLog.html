@@ -1,0 +1,60 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Logs Report (by DateTime descending)</h2>
+
+
+<FORM METHOD=GET ENCTYPE="multipart/form-data" ACTION="reportLog">
+Optional: Filter by Date<BR>
+Start Date (mm/dd/yyyy):<input type=text name=startDate size=12 value="{{startDate}}"> (inclusive) 
+<BR>
+Stop Date (mm/dd/yyyy): <input type=text name=stopDate size=12 value="{{stopDate}}"> (exclusive) 
+<BR>
+Category Starts with: <input type=text name=categoryStartsWith size=12 value="{{categoryStartsWith}}"> 
+<BR>
+IP Address Starts with: <input type=text name=ipaddressStartsWith size=12 value="{{ipaddressStartsWith}}"> 
+<BR>
+Number Rows (max 1000): <input type=text name=numRows size=5 value="{{numRows}}"> 
+<BR>
+<input type=submit name=filter>   
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/reportLog">Requery with no filter (show most recent 50 records)</a> 
+</FORM>
+<br/>
+
+<!-- List of TaskLogs --> 
+
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>DateTime</th>
+  <th>IPAddress</th>
+  <th>Category</th>
+  <th>Username</th>
+  <th>Message</th>
+</tr>
+
+{%for log in logList%} 
+
+<tr>
+  <td><a href="detailLog?key={{log.key}}">&nbsp;{{forloop.counter}}&nbsp;</a></td> 
+  <td>{{log.dateTime|date:_("m/d/y h:i:s")}}&nbsp;</td>
+  <td>{{log.ipaddress}}</td>
+  <td>{{log.category}}&nbsp;&nbsp;</td>
+  <td>{{log.username}}&nbsp;</td>
+  <td>{{log.message}}</td>
+</tr>
+
+{%endfor%}
+
+</table>
+
+<br>
+<a href="reportLog?offset={{offsetBack}}">Back</a>
+&nbsp;&nbsp;
+<a href="reportLog?offset={{offsetNext}}">Next</a>
+<br/>
+<br/>
+
+DebugText: {{debugText}} 
+
+{%endblock%}

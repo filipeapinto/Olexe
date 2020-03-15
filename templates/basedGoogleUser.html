@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>3WCloud - Provisionoing System</title>
+  <link type="text/css" rel="stylesheet" href="/static/styles.css">
+  <script type="text/javascript" src="/static/script.js"></script>
+</head>
+<body>
+<h1>3WCloud.com - Provisionoing System</h1> 
+<div>
+User Info: {{userMessage}}<br/>{%if user %}<b>{{user.nickname}} &lt;{{user.email}}&gt;</b>
+{%if is_admin%} | <a href="/_ah/admin">Admin</a>{%endif%}
+{%if sign_out%} | <a href="{{sign_out}}">Sign out</a>{%endif%}
+{% else %}
+{%if sign_in%}<a href="{{sign_in}}">Sign in</a>{%endif%}
+{%endif%}
+</div>
+
+<font face="Arial" size="2">
+{%block body%}
+{%endblock%}
+<h3>Menu</h3>
+<table border=1>
+<tr>
+<td>Admin</td>
+<td>
+<a href="menu">Menu</a>
+| <a href="_ah/admin/datastore">Administrator Panel</a>
+| <a href="login">Sign in</a> 
+<!-- if using Google Signin: 
+| <a href="http://localhost:8080/_ah/login?continue=http%3A//localhost%3A8080/menu">Sign in</a> -->
+</td>
+</tr>
+<tr>
+<td>Updates/Provisioning:</td>
+<td>
+<a href="provision?processCode=iCloud">Provision iCloud</a>
+| <a href="provision?processCode=weCloud">Provision weCloud</a>
+</td>
+</tr>
+<tr>
+<td>Reports:</td>
+<td>
+<a href="reportTaskLogs">TaskLogs</a>
+| <a href="reportTasks?processCode=iCloud">iCloud Tasks</a>
+| <a href="reportTasks?processCode=weCloud">weCloud Tasks</a>
+| <a href="reportCustomerOrders">CustomerOrders</a>
+| <a href="reportWorkers">Workers</a>
+</td>
+</tr>
+<tr>
+<td/>Backup/Extracts/Uploads:</td>
+<td>
+<a href="xmlExtract?tablename=CustomerOrders">Customer XML Extract</a>
+| <a href="xmlExtract?tablename=Tasks">Task XML Extract</a>
+| <a href="xmlExtract?tablename=TaskLog">TaskLogs XML Extract</a>
+| <a href="xmlExtract?tablename=Workers">Workers XML Extract</a>
+| <a href="fileUpload">Upload/import an XML File</a>
+</td>
+</tr>
+</table>
+<!--
+<a href="/">1) page1-Password Generator1</a>
+| <a href="page2">2) page2 (just concept of second page) </a>
+| <a href="test">3) Test (Using Template/Substitution)</a>
+-->
+
+<br/>
+</font>
+
+</body>
+</html>

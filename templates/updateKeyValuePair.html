@@ -1,0 +1,53 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Add/Update Key-Value-Pair</h2>
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="updKeyValuePair">
+<table border=1>
+
+<tr>
+  <td>Key</td>
+  <td>
+  {% ifequal cmd "ADD" %}
+  <input type=text size=25 value='{{kvp.kvpKey}}' name=kvpKey>
+  <input type=hidden name=command value="ADD"> 
+  {% else %}
+  {{kvp.kvpKey}}
+  <input type=hidden name=command value="MOD"> 
+  {% endifequal %}
+  </td>
+</tr>
+
+<tr>
+  <td>Value</td>
+  <td><input type=text size=25 value='{{kvp.kvpValue}}' name=kvpValue></td>
+ </tr>
+
+<tr>
+  <td>IsSecure*</td>
+  <td><input type=text size=6 value='{{kvp.kvpIsSecure}}' name=kvpIsSecure></td>
+</tr>
+
+<tr>
+  <td>Documentation</td>
+  <td><textarea rows=10 cols=60 name=kvpDoc>{{kvp.kvpDoc}}</textarea>
+  </td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td><input type=submit value="Submit Update"></td>
+</tr>
+
+</table>
+
+Regarding "IsSecure": Once this is set to true, 
+you will only be able to maintain
+this row via the admin Data-Viewer interface
+
+<input type=hidden name=key value='{{kvp.key}}'>
+
+</form>
+
+
+{%endblock%}

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>3wcloud.com Cumulus</title>
+  <link type="text/css" rel="stylesheet" href="/static/styles.css">
+  <script type="text/javascript" src="/static/script.js"></script>
+</head>
+
+<STYLE>
+    td, th
+		{
+		font-family: arial, trebuchet ms;
+		font-size: small;
+		color: black;
+		}
+	dummyPlaceHolderForHowToUnderline {text-decoration: underline;}
+</STYLE>
+<link rel="stylesheet" type="text/css" href="http://3wcloud.com/wp-content/themes/semiologic/font.css?ver=5.6" />
+<link rel="stylesheet" type="text/css" href="http://3wcloud.com/wp-content/themes/semiologic/css/layout.css?ver=5.6" />
+<link rel="stylesheet" \type="text/css" href="http://3wcloud.com/wp-content/themes/semiologic/icons/icons.css?ver=5.6" />
+
+<!-- <link rel="stylesheet" type="text/css" href="http://3wcloud.com/wp-content/themes/semiologic/skins/blues/skin.css?ver=5.6" /> -->
+</head>
+
+<body class="ms flex flex_ms flex2s trebuchet small blues skin custom">
+
+<h1>Cumulus  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {% ifequal environment 'test' %}
+<font color='red'>Environment={{environment}}</font> {% endifequal %}</h1>
+
+<font face="Arial" size="2">
+
+<style type='text/css'>
+#left {
+  position: absolute;
+  left: 10px; 
+  top: 100px;
+  width: 200px;
+}
+
+#middle {
+  margin-top: 100px;
+  margin-left: 10px; 
+  margin-right: 10px;
+}
+
+#right {
+  position: absolute;
+  right: 10px; 
+  top: 100px;
+  width:200px;\
+}
+</style>
+
+
+<body class="ms flex flex_ms flex2s trebuchet small blues skin custom">
+
+<table border='1' cellpadding='5'>
+<tr>
+   <td width="35%" valign="top">
+
+<b>Products Selected</b><br>
+<UL>
+<LI>{{serviceType.name}}</LI>
+</UL>
+
+<b>Customers often add these items:</b><br>
+(Click to view more detailed features) 
+<br>
+
+<form action="formHandler?serviceCode={{serviceType.code}}&page=1" method="post">
+{%for upsell in upsells%} 
+<input type=checkbox name=upsell value={{upsell.code}}>
+<a href="{{upsell.url}}">{{upsell.name}}</a> 
+<br/>
+{%endfor%} 
+
+{%if upsells%}
+<br>
+<input type="submit" name="submit" value="Order Now"> 
+{%endif%} 
+</form>
+
+	</td>
+   <td width="*" valign="top" >
+{%block body%}
+{%endblock%}
+</td>
+</tr>
+</table> 
+
+</body>
+
+
+
+
+<br/>
+</font>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+SUCCESS mc_gross=25.00 invoice=26305 protection_eligibility=Eligible address_status=confirmed payer_id=B2WLP4GTLNN8G address_ 
+D 07-23 03:43PM 56.070 mc_gross=25.00 invoice 

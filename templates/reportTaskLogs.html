@@ -1,0 +1,46 @@
+{%extends "base.html"%}
+{%block body%}
+CustomerDomain={{customerDomain}}<br/>
+<form action="reportTaskLogs" method="post">
+<SELECT NAME=customerDomain>
+<OPTION value='ALL' {% ifequal customerDomain 'ALL' %} SELECTED {% endifequal %}>ALL</OPTION>
+{%for customerOrder in customerOrdersList%} 
+<OPTION value='{{customerOrder.domain}}' {% ifequal customerDomain customerOrder.domain %} SELECTED {% endifequal %}>{{customerOrder.domain}}</OPTION>
+{%endfor%}
+<input type=submit>
+</form>
+
+<h2>List TaskLogs</h2>
+
+<!-- List of TaskLogs --> 
+<ul>
+<table border=1>
+<tr>
+  <th>Customer<BR>Domain</th>
+  <th>Worker Email</th>
+  <th>TaskCode</th>
+  <th>StartedTime</th>
+  <th>CompletedTime</th>
+  <th>ResultFlag</th>
+  <th>Issue</th>
+</tr>
+
+{%for TaskLog in TaskLogs%} 
+
+<tr>
+  <td>{{TaskLog.customerDomain}}</td>
+  <td>{{TaskLog.workerEmail}}</td>
+  <td>{{TaskLog.taskCode}}</td>
+  <td>{{TaskLog.eventStartedDateTime}}</td>
+  <td>{{TaskLog.eventCompletedDateTime}}</td>
+  <td>{{TaskLog.resultFlag}}</td>
+  <td>{{TaskLog.issues}}</td>
+</tr>
+
+
+{%endfor%}
+</ul>
+</table>
+
+
+{%endblock%}

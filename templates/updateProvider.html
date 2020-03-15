@@ -1,0 +1,51 @@
+
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>Update Provider</h3>
+{% if validationError %} 
+<span style="color:red">{{validationError}}</span>
+{% endif %}
+<form action=/updProvider method=post>
+<table border=1>
+<tr>
+  <td>&nbsp;Name:</td>
+  <td>
+  &nbsp;<input type=text name=name size=24 value="{{provider.name}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Description:</td>
+  <td>
+  &nbsp;<input type=text name=description size=32 value="{{provider.description}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;SampleServices:</td>
+  <td>
+  &nbsp;<input type=text name=sampleServices size=50 value="{{provider.sampleServices}}">
+  </td>
+</tr>
+
+<tr>
+   <td>&nbsp;</td>
+   <td><input type=submit value="Update"></td>
+<tr>
+</table>
+{% ifnotequal command 'ADD' %}
+<input type="hidden" name="key" value="{{provider.key}}">
+{% endifnotequal %}
+</form>
+<br/>
+
+<form action=/updProvider method=post>
+To delete this item, type in DELETEME here: 
+<input type=hidden name=cmd value="DELETE">
+{% ifnotequal command 'ADD' %}
+<input type="hidden" name="key" value="{{provider.key}}">
+{% endifnotequal %}
+<input type=text name=deleteCode>
+<input type=submit value="Delete">
+</form>
+
+<br/><br/>
+{%endblock%}

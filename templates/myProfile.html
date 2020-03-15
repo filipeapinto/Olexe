@@ -1,0 +1,125 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Subscriber Detail</h2>
+
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="/myProfile">
+<table border=1>
+<!-- domain is on a different table --> 
+<!--
+{% ifequal subscriber.key '' %}
+<tr>
+  <td>Domain</td>
+  <td><input type=text size=45 value='{{subscriber.domain}}' name=domain></td>
+</tr>
+{% else %} 
+<tr>
+  <td>Domain (cannot change)</td>
+  <td><input type=text size=45 value='{{subscriber.domain}}' name=domain></td>
+</tr>
+{% endifequal %} 
+-->
+<tr>
+  <td>FirstName</td>
+  <td><input type=text size=45 value='{{subscriber.firstname}}' name=firstname></td>
+</tr>
+<tr>
+  <td>LastName</td>
+  <td><input type=text size=45 value='{{subscriber.lastname}}' name=lastname></td>
+</tr>
+<tr>
+  <td>Organization Name</td>
+  <td><input type=text size=45 value='{{subscriber.organizationname}}' name=organizationname></td>
+</tr>
+<tr>
+  <td>Email</td>
+  <td><input type=text size=45 value='{{subscriber.userEmail}}' name=userEmail></td>
+</tr>
+<tr>
+  <td>Address 1</td>
+  <td><input type=text size=30 value='{{subscriber.address1}}' name=address1></td>
+</tr>
+<tr>
+  <td>Address 2</td>
+  <td><input type=text size=30 value='{{subscriber.address2}}' name=address2></td>
+</tr>
+<tr>
+  <td>City</td>
+  <td><input type=text size=20 value='{{subscriber.city}}' name=city></td>
+</tr>
+<tr>
+  <td>State</td>
+  <td>
+<select id="state" name="state">
+<option value="">Select One</option>
+<optgroup label="U.S. States">
+	{% for state in states %}{% ifequal state.country "USA" %}<option value="{{state.value}}" {% if state.selected  %}selected{% endif %}>{{state.description}}</option>  {% endifequal %} 	{% endfor %}
+
+</optgroup>
+<optgroup label="Canadian Provinces">
+	{% for state in states %}{% ifequal state.country "Canada" %}<option value="{{state.value}}" {% if state.selected  %}selected{% endif %}>{{state.description}}</option>  {% endifequal %} 	{% endfor %}
+</optgroup>
+<optgroup label="Other">
+	{% for state in states %}{% ifequal state.country "Other" %}<option value="{{state.value}}" {% if state.selected  %}selected{% endif %}>{{state.description}}</option>  {% endifequal %} 	{% endfor %}
+</optgroup>
+</select>
+  </td>
+</tr>
+<tr>
+  <td>Zip</td>
+  <td><input type=text size=10 value='{{subscriber.zip}}' name=zip></td>
+</tr>
+<tr>
+  <td>Country</td>
+  <td> 
+  <select id="country" name="country">
+<option value="">Select One</option>
+{% for continent in continents %}
+<optgroup label="{{continent}}">
+	{% for country in countries %}{% ifequal country.continent continent %}	<option value="{{country.value}}" {% if country.selected  %} selected {% endif %}>{{country.description}}</option>{% endifequal %}{% endfor %}
+</optgroup>
+{% endfor %}
+</select>
+</td>
+</tr>
+<tr>
+  <td>Phone</td>
+  <td><input type=text size=12 value='{{subscriber.phone}}' name=phone></td>
+</tr>
+<tr>
+  <td>Timezone</td>
+  <td>
+  <select name="timezone" >
+	{% for timezone in timezones %}
+      <option value="{{timezone.value}}"
+	{% if timezone.selected  %}
+	selected
+	{% endif %}
+	   >{{timezone.description}}</option>
+	{% endfor %}
+  </select>
+  </td>
+</tr>
+
+<!--
+<tr>
+  <td>&nbsp;</td>
+  <td> Show customer <a href="reportOrders?subscriberkey={{subscriber.key}}">Orders</a> 
+  <a href="reportServices?subscriberkey={{subscriber.key}}">Services</a> 
+  </td>
+</tr>
+-->
+
+<tr>
+  <td>&nbsp;</td>
+  <td><input type=submit value="Update Profile"></td>
+</tr>
+
+</table>
+
+<input type=hidden name=key value='{{subscriber.key}}'>
+
+</form>
+
+
+{%endblock%}

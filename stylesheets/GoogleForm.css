@@ -1,0 +1,43 @@
+#ezfaq-toc ul { 
+   text-indent: 0px;
+   list-style-position: inside;
+   padding: 0px;
+   margin: 5px;
+   margin-bottom: 2em;
+   line-height: 1em;
+   background-color: #F4F4F4;
+   border: solid #B2B2B2 1px; 
+ } 
+fieldset{border:0;border-top:1px solid #ccc;clear:left;margin:1em 0 0;padding:0}
+legend  {color:#000;font-size:1.5em;font-weight:bold;margin:0 0 1em 0;padding:0}
+form span.req{color:#a03}
+form div.input{clear:left;float:left;margin:0 0 .5em 1em;width:95%}
+form div.input label,form div.input .label{float:left;padding:0 1em 1.5em 0;text-align:right;width:20em}
+form div.long label,form div.long .label{display:block;float:none;padding:1em 0 .5em 0;text-align:left;width:auto}
+form div.inline label,form div.inline .label{display:inline}
+form div.long input,form div.long select,form div.long textarea{margin-left:12em}
+form div label.checkradio{padding:0 1em 0 0;text-align:left}
+form div.input span{padding:4px 0 8px 0}
+form div.input span.helpTxt{white-space:nowrap}
+form fieldset.checkradio{margin:0;padding:0 0 1em 1em}
+form fieldset.checkradio legend{font-weight:normal}
+form div.checkradio input{float:left;margin:0 .75em 0 0}
+form div.checkradio span.helpTxt,form div.checkradio span.errormsg{padding:0 0 0 2em}
+form div.errormsg{padding:.7em 0 0 13em}
+form p.actions{clear:left;padding:1.5em 0 0 14em}
+ul.progressBox{background:url(/images/tablebar_bg.png) bottom repeat-x;border:1px solid #ccc;border-right:0;border-left:0;clear:left;list-style:none;margin:1em 0 2em 0;padding-left:3em}
+ul.progressBox li{border-right:1px solid #dfe5f0;color:#767676;float:left;margin-right:2em;padding:.5em 2em .5em 0}
+ul.progressBox li.current{color:#000;font-weight:bold}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{display:inline-block}
+.clearfix{display:block}
+
+
+#ezfaq-toc li { 
+   font-weight: bold;
+} 
+p.ez-question { 
+   font-size: 110%;
+   font-weight: bold;
+   border-bottom: solid #B2B2B2 1px; 
+} 

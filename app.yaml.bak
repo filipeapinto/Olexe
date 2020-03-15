@@ -1,0 +1,15 @@
+application: cumulusqa
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /images
+  static_dir: images
+- url: /stylesheets
+  static_dir: stylesheets
+- url: /javascript
+  static_dir: javascript
+- url: .*
+  script: provisioning.py
+  secure: optional

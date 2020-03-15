@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  dir="ltr" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>3WCloud (Beta) &rsaquo; Dashboard &#8212; WordPress</title>
+<link rel='stylesheet' href='stylesheets/dashboard.css?ver=20081210' type='text/css' media='all' />
+<link rel='stylesheet' href='stylesheets/plugin-install.css?ver=20081210' type='text/css' media='all' />
+<link rel='stylesheet' href='stylesheets/global.css?ver=20081210' type='text/css' media='all' />
+<link rel='stylesheet' href='stylesheets/wp-admin.css?ver=20081210' type='text/css' media='all' />
+<link rel='stylesheet' href='stylesheets/colors-fresh.css?ver=20081210' type='text/css' media='all' />
+<!--[if gte IE 6]>
+<link rel='stylesheet' href='http://3wcloud.com/wp-admin/css/ie.css?ver=20081210' type='text/css' media='all' />
+<![endif]-->
+</head>
+<body class="wp-admin ">
+
+<div id="wpwrap">
+<div id="wpcontent">
+<div id="wphead">
+
+<img id="header-logo" src="../wp-includes/images/blank.gif" alt="" width="32" height="32" />
+<h1><a href="http://3wcloud.com/" title="Visit site">3WCloud (Beta) <span>&larr; Visit site</span></a>
+</h1>
+
+<div id="wphead-info">
+<div id="user_info">
+    <p>Welcome: <a href="/profile" title="Edit your profile">NealWalters</a>
+    | <a href="/logout" title="Log Out">Log Out</a></p>
+</div><!--user_info-->
+
+<!--
+<div id="favorite-actions">
+  <div id="favorite-first"><a href="post-new.php">New Post</a>
+  </div>
+  <div id="favorite-toggle"><br />
+  </div>
+  <div id="favorite-inside">
+     <div class='favorite-action'><a href='edit.php?post_status=draft'>Drafts</a></div>
+     <div class='favorite-action'><a href='page-new.php'>New Page</a></div>
+     <div class='favorite-action'><a href='media-new.php'>Upload</a></div>
+     <div class='favorite-action'><a href='edit-comments.php'>Comments</a></div>
+  </div>
+</div>
+-->
+</div>
+</div>
+
+
+<div id="wpbody">
+
+<ul id="adminmenu">
+
+
+	<li class="wp-first-item wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-top-first menu-top-last" id="menu-dashboard">
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='index.php' class="wp-first-item wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-top-first menu-top-last" tabindex="1">Dashboard</a>
+	<div class='wp-submenu'><div class='wp-submenu-head'>Dashboard</div><ul><li class="wp-first-item current"><a href='index.php' class="wp-first-item current" tabindex="1">Dashboard</a></li><li><a href='index.php?page=akismet-stats-display' tabindex="1">Akismet Stats</a></li></ul></div></li>
+	<li class="wp-menu-separator"><br /></li>
+	<li class="wp-has-submenu wp-menu-open menu-top menu-top-first" id="menu-posts">
+
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='edit.php' class="wp-has-submenu wp-menu-open menu-top menu-top-first" tabindex="1">Posts</a>
+	<div class='wp-submenu'><div class='wp-submenu-head'>Posts</div><ul><li class="wp-first-item"><a href='edit.php' class="wp-first-item" tabindex="1">Edit</a></li><li><a href='post-new.php' tabindex="1">Add New</a></li><li><a href='edit-tags.php' tabindex="1">Tags</a></li><li><a href='categories.php' tabindex="1">Categories</a></li></ul></div></li>
+	<li class="wp-has-submenu menu-top" id="menu-media">
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='upload.php' class="wp-has-submenu menu-top" tabindex="1">Media</a>
+	<div class='wp-submenu'><div class='wp-submenu-head'>Media</div><ul><li class="wp-first-item"><a href='upload.php' class="wp-first-item" tabindex="1">Library</a></li><li><a href='media-new.php' tabindex="1">Add New</a></li></ul></div></li>
+
+	<li class="wp-has-submenu menu-top" id="menu-links">
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='link-manager.php' class="wp-has-submenu menu-top" tabindex="1">Links</a>
+	<div class='wp-submenu'><div class='wp-submenu-head'>Links</div><ul><li class="wp-first-item"><a href='link-manager.php' class="wp-first-item" tabindex="1">Edit</a></li><li><a href='link-add.php' tabindex="1">Add New</a></li><li><a href='edit-link-categories.php' tabindex="1">Link Categories</a></li></ul></div></li>
+	<li class="wp-has-submenu menu-top" id="menu-pages">
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='edit-pages.php' class="wp-has-submenu menu-top" tabindex="1">Pages</a>
+	<div class='wp-submenu'><div class='wp-submenu-head'>Pages</div><ul><li class="wp-first-item"><a href='edit-pages.php' class="wp-first-item" tabindex="1">Edit</a></li><li><a href='page-new.php' tabindex="1">Add New</a></li></ul></div></li>
+
+	<li class="menu-top menu-top-last" id="menu-comments">
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='edit-comments.php' class="menu-top menu-top-last" tabindex="1">Comments <span id='awaiting-mod' class='count-0'><span class='pending-count'>0</span></span></a></li>
+	<li class="wp-menu-separator"><br /></li>
+	<li class="wp-has-submenu menu-top menu-top-first" id="menu-appearance">
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='themes.php' class="wp-has-submenu menu-top menu-top-first" tabindex="1">Appearance</a>
+	<div class='wp-submenu'><div class='wp-submenu-head'>Appearance</div><ul><li class="wp-first-item"><a href='themes.php' class="wp-first-item" tabindex="1">Themes</a></li><li><a href='widgets.php' tabindex="1">Widgets</a></li><li><a href='theme-editor.php' tabindex="1">Editor</a></li><li><a href='themes.php?page=header-admin.php' tabindex="1">Header</a></li><li><a href='themes.php?page=layout-admin.php' tabindex="1">Layout</a></li><li><a href='themes.php?page=skin-admin.php' tabindex="1">Skin</a></li></ul></div></li>
+
+	<li class="wp-has-submenu menu-top" id="menu-plugins">
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='plugins.php' class="wp-has-submenu menu-top" tabindex="1">Plugins <span class='update-plugins count-7'><span class='plugin-count'>7</span></span></a>
+	<div class='wp-submenu'><div class='wp-submenu-head'>Plugins <span class='update-plugins count-7'><span class='plugin-count'>7</span></span></div><ul><li class="wp-first-item"><a href='plugins.php' class="wp-first-item" tabindex="1">Installed</a></li><li><a href='plugin-install.php' tabindex="1">Add New</a></li><li><a href='plugin-editor.php' tabindex="1">Editor</a></li><li><a href='plugins.php?page=akismet-key-config' tabindex="1">Akismet Configuration</a></li></ul></div></li>
+	<li class="wp-has-submenu menu-top" id="menu-users">
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='users.php' class="wp-has-submenu menu-top" tabindex="1">Users</a>
+
+	<div class='wp-submenu'><div class='wp-submenu-head'>Users</div><ul><li class="wp-first-item"><a href='users.php' class="wp-first-item" tabindex="1">Authors &amp; Users</a></li><li><a href='user-new.php' tabindex="1">Add New</a></li><li><a href='profile.php' tabindex="1">Your Profile</a></li></ul></div></li>
+	<li class="wp-has-submenu menu-top" id="menu-tools">
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='tools.php' class="wp-has-submenu menu-top" tabindex="1">Tools</a>
+	<div class='wp-submenu'><div class='wp-submenu-head'>Tools</div><ul><li class="wp-first-item"><a href='tools.php' class="wp-first-item" tabindex="1">Tools</a></li><li><a href='import.php' tabindex="1">Import</a></li><li><a href='export.php' tabindex="1">Export</a></li><li><a href='update-core.php' tabindex="1">Upgrade</a></li><li><a href='tools.php?page=contact-form-7/wp-contact-form-7.php' tabindex="1">Contact Form 7</a></li><li><a href='tools.php?page=faq-tastic.php' tabindex="1">FAQ-Tastic</a></li><li><a href='tools.php?page=Sidebar Login' tabindex="1">Sidebar Login</a></li><li><a href='tools.php?page=wp-db-backup' tabindex="1">Backup</a></li></ul></div></li>
+
+	<li class="wp-has-submenu menu-top menu-top-last" id="menu-settings">
+	<div class="wp-menu-image"><br /></div><div class="wp-menu-toggle"><br /></div><a href='options-general.php' class="wp-has-submenu menu-top menu-top-last" tabindex="1">Settings</a>
+	<div class='wp-submenu'><div class='wp-submenu-head'>Settings</div><ul><li class="wp-first-item"><a href='options-general.php' class="wp-first-item" tabindex="1">General</a></li><li><a href='options-writing.php' tabindex="1">Writing</a></li><li><a href='options-reading.php' tabindex="1">Reading</a></li><li><a href='options-discussion.php' tabindex="1">Discussion</a></li><li><a href='options-media.php' tabindex="1">Media</a></li><li><a href='options-privacy.php' tabindex="1">Privacy</a></li><li><a href='options-permalink.php' tabindex="1">Permalinks</a></li><li><a href='options-misc.php' tabindex="1">Miscellaneous</a></li><li><a href='options-general.php?page=ezfaq.php' tabindex="1">EZFaq</a></li><li><a href='options-general.php?page=all-in-one-seo-pack/all_in_one_seo_pack.php' tabindex="1">All in One SEO</a></li><li><a href='options-general.php?page=Sociable' tabindex="1">Sociable</a></li><li><a href='options-general.php?page=SubscriptionIcons.php' tabindex="1">Subscription Icons</a></li><li><a href='options-general.php?page=wordpress-simple-paypal-shopping-cart/wp_shopping_cart.php' tabindex="1">WP Shopping Cart</a></li></ul></div></li>
+
+	<li class="wp-menu-separator-last"><br /></li></ul>
+<div id="wpbody-content">
+<div id="screen-meta">
+<div id="screen-options-wrap" class="hidden">
+	<h5>Show on screen</h5>
+	<form id="adv-settings" action="" method="get">
+	<div class="metabox-prefs">
+<label for="dashboard_right_now-hide"><input class="hide-postbox-tog" name="dashboard_right_now-hide" type="checkbox" id="dashboard_right_now-hide" value="dashboard_right_now" checked="checked" />Right Now</label>
+<label for="dashboard_recent_comments-hide"><input class="hide-postbox-tog" name="dashboard_recent_comments-hide" type="checkbox" id="dashboard_recent_comments-hide" value="dashboard_recent_comments" checked="checked" />Recent Comments</label>
+<label for="dashboard_incoming_links-hide"><input class="hide-postbox-tog" name="dashboard_incoming_links-hide" type="checkbox" id="dashboard_incoming_links-hide" value="dashboard_incoming_links" checked="checked" />Incoming Links <span class="postbox-title-action"><a href="/wp-admin/index.php?edit=dashboard_incoming_links#dashboard_incoming_links" class="edit-box open-box">Configure</a></span></label>
+
+<label for="dashboard_plugins-hide"><input class="hide-postbox-tog" name="dashboard_plugins-hide" type="checkbox" id="dashboard_plugins-hide" value="dashboard_plugins" checked="checked" />Plugins</label>
+<label for="wiki_dashboard_widget-hide"><input class="hide-postbox-tog" name="wiki_dashboard_widget-hide" type="checkbox" id="wiki_dashboard_widget-hide" value="wiki_dashboard_widget" checked="checked" />Recent contributions to Wiki</label>
+<label for="yoast_posts-hide"><input class="hide-postbox-tog" name="yoast_posts-hide" type="checkbox" id="yoast_posts-hide" value="yoast_posts" checked="checked" />Yoast - Tweaking Websites <a href='http://yoast.com/' class='edit-box open-box'>View all</a></label>
+<label for="dashboard_quick_press-hide"><input class="hide-postbox-tog" name="dashboard_quick_press-hide" type="checkbox" id="dashboard_quick_press-hide" value="dashboard_quick_press" checked="checked" />QuickPress</label>
+<label for="dashboard_recent_drafts-hide"><input class="hide-postbox-tog" name="dashboard_recent_drafts-hide" type="checkbox" id="dashboard_recent_drafts-hide" value="dashboard_recent_drafts" checked="checked" />Recent Drafts</label>
+<label for="dashboard_primary-hide"><input class="hide-postbox-tog" name="dashboard_primary-hide" type="checkbox" id="dashboard_primary-hide" value="dashboard_primary" checked="checked" />WordPress Development Blog <span class="postbox-title-action"><a href="/wp-admin/index.php?edit=dashboard_primary#dashboard_primary" class="edit-box open-box">Configure</a></span></label>
+<label for="dashboard_secondary-hide"><input class="hide-postbox-tog" name="dashboard_secondary-hide" type="checkbox" id="dashboard_secondary-hide" value="dashboard_secondary" checked="checked" />Other WordPress News <span class="postbox-title-action"><a href="/wp-admin/index.php?edit=dashboard_secondary#dashboard_secondary" class="edit-box open-box">Configure</a></span></label>
+
+<input type="hidden" id="hiddencolumnsnonce" name="hiddencolumnsnonce" value="0da183c75d" />	<br class="clear" />
+	</div></form>
+</div>
+
+	<div id="contextual-help-wrap" class="hidden">
+	<h5>Get help with "Dashboard"</h5><div class="metabox-prefs">
+	<p>Most of the modules on this screen can be moved. If you hover your mouse over the title bar of a module you’ll notice the 4 arrow cursor appears to let you know it is movable. Click on it, hold down the mouse button and start dragging the module to a new location. As you drag the module, notice the dotted gray box that also moves. This box indicates where the module will be placed when you release the mouse button.</p>
+	<p>The same modules can be expanded and collapsed by clicking once on their title bar and also completely hidden from the Screen Options tab.</p>
+
+</div>
+<h5>Other Help</h5><div class="metabox-prefs"><a href="http://codex.wordpress.org/" target="_blank">Documentation</a><br /><a href="http://wordpress.org/support/" target="_blank">Support Forums</a></div>
+	</div>
+
+<div id="screen-meta-links">
+<div id="contextual-help-link-wrap" class="hide-if-no-js screen-meta-toggle">
+<a href="#contextual-help" id="contextual-help-link" class="show-settings">Help</a>
+</div>
+<div id="screen-options-link-wrap" class="hide-if-no-js screen-meta-toggle">
+<a href="#screen-options" id="show-settings-link" class="show-settings">Screen Options</a>
+</div>
+
+</div>
+</div>
+<div id='update-nag'>WordPress 2.8 is available! <a href="update-core.php">Please update now</a>.</div>
+<div class="wrap">
+	<div id="icon-index" class="icon32"><br /></div>
+<h2>Dashboard</h2>
+
+<div id="dashboard-widgets-wrap">
+
+<div id='dashboard-widgets' class='metabox-holder'>
+
+<div id='side-info-column' class='inner-sidebar'>
+
+<div id='side-sortables' class='meta-box-sortables'>
+<div id="dashboard_quick_press" class="postbox " >
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span>QuickPress</span></h3>
+<div class="inside">
+
+	<form name="post" action="http://3wcloud.com/wp-admin/post.php" method="post" id="quick-press">
+		<h4 id="quick-post-title"><label for="title">Title</label></h4>
+		<div class="input-text-wrap">
+			<input type="text" name="post_title" id="title" tabindex="1" autocomplete="off" value="" />
+		</div>
+
+				<div id="media-buttons" class="hide-if-no-js">
+			Upload/Insert 
+	<a href="media-upload.php?post_id=0&amp;type=image&amp;TB_iframe=true" id="add_image" class="thickbox" title='Add an Image'><img src='images/media-button-image.gif' alt='Add an Image' /></a>
+	<a href="media-upload.php?post_id=0&amp;type=video&amp;TB_iframe=true" id="add_video" class="thickbox" title='Add Video'><img src='images/media-button-video.gif' alt='Add Video' /></a>
+	<a href="media-upload.php?post_id=0&amp;type=audio&amp;TB_iframe=true" id="add_audio" class="thickbox" title='Add Audio'><img src='images/media-button-music.gif' alt='Add Audio' /></a>
+	<a href="media-upload.php?post_id=0&amp;TB_iframe=true" id="add_media" class="thickbox" title='Add Media'><img src='images/media-button-other.gif' alt='Add Media' /></a>
+		</div>
+		
+		<h4 id="content-label"><label for="content">Content</label></h4>
+
+		<div class="textarea-wrap">
+			<textarea name="content" id="content" class="mceEditor" rows="3" cols="15" tabindex="2"></textarea>
+		</div>
+
+		<script type="text/javascript">edCanvas = document.getElementById('content');edInsertContent = null;</script>
+
+		<h4><label for="tags-input">Tags</label></h4>
+		<div class="input-text-wrap">
+
+			<input type="text" name="tags_input" id="tags-input" tabindex="3" value="" />
+		</div>
+
+		<p class="submit">
+			<input type="hidden" name="action" id="quickpost-action" value="post-quickpress-save" />
+			<input type="hidden" name="quickpress_post_ID" value="0" />
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="ad8d382715" /><input type="hidden" name="_wp_http_referer" value="/wp-admin/index.php" />			<input type="submit" name="save" id="save-post" class="button" tabindex="4" value="Save Draft" />
+			<input type="reset" value="Cancel" class="cancel" />
+						<input type="submit" name="publish" id="publish" accesskey="p" tabindex="5" class="button-primary" value="Publish" />
+
+						<br class="clear" />
+		</p>
+
+	</form>
+
+</div>
+</div>
+<div id="dashboard_recent_drafts" class="postbox " >
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span>Recent Drafts</span></h3>
+<div class="inside">
+	<ul>
+		<li><h4><a href='http://3wcloud.com/wp-admin/post.php?action=edit&amp;post=571' title='Edit "How much space does your Email take?"'>How much space does your Email take?</a> <abbr title='2009/04/20 7:29:06 PM'>April 20, 2009</abbr></h4><p>5.7 Gigabytes of Disk Space On my laptop, I had&hellip;</p></li>
+
+	</ul>
+	<p class="textright"><a href="edit.php?post_status=draft" class="button">View all</a></p>
+</div>
+</div>
+<div id="dashboard_primary" class="postbox " >
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span>WordPress Development Blog <span class="postbox-title-action"><a href="/wp-admin/index.php?edit=dashboard_primary#dashboard_primary" class="edit-box open-box">Configure</a></span></span></h3>
+<div class="inside">
+<p class="widget-loading">Loading&#8230;</p></div>
+</div>
+<div id="dashboard_secondary" class="postbox " >
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span>Other WordPress News <span class="postbox-title-action"><a href="/wp-admin/index.php?edit=dashboard_secondary#dashboard_secondary" class="edit-box open-box">Configure</a></span></span></h3>
+
+<div class="inside">
+<p class="widget-loading">Loading&#8230;</p></div>
+</div>
+</div></div>
+
+<div id='post-body' class="has-sidebar">
+
+<div id='dashboard-widgets-main-content' class='has-sidebar-content'>
+
+<div id='normal-sortables' class='meta-box-sortables'>
+<div id="dashboard_right_now" class="postbox " >
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span>Right Now</span></h3>
+<div class="inside">
+
+	<p class="sub">At a Glance</p>
+
+	<div class="table">
+	<table>
+	<tr class="first"><td class="first b b-posts"><a href='edit.php'>18</a></td><td class="t posts"><a href='edit.php'>Posts</a></td><td class="b b-comments"><a href='edit-comments.php'>7</a></td><td class="last t comments"><a href='edit-comments.php'>Comments</a></td></tr><tr><td class="first b b_pages"><a href='edit-pages.php'>57</a></td><td class="t pages"><a href='edit-pages.php'>Pages</a></td><td class="b b_approved"><a href='edit-comments.php?comment_status=approved'>3</a></td><td class="last t"><a class='approved' href='edit-comments.php?comment_status=approved'>Approved</a></td></tr>
+	<tr><td class="first b b-cats"><a href='categories.php'>58</a></td><td class="t cats"><a href='categories.php'>Categories</a></td><td class="b b-waiting"><a href='edit-comments.php?comment_status=moderated'><span class='pending-count'>0</span></a></td><td class="last t"><a class='waiting' href='edit-comments.php?comment_status=moderated'>Pending</a></td></tr>
+
+	<tr><td class="first b b-tags"><a href='edit-tags.php'>55</a></td><td class="t tags"><a href='edit-tags.php'>Tags</a></td><td class="b b-spam"><a href='edit-comments.php?comment_status=spam'><span class='spam-count'>4</span></a></td><td class="last t"><a class='spam' href='edit-comments.php?comment_status=spam'>Spam</a></td></tr>
+	</table>
+	</div>
+	<div class="versions">
+	<p><a href="themes.php" class="button rbutton">Change Theme</a>Theme <span class="b"><a href="themes.php">Semiologic</a></span> with <span class="b"><a href="widgets.php">16 Widgets</a></span></p><span id='wp-version-message'>You are using <span class="b">WordPress 2.7.1</span>. <a href='update-core.php' class='button'>Update to 2.8</a></span>
+
+	<br class="clear" /></div><p class='akismet-right-now'><a href="http://akismet.com/">Akismet</a> has protected your site from 23 spam comments already, and there are <a href="edit-comments.php?comment_status=spam">4 comments</a> in your spam queue right now.</p>
+</div>
+</div>
+<div id="dashboard_recent_comments" class="postbox " >
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span>Recent Comments</span></h3>
+<div class="inside">
+
+		<div id="the-comment-list" class="list:comment">
+
+		<div id="comment-13" class="comment even thread-even depth-1 comment-item approved">
+			
+			<img alt='' src='http://www.gravatar.com/avatar/60928bd59dc43cc3f9a8f75ca33e39fe?s=50&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D50&amp;r=G' class='avatar avatar-50 photo' height='50' width='50' />			<h4 class="comment-meta">From <cite class="comment-author">Lucia Dobranska</cite> on <a href='http://3wcloud.com/wp-admin/post.php?action=edit&amp;post=563'>Outlook Indexing Can Be Painful</a> <a class="comment-link" href="http://3wcloud.com/2009/04/20/outlook-indexing-can-be-painful/comment-page-1/#comment-13">#</a> <span class="approve">[Pending]</span></h4>
+
+						<blockquote><p>Hi!
+
+Great post!
+
+I'm not a geek at all, but I was having a similar problem.  Now I know!
+
+Tell me something? ...</p></blockquote>
+
+			<p class="row-actions"><span class='approve'><a href='comment.php?action=approvecomment&amp;p=563&amp;c=13&amp;_wpnonce=22c60d2084' class='dim:the-comment-list:comment-13:unapproved:e7e7d3:e7e7d3:new=approved vim-a' title='Approve this comment'>Approve</a></span><span class='unapprove'><a href='comment.php?action=unapprovecomment&amp;p=563&amp;c=13&amp;_wpnonce=1034e017d4' class='dim:the-comment-list:comment-13:unapproved:e7e7d3:e7e7d3:new=unapproved vim-u' title='Unapprove this comment'>Unapprove</a></span><span class='edit'> | <a href='comment.php?action=editcomment&amp;c=13' title='Edit comment'>Edit</a></span><span class='reply hide-if-no-js'> | <a onclick="commentReply.open('13','563');return false;" class="vim-r hide-if-no-js" title="Reply to this comment" href="#">Reply</a></span><span class='spam'> | <a href='comment.php?action=deletecomment&amp;dt=spam&amp;p=563&amp;c=13&amp;_wpnonce=80756c6e3f' class='delete:the-comment-list:comment-13::spam=1 vim-s vim-destructive' title='Mark this comment as spam'>Spam</a></span><span class='delete'> | <a href='comment.php?action=deletecomment&amp;p=563&amp;c=13&amp;_wpnonce=80756c6e3f' class='delete:the-comment-list:comment-13 delete vim-d vim-destructive'>Delete</a></span></p>
+
+			<div id="inline-13" class="hidden">
+				<textarea class="comment" rows="3" cols="10">Hi!
+
+Great post!
+
+I'm not a geek at all, but I was having a similar problem.  Now I know!
+
+Tell me something?  I'm a very heavy email user.  People sent me all sorts of attachments and photos.  How long did it take you to accumulate 2-3 GBs as you say in your blog?
+
+I'm currently using 768 MB.  My laptop is only 2 years old but now I'm adding multiple online profiles, and things are getting messier... if i lose my laptop I'm dead!!
+
+Thanks!</textarea>
+				<div class="author-email">luckabamlulu@yahoo.com</div>
+				<div class="author">Lucia Dobranska</div>
+				<div class="author-url"></div>
+				<div class="comment_status">1</div>
+			</div>
+
+		</div>
+
+		<div id="comment-3" class="pingback odd alt thread-odd thread-alt depth-1 comment-item approved">
+			
+			<h4 class="comment-meta"><strong>Pingback</strong> on <a href='http://3wcloud.com/wp-admin/post.php?action=edit&amp;post=24'>First Experience with Microsoft Office Live</a></h4>
+			<p class="comment-author"><a href='http://3wcloud.com/2009/04/15/comparing-google-apps-premier-edition-to-microsoft-small-business-office-live-pricing/' rel='external nofollow' class='url'>Comparing Google Apps to Microsoft Small Business Office Live Pricing | 3WCloud.com</a></p>
+
+						<blockquote><p>[...] If you are a web enthusiast CEO, that is very comfortable with Microsoft, and you don&#8217;t want to spend ...</p></blockquote>
+
+			<p class="row-actions"><span class='approve'><a href='comment.php?action=approvecomment&amp;p=24&amp;c=3&amp;_wpnonce=b9d0ce55a7' class='dim:the-comment-list:comment-3:unapproved:e7e7d3:e7e7d3:new=approved vim-a' title='Approve this comment'>Approve</a></span><span class='unapprove'><a href='comment.php?action=unapprovecomment&amp;p=24&amp;c=3&amp;_wpnonce=bebd70073f' class='dim:the-comment-list:comment-3:unapproved:e7e7d3:e7e7d3:new=unapproved vim-u' title='Unapprove this comment'>Unapprove</a></span><span class='edit'> | <a href='comment.php?action=editcomment&amp;c=3' title='Edit comment'>Edit</a></span><span class='reply hide-if-no-js'> | <a onclick="commentReply.open('3','24');return false;" class="vim-r hide-if-no-js" title="Reply to this comment" href="#">Reply</a></span><span class='spam'> | <a href='comment.php?action=deletecomment&amp;dt=spam&amp;p=24&amp;c=3&amp;_wpnonce=87ca45b12a' class='delete:the-comment-list:comment-3::spam=1 vim-s vim-destructive' title='Mark this comment as spam'>Spam</a></span><span class='delete'> | <a href='comment.php?action=deletecomment&amp;p=24&amp;c=3&amp;_wpnonce=87ca45b12a' class='delete:the-comment-list:comment-3 delete vim-d vim-destructive'>Delete</a></span></p>
+
+			<div id="inline-3" class="hidden">
+				<textarea class="comment" rows="3" cols="10">[...] If you are a web enthusiast CEO, that is very comfortable with Microsoft, and you don&#8217;t want to spend any money, than I would see a reason for you to go with Microsoft.  If you really want to do serious business on the web, you want a website that is efficient, fast and clean cut, to collaborate with your employees, that I would strongly suggest you use Google Premier Accounts.  By the way you may want to check what happened to Neal Walters while trying to install MS-Office Liv.... [...]</textarea>
+				<div class="author-email"></div>
+				<div class="author">Comparing Google Apps to Microsoft Small Business Office Live Pricing | 3WCloud.com</div>
+				<div class="author-url">http://3wcloud.com/2009/04/15/comparing-google-apps-premier-edition-to-microsoft-small-business-office-live-pricing/</div>
+				<div class="comment_status">1</div>
+			</div>
+
+		</div>
+
+		<div id="comment-2" class="comment byuser comment-author-fpinto even thread-even depth-1 comment-item approved">
+			
+			<img alt='' src='http://www.gravatar.com/avatar/a04f0f335f34ff5fa51f57303a0230dc?s=50&amp;d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D50&amp;r=G' class='avatar avatar-50 photo' height='50' width='50' />			<h4 class="comment-meta">From <cite class="comment-author">fpinto</cite> on <a href='http://3wcloud.com/wp-admin/post.php?action=edit&amp;post=67'>Google Sites creation Throttle?</a> <a class="comment-link" href="http://3wcloud.com/2009/04/08/google-sites-throttle-sorry-you-cannot-create-more-sites-at-this-time-please-try-again-later/comment-page-1/#comment-2">#</a> <span class="approve">[Pending]</span></h4>
+
+						<blockquote><p>UPDATE:
+------
+
+There's a limit of 5 websites a week. </p></blockquote>
+			<p class="row-actions"><span class='approve'><a href='comment.php?action=approvecomment&amp;p=67&amp;c=2&amp;_wpnonce=5a051e90ee' class='dim:the-comment-list:comment-2:unapproved:e7e7d3:e7e7d3:new=approved vim-a' title='Approve this comment'>Approve</a></span><span class='unapprove'><a href='comment.php?action=unapprovecomment&amp;p=67&amp;c=2&amp;_wpnonce=76c003e4fa' class='dim:the-comment-list:comment-2:unapproved:e7e7d3:e7e7d3:new=unapproved vim-u' title='Unapprove this comment'>Unapprove</a></span><span class='edit'> | <a href='comment.php?action=editcomment&amp;c=2' title='Edit comment'>Edit</a></span><span class='reply hide-if-no-js'> | <a onclick="commentReply.open('2','67');return false;" class="vim-r hide-if-no-js" title="Reply to this comment" href="#">Reply</a></span><span class='spam'> | <a href='comment.php?action=deletecomment&amp;dt=spam&amp;p=67&amp;c=2&amp;_wpnonce=6b8ff1af44' class='delete:the-comment-list:comment-2::spam=1 vim-s vim-destructive' title='Mark this comment as spam'>Spam</a></span><span class='delete'> | <a href='comment.php?action=deletecomment&amp;p=67&amp;c=2&amp;_wpnonce=6b8ff1af44' class='delete:the-comment-list:comment-2 delete vim-d vim-destructive'>Delete</a></span></p>
+
+			<div id="inline-2" class="hidden">
+				<textarea class="comment" rows="3" cols="10">UPDATE:
+------
+
+There's a limit of 5 websites a week.</textarea>
+				<div class="author-email">fpinto@3wcloud.com</div>
+				<div class="author">fpinto</div>
+				<div class="author-url">http://</div>
+				<div class="comment_status">1</div>
+
+			</div>
+
+		</div>
+
+		</div>
+
+			<p class="textright"><a href="edit-comments.php" class="button">View all</a></p>
+<form method="get" action="">
+<div id="com-reply" style="display:none;"><div id="replyrow">
+	<div id="replyhead" style="display:none;">Reply to Comment</div>
+
+	<div id="edithead" style="display:none;">
+		<div class="inside">
+		<label for="author">Name</label>
+		<input type="text" name="newcomment_author" size="50" value="" tabindex="101" id="author" />
+		</div>
+
+		<div class="inside">
+		<label for="author-email">E-mail</label>
+
+		<input type="text" name="newcomment_author_email" size="50" value="" tabindex="102" id="author-email" />
+		</div>
+
+		<div class="inside">
+		<label for="author-url">URL</label>
+		<input type="text" id="author-url" name="newcomment_author_url" size="103" value="" tabindex="103" />
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+
+	<div id="replycontainer"><textarea rows="8" cols="40" name="replycontent" tabindex="104" id="replycontent"></textarea></div>
+
+	<p id="replysubmit" class="submit">
+	<a href="#comments-form" class="cancel button-secondary alignleft" tabindex="106">Cancel</a>
+	<a href="#comments-form" class="save button-primary alignright" tabindex="104">
+	<span id="savebtn" style="display:none;">Update Comment</span>
+	<span id="replybtn" style="display:none;">Submit Reply</span></a>
+
+	<img class="waiting" style="display:none;" src="images/loading.gif" alt="" />
+	<span class="error" style="display:none;"></span>
+	<br class="clear" />
+	</p>
+
+	<input type="hidden" name="user_ID" id="user_ID" value="3" />
+	<input type="hidden" name="action" id="action" value="" />
+	<input type="hidden" name="comment_ID" id="comment_ID" value="" />
+	<input type="hidden" name="comment_post_ID" id="comment_post_ID" value="" />
+
+	<input type="hidden" name="status" id="status" value="" />
+	<input type="hidden" name="position" id="position" value="-1" />
+	<input type="hidden" name="checkbox" id="checkbox" value="0" />
+	<input type="hidden" name="mode" id="mode" value="dashboard" />
+	<input type="hidden" id="_ajax_nonce" name="_ajax_nonce" value="257b7fd8e0" />	<input type="hidden" id="_wp_unfiltered_html_comment" name="_wp_unfiltered_html_comment" value="899b6e32c3" /></div></div>
+</form>
+</div>
+</div>
+<div id="dashboard_incoming_links" class="postbox " >
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span>Incoming Links <span class="postbox-title-action"><a href="/wp-admin/index.php?edit=dashboard_incoming_links#dashboard_incoming_links" class="edit-box open-box">Configure</a></span></span></h3>
+
+<div class="inside">
+<p class="widget-loading">Loading&#8230;</p></div>
+</div>
+<div id="dashboard_plugins" class="postbox " >
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span>Plugins</span></h3>
+<div class="inside">
+<p class="widget-loading">Loading&#8230;</p></div>
+</div>
+<div id="wiki_dashboard_widget" class="postbox " >
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span>Recent contributions to Wiki</span></h3>
+<div class="inside">
+    <div class="rss-widget">
+
+    <ul>
+        <li><a href = "http://3wcloud.com/wiki-2/">Wiki</a></li>
+    </ul>
+    </div>
+</div>
+</div>
+<div id="yoast_posts" class="postbox " >
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span>Yoast - Tweaking Websites <a href='http://yoast.com/' class='edit-box open-box'>View all</a></span></h3>
+<div class="inside">
+<a href="http://yoast.com/"><img style="margin: 0 0 5px 5px;" src="http://yoast.com/images/yoast-logo-rss.png" align="right" alt="Yoast"/></a>						<a style="font-size: 14px; font-weight:bold;" href='http://feedproxy.google.com/~r/joostdevalk/~3/1Vx_5iDgwrg/' title='CSS Image Replacement, what's up Matt?'>CSS Image Replacement, what's up Matt?</a><br/> 
+						<p style="font-size: 10px; color: #aaa;">25 June 2009</p>
+
+						<p>So I'm a big fan of CSS image replacement, for several reasons, most importantly because it allows for a semantically correct page while having some text replaced with images, but also because I love sprites and I love using them well.
+I've also always been in favor of the use of CSS Image Replacement for headings, <p></p>
+												<a style="font-size: 14px; font-weight:bold;" href='http://feedproxy.google.com/~r/joostdevalk/~3/sGgPwGxMFls/' title='Excluding a blog category from your feed'>Excluding a blog category from your feed</a><br/> 
+						<p style="font-size: 10px; color: #aaa;">25 June 2009</p>
+						<p>While I was working on a new system for my WordPress newsletter, a system that uses its own custom feed (skipping FeedBurner which caused errors last week), I had to figure out how to exclude a category from my blogs regular feed as well as my homepage and some other pages.
+There's a couple of ways <p></p>
+						</div>
+</div>
+</div></div>
+
+</div>
+
+<form style='display: none' method='get' action=''>
+<p>
+<input type="hidden" id="closedpostboxesnonce" name="closedpostboxesnonce" value="6c94032eec" /><input type="hidden" id="meta-box-order-nonce" name="meta-box-order-nonce" value="7a3e3fb085" /></p>
+</form>
+</div>
+<div class="clear"></div>
+</div><!-- dashboard-widgets-wrap -->
+
+</div><!-- wrap -->
+
+
+<div class="clear"></div></div><!-- wpbody-content -->
+<div class="clear"></div></div><!-- wpbody -->
+<div class="clear"></div></div><!-- wpcontent -->
+</div><!-- wpwrap -->
+
+<div id="footer">
+<p id="footer-left" class="alignleft"><span id="footer-thankyou">Thank you for creating with <a href="http://wordpress.org/">WordPress</a>.</span> | <a href="http://codex.wordpress.org/">Documentation</a> | <a href="http://wordpress.org/support/forum/4">Feedback</a></p>
+<p id="footer-upgrade" class="alignright"><strong><a href="update-core.php">Get Version 2.8</a></strong></p>
+<div class="clear"></div>
+</div>
+<script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
+
+</body>
+</html>

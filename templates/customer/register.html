@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+	<title>3WCloud (Beta) &rsaquo; Log In</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel='stylesheet' href='http://3wcloud.com/wp-admin/css/login.css?ver=20081210' type='text/css' media='all' />
+<link rel='stylesheet' href='http://3wcloud.com/wp-admin/css/colors-fresh.css?ver=20081210' type='text/css' media='all' />
+</head>
+<script Language="JavaScript">
+<!--
+function loginform_Validator(theForm)
+{
+// check to see if the field is blank
+if (theForm.user_pass.value.length < 6)
+  {
+   alert("Data not saved!  Please enter at least 6 characters in the \"Password\" field.");
+   theForm.user_pass.focus();
+   return (false);
+  }
+//Check Email 
+// test if valid email address, must have @ and .
+var checkEmail = "@.";
+var checkStr = theForm.log.value;
+var EmailValid = false;
+var EmailAt = false;
+var EmailPeriod = false;
+for (i = 0;  i < checkStr.length;  i++)
+{
+ch = checkStr.charAt(i);
+for (j = 0;  j < checkEmail.length;  j++)
+{
+if (ch == checkEmail.charAt(j) && ch == "@")
+EmailAt = true;
+if (ch == checkEmail.charAt(j) && ch == ".")
+EmailPeriod = true;
+	  if (EmailAt && EmailPeriod)
+		break;
+	  if (j == checkEmail.length)
+		break;
+	}
+	// if both the @ and . were in the string
+if (EmailAt && EmailPeriod)
+{
+		EmailValid = true
+		break;
+	}
+}
+
+if (!EmailValid)
+  {
+    alert("The \"email\" field must contain an \"@\" and a \".\".");
+    theForm.log.focus();
+    return (false);
+}
+
+return (true); 
+}
+-->
+</script>
+
+<body class="login">
+
+<br/><br/><br/>
+
+<center>
+<table border=1>
+<tr>
+<td>
+<img src='/images/login-form-200.png'>
+</td>
+<td>
+
+<div id="login">
+{% if specialMessage %}
+<center>
+<h3>
+{{specialMessage}} 
+</h3>
+</center> 
+{% endif%}
+{% ifequal showUserPass "Y" %} 
+<center>
+<h3>
+To retrieve your form data later, you'll need to provide your email and a password
+</h3>
+</center> 
+<form name="loginform" id="loginform" action="oneCloudSetupIndivSave" method="post"
+onsubmit="return loginform_Validator(this)">
+	<p>
+		<label>Your current email<br />
+		<input type="text" name="log" id="user_login" class="input" value="" size="20" tabindex="10" /></label>
+	</p>
+	<p>
+		<label>New Password (minimum 6 characters)<br />
+
+		<input type="password" name="pwd" id="user_pass" class="input" value="" size="20" tabindex="20" /></label>
+	</p>
+	<!--
+	<p class="forgetmenot"><label><input name="rememberme" type="checkbox" id="rememberme" value="forever" tabindex="90" /> Remember Me</label></p>
+	-->
+	<p class="submit">
+		<input type="submit" name="wp-submit" id="wp-submit" value="Register" tabindex="100" />
+		<input type="hidden" name="redirect_to" value="http://3wcloud.com/wp-admin/" />
+		<input type="hidden" name="testcookie" value="1" />
+	</p>
+
+</form>
+{% endifequal %} 
+
+
+</div>
+</td>
+</tr>
+</table>
+</center>
+
+<p id="backtoblog">
+<!--<a href="http://3wcloud.com/" title="Are you lost?">&larr; Back to 3WCloud.com </a>-->
+<a href="{{orderpage}}" title="Continue editing the form without registering yet.">Back to Order Form </a>
+</p>
+
+
+
+<script type="text/javascript">
+try{document.getElementById('user_login').focus();}catch(e){}
+</script>
+</body>
+</html>
+

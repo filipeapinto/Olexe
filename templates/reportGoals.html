@@ -1,0 +1,53 @@
+
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>Goal Report</h3><a href='/updGoal?cmd=ADD'>Add new Goal</a> <br/><br/>
+<table border=1>
+<tr>
+  <th>Row<br/>(Update<br/>Goal)</th>
+  <th>Name</th>
+  <th>Add<br>Knowledge<br/>Source</th>
+  <th>View/Upd<br>Knowledge</th>
+  {%if showSubscriber %}
+  <th>Subscriber<br/>firstname</th>
+  <th>Subscriber<br/>lastname</th>
+  {%endif%}
+  <th>GoalType</th>
+  <th>StartDate</th>
+  <th>Planned<br/>Completion<br/>Date</th>
+  <th>Share<br/>With<br/>Friends</th>
+  <th>DateTime<br/>Created</th>
+  <th>DateTime<br/>Modified</th>
+</tr>
+{%for goal in goalList%} 
+<tr>
+   <td><a href='/updGoal?key={{goal.key}}'>&nbsp;{{forloop.counter}}&nbsp;</a></td>    
+   <td>{{goal.name}}</td>
+   <td>&nbsp;<a href='/updKnowledgeSource?cmd=ADD&goalKey={{goal.key}}'>Add</a></td>
+   <td>&nbsp;<a href='/reportKnowledgeSources?goalKey={{goal.key}}'>View/Upd</a></td>
+  {%if showSubscriber %}
+    <td>{{goal.subscriber.firstname}}</td>
+    <td>{{goal.subscriber.lastname}}</td>
+  {%endif%}
+    <td>{{goal.goalType}}</td>
+    <td>&nbsp;{{goal.startDate|date:_("m/d/y")}}</td>
+    <td>&nbsp;{{goal.plannedCompletionDate|date:_("m/d/y")}}</td>
+    <td>&nbsp;{{goal.shareWithFriends}}</td>
+    <td>{{goal.dateTimeCreated|date:_("m/d/y h:i:s")}}</td>
+    <td>{{goal.dateTimeModified|date:_("m/d/y h:i:s")}}</td>
+</tr>
+{%endfor%}
+<!--Add or Remove this submit button as needed <tr>
+   <td><input type=submit value="Update"></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+/<tr>
+--></table>
+<br/><br/><br/>
+{%endblock%}

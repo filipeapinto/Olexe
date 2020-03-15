@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  dir="ltr" lang="en-US">
+<head>
+<link rel="stylesheet" href="/stylesheets/DojoFisheyeMenu.css">
+<script type="text/javascript" src="/javascript/dojo.js"></script>
+<script type="text/javascript" src="/javascript/dojoFisheyeMenu.js"></script>
+
+<!--
+<script type="text/javascript" src="http://demos.dojotoolkit.org/demos/fisheye/../../dojo/dojo.js"></script>
+<script type="text/javascript" src="http://demos.dojotoolkit.org/demos/fisheye/src.js"></script>
+-->
+
+
+</head>
+
+<body class="tundra">
+<h1>Start</h1>
+<hr>
+<div class="outerbar">
+	<div dojoType="dojox.widget.FisheyeList"
+		itemWidth="50" itemHeight="50"
+		itemMaxWidth="200" itemMaxHeight="200"
+		orientation="horizontal"
+		effectUnits="2"
+		itemPadding="10"
+		attachEdge="top"
+		labelEdge="bottom"
+		id="fisheye1"
+	>
+	<div dojoType="dojox.widget.FisheyeListItem"
+		id="item1"
+		onclick="alert('click on ' + this.label + '(from widget id ' + this.widgetid + ')!');"
+		label="Item 1"
+		iconSrc="/images/icon_browser.png">
+	</div>
+
+	<div dojoType="dojox.widget.FisheyeListItem"
+		label="Item 2"
+		iconSrc="/images/icon_calendar.png">
+	</div>
+
+	<div dojoType="dojox.widget.FisheyeListItem"
+		label="Item 3"
+		onclick="alert('click on ' + this.label + '(from widget id ' + this.widgetid + ')!');"
+		iconSrc="/images/icon_email.png">
+	</div>
+
+	<div dojoType="dojox.widget.FisheyeListItem"
+		iconSrc="/images/icon_texteditor.png">
+	</div>
+
+	<div dojoType="dojox.widget.FisheyeListItem"
+		label="Really Long Item Label"
+		iconSrc="/images/icon_update.png">
+	</div>
+
+	<div dojoType="dojox.widget.FisheyeListItem"
+		iconSrc="/images/icon_users.png">
+	</div>
+</div>
+</div>
+<hr>
+<!-- This proves you need /images/ instead of images/
+<br/>Test1: <img src="/images/icon_users.png">
+<br/>Test2: <img src="/images/icon_users.png">
+-->
+<h1>Test Dojo FishEye Menu</h1>
+Similar to the one here <a href="http://demos.dojotoolkit.org/demos/fisheye/">http://demos.dojotoolkit.org/demos/fisheye/</a>
+</body>
+</html>

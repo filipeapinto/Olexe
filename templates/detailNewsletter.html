@@ -1,0 +1,23 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Newsletters Detail</h2>
+
+<table border=1>
+<tr>
+  <td>Id</td>
+  <td>{{docId}}</td>
+</tr>
+<tr>
+  <td>Name</td>
+  <td>{{docName}}</td>
+</tr>
+</table>
+
+<h3>Newsletter Contents:</h3>
+<hr>
+{{htmlFileContents}} 
+<hr>
+
+
+
+{%endblock%}

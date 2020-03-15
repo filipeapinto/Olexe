@@ -1,0 +1,276 @@
+{%extends "oneCloudSetupIndivBase.html"%}
+{%block body%}
+
+<script Language="JavaScript">
+<!--
+
+function validateFormOnSubmit(theForm) {
+var reason = "";
+
+  // Could potentially check several fields here. 
+  //reason += validateUsername(theForm.username);
+  //reason += validatePassword(theForm.pwd);
+  //reason += validateEmail(theForm.email);
+  //reason += validatePhone(theForm.phoneland,'home/office phone');
+  //reason += validatePhone(theForm.phonecell,'cell phone');
+  //reason += validateEmpty(theForm.from);
+      
+  if (reason != "") {
+    alert("Some fields need correction:\n" + reason);
+    return false;
+  }
+
+  return true;
+}
+
+function validatePhone(fld,strWhichPhone) {
+    var error = "";
+    var stripped = fld.value.replace(/[\(\)\.\-\ ]/g, '');    
+
+   if (fld.value == "") {
+        error = "You didn't enter a phone number.\n";
+        fld.style.background = 'Yellow';
+    } else if (isNaN(parseInt(stripped))) {
+        error = "The " + strWhichPhone + " contains illegal characters.\n";
+        fld.style.background = 'Yellow';
+    } else if (!(stripped.length == 10)) {
+        error = "The " + strWhichPhone + " is the wrong length. Make sure you included an area code.\n";
+        fld.style.background = 'Yellow';
+    }
+    return error;
+}
+-->
+</script>
+
+<body class="m flex flex_m flex1 trebuchet small blues monocolumn skin custom">
+{% include "commonOrderHeader.html" %}
+
+<div id="body" class="body">
+<div id="ext_main">
+<div id="main" class="main">
+<div class="pad">
+<div class="entry" id="entry-1272">
+<div class="entry_header">
+
+<div class="spacer"></div>
+<div class="entry_content">
+{% include "commonTabs.html" %}
+
+<div class="wpcf7" id="wpcf7-f10-p1272-o1">
+<form action="{{action}}" method="post" class="wpcf7-form" enctype="multipart/form-data"
+onsubmit="return validateFormOnSubmit(this)">
+<div style="display: none;"><input type="hidden" name="_wpcf7" value="10" /><input type="hidden" name="_wpcf7_version" value="1.9.5.1" /><input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f10-p1272-o1" /></div>
+
+<fieldset id="admin"><legend>Your Contact Information</legend><p></p>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="firstname">First Name:<span class="req" title="Required">*</span>
+	</label>
+    <input type="text" name="firstname" class="input_field" 
+	{%if session.firstname%} value="{{session.firstname}}" {%else%} value=""{%endif%}
+	>&nbsp;
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="lastname">Last Name:<span class="req" title="Required">*</span>
+	</label>
+    <input type="text" name="lastname" class="input_field" 
+	{%if session.lastname%} value="{{session.lastname}}" {%else%} value=""{%endif%}
+	>&nbsp;
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="orgname">Organiation Name:<span class="req" title="Required"></span>
+	</label>
+    <input type="text" name="orgname" class="input_field" 
+	{%if session.orgname%} value="{{session.orgname}}" {%else%} value=""{%endif%}
+	>&nbsp;
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="address1">Address 1:<span class="req" title="Required">*</span>
+	</label>
+    <input type="text" name="address1" class="input_field" size=30
+	{%if session.address1%} value="{{session.address1}}" {%else%} value=""{%endif%}
+	>&nbsp;
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="address2">Address 2:<span class="req" title="Required"></span>
+	</label>
+    <input type="text" name="address2" class="input_field" size=30
+	{%if session.address2%} value="{{session.address2}}" {%else%} value=""{%endif%}
+	>&nbsp;
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="city">City:<span class="req" title="Required">*</span>
+	</label>
+    <input type="text" name="city" class="input_field" 
+	{%if session.city%} value="{{session.city}}" {%else%} value=""{%endif%}
+	>&nbsp;
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="country">State/Province:<span class="req" title="Required">*</span>
+	</label>
+<select id="state" name="state">
+<option value="">Select One</option>
+<optgroup label="U.S. States">
+	{% for state in states %}{% ifequal state.country "USA" %}<option value="{{state.value}}" {% if state.selected  %}selected{% endif %}>{{state.description}}</option>  {% endifequal %} 	{% endfor %}
+
+</optgroup>
+<optgroup label="Canadian Provinces">
+	{% for state in states %}{% ifequal state.country "Canada" %}<option value="{{state.value}}" {% if state.selected  %}selected{% endif %}>{{state.description}}</option>  {% endifequal %} 	{% endfor %}
+</optgroup>
+<optgroup label="Other">
+	{% for state in states %}{% ifequal state.country "Other" %}<option value="{{state.value}}" {% if state.selected  %}selected{% endif %}>{{state.description}}</option>  {% endifequal %} 	{% endfor %}
+</optgroup>
+			
+</select>
+	<span class="helpTxt">(For USA or Canada, else please pick "Other/Not Required")</span>
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="zip">Postal/Zip Code: <span class="req" title="Required">*</span>
+	</label>
+    <input type="text" name="zip" class="input_field" size=6
+	{%if session.zip%} value="{{session.zip}}" {%else%} value=""{%endif%}
+	>&nbsp;
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="domain">Country:<span class="req" title="Required">*</span>
+	</label>
+<select id="country" name="country">
+<option value="">Select One</option>
+{% for continent in continents %}
+<optgroup label="{{continent}}">
+	{% for country in countries %}{% ifequal country.continent continent %}	<option value="{{country.value}}" {% if country.selected  %} selected {% endif %}>{{country.description}}</option>{% endifequal %}{% endfor %}
+</optgroup>
+{% endfor %}
+</select>
+</span>
+</div>
+
+
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="phone">Phone: <span class="req" title="Optional"></span>
+	</label>
+    <input type="text" name="phoneland" class="input_field" 
+	{%if session.phone%} value="{{session.phone}}" {%else%} value=""{%endif%}
+	>&nbsp;
+  </span>
+</div>
+
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="domain">Time Zone: <span class="req" title="Required">*</span>
+	</label>
+<select name="timezone" >
+	{% for timezone in timezones %}
+      <option value="{{timezone.value}}"
+	{% if timezone.selected  %}
+	selected
+	{% endif %}
+	   >{{timezone.description}}</option>
+	{% endfor %}
+</select>
+  </span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="userEmail">Current Email: <span class="req" title="Required">*</span>
+	</label>
+    <input type="text" name="userEmail" class="input_field" size=50
+	{%if session.userEmail%} value="{{session.userEmail}}" {%else%} value=""{%endif%}
+	>&nbsp;
+  </span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="password">Set New Password: <span class="req" title="Required">*</span>
+	</label>
+    <input type="password" name="userPassword" class="input_field" 
+	{%if session.userPassword%} value="{{session.userPassword}}" {%else%} value=""{%endif%}
+	>&nbsp;
+	<span class="helpTxt">(Minimum of 6 characters in length")</span>
+
+  </span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="password">Re-enter Password: <span class="req" title="Required">*</span>
+	</label>
+    <input type="password" name="userPassword2" class="input_field" 
+	{%if session.userPassword%} value="{{session.userPassword}}" {%else%} value=""{%endif%}
+	>&nbsp;
+  </span>
+</div>
+
+</fieldset>
+{% include "commonOrderButtons.html" %}
+</form>
+
+
+<div class="entry_actions">
+<div class="spacer"></div>
+<div class="entry_comments">
+<div class="spacer"></div>
+</div>
+</div>
+</div>
+</div><!-- #main -->
+
+<div class="spacer"></div>
+</div><!-- #ext_main -->
+
+<div class="spacer"></div>
+
+</div><!-- #body -->
+
+<div id="footer" class="footer">
+<div class="pad">
+<div id="copyright_notice" class="copyright_notice">Copyright 2009</div><!-- #copyright_notice -->
+<div id="footer_nav" class="footer_nav inline_menu"><div>
+<span class="nav_home nav__home"><a href="http://3wcloud.com">Home</a></span>
+</div>
+</div><!-- #footer_nav -->
+<div class="spacer"></div>
+</div>
+</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<div class="spacer"></div>
+
+</div><!-- #shadow -->
+<div id="shadow_bottom"></div>
+</div><!-- #ext_wrapper -->
+<div class="spacer"></div>
+{%endblock%}
+
+

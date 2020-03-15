@@ -1,0 +1,124 @@
+
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>Update Feedback</h3>
+<form action=/updFeedback method=post>
+<table border=1>
+<tr>
+  <td>&nbsp;SubmittedDateTime:</td>
+  <td>
+  &nbsp;<input type=text name=submittedDateTime size=24 value="{{feedback.submittedDateTime}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Subscriber:</td>
+  <td>
+    {{feedback.subscriber.firstname}} {{feedback.subscriber.lastname}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Rating:</td>
+  <td>
+  &nbsp;{{feedback.rating}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Comments:</td>
+  <td>
+  <textarea rows=10 cols=60 name=Comments>
+  {{feedback.comments}}
+  </textarea>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;RelatedURL:</td>
+  <td>
+  &nbsp;<input type=text name=relatedURL size=24 value="{{feedback.relatedURL}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;FeedbackType:</td>
+  <td>
+   <select id="feedbackType" name="feedbackType"> 
+     <option value="">Select One</option> 
+     {% for item in feedbackTypeChoices %} 
+     <option value="{{item.value}}" {% if item.selected %} selected {% endif %}>{{item.value}}</option>   
+     {% endfor %} 
+   </select> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Department:</td>
+  <td>
+   <select id="department" name="department"> 
+     <option value="">Select One</option> 
+     {% for item in departmentChoices %} 
+     <option value="{{item.value}}" {% if item.selected %} selected {% endif %}>{{item.value}}</option>   
+     {% endfor %} 
+   </select> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;IsDefect:</td>
+  <td>
+ &nbsp;True: <input type=radio name=isDefect value="True" 
+  {%if feedback.isDefect%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isDefect value="False" 
+  {%if not feedback.isDefect%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;IsCumbersome:</td>
+  <td>
+ &nbsp;True: <input type=radio name=isCumbersome value="True" 
+  {%if feedback.isCumbersome%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isCumbersome value="False" 
+  {%if not feedback.isCumbersome%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;IsUgly:</td>
+  <td>
+ &nbsp;True: <input type=radio name=isUgly value="True" 
+  {%if feedback.isUgly%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isUgly value="False" 
+  {%if not feedback.isUgly%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;IsImStuck:</td>
+  <td>
+ &nbsp;True: <input type=radio name=isImStuck value="True" 
+  {%if feedback.isImStuck%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isImStuck value="False" 
+  {%if not feedback.isImStuck%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;AdminStatus:</td>
+  <td>
+   <select id="adminStatus" name="adminStatus"> 
+     <option value="">Select One</option> 
+     {% for item in adminStatusChoices %} 
+     <option value="{{item.value}}" {% if item.selected %} selected {% endif %}>{{item.value}}</option>   
+     {% endfor %} 
+   </select> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;AdminPriority:</td>
+  <td>
+  &nbsp;<input type=text name=adminPriority size=24 value="{{feedback.adminPriority}}">
+  </td>
+</tr>
+</tr>
+
+<tr>
+   <td>&nbsp;</td>
+   <td><input type=submit value="Update"</td>
+<tr>
+</table>
+<input type="hidden" name="key" value="{{Feedback.key}}">
+</form>
+<br/><br/><br/>
+{%endblock%}

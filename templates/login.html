@@ -1,0 +1,32 @@
+{%extends "base.html"%}
+{%block body%}
+<h2>Login</h2>
+
+Debug={{ debugText }}
+<br/>
+<br/>
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="login">
+<table border=1>
+<tr>
+<td>Username (Email):</td>
+<td><INPUT TYPE=text NAME="username" size=32></td>
+</tr>
+
+<tr>
+<td>Password:</td>
+<td><INPUT TYPE=password NAME="password" size=12></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><INPUT TYPE=SUBMIT VALUE="Submit">
+</td>
+</tr>
+</table>
+</FORM>
+
+<br/>
+<br/>
+<br/>
+
+{%endblock%}

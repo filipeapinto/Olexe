@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  dir="ltr" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>3wcloud.com Cumulus</title>
+<link rel='stylesheet' href='/stylesheets/dashboard.css?ver=20081210' type='text/css' media='all' />
+
+<!-- it was critical to add this line - not found in sample --> 
+	<link rel="stylesheet" href="/stylesheets/DojoFisheyeMenu.css" media='all'>
+	<script type="text/javascript" src="/javascript/dojo/dojo.js"></script>
+	<script type="text/javascript" src="/javascript/dojo/dojoFisheyeMenu.js"></script>
+
+<link rel='stylesheet' href='/stylesheets/plugin-install.css?ver=20081210' type='text/css' media='all' />
+<link rel='stylesheet' href='/stylesheets/global.css?ver=20081210' type='text/css' media='all' />
+<link rel='stylesheet' href='/stylesheets/wp-admin.css?ver=20081210' type='text/css' media='all' />
+<link rel='stylesheet' href='/stylesheets/colors-fresh.css?ver=20081210' type='text/css' media='all' />
+<!--[if gte IE 6]>
+<link rel='stylesheet' href='/stylesheets/ie.css?ver=20081210' type='text/css' media='all' />
+<![endif]-->
+</head>
+<body class="wp-admin" onload="javascript:showOrHideReason()">
+<div id="wpwrap">
+<div id="wpcontent">
+<div id="wphead">
+
+<!--<img id="header-logo" src="../wp-includes/images/blank.gif" alt="" width="32" height="32" />-->
+<h1><a href="http://3wcloud.com/" title="Visit main site">3WCloud.com<span>&larr; Visit main  site</span></a>&nbsp;&nbsp;<span style="color:yellow;font-size:large;">Cumulus</span>
+{% ifequal environment 'test' %}<span style="color:red;font-size:large">&nbsp;&nbsp;Environment={{environment}}</span> {% endifequal %}
+</h1>
+<div id="wphead-info">
+
+   <div id="user_info">
+      <p>Welcome:<a href="/myProfile" title="Edit your profile">{{currentUser}}</a>
+      | <a href="/logout" title="Log Out">Log Out</a></p>
+   </div><!--user_info-->
+
+
+</div><!--wphead-info--> 
+</div><!--wphead--> 
+<div id="wpbody">
+<!--First text in wp-body! -->
+<ul id="adminmenu">
+{%for userLink in userLinks%}
+{%ifequal userLink.level 1 %}<li class="wp-has-submenu wp-menu-open menu-top menu-top-first" id="menu-posts">{%endifequal%}{%ifequal userLink.level 2 %}<li class="wp-first-item">{%endifequal%}
+{%if userLink.URL %}{%if userLink.selected %}<span style="background-color:yellow;">{{userLink.description}}</span>
+{%else%}<li><a href='{{userLink.URL}}'{%if userLink.newWindow%} target='_blank' {%endif%}>{{userLink.description}}</a>{%endif%}{%else%}{{userLink.description}}{%endif%}
+{%endfor%}
+</ul>
+
+<div id="wpbody-content">
+<!-- changing the class on these two divs made the strange .gif arrow go away, or at least move over -->
+<div id='post-body' class="has-sidebarxx">
+<div id='dashboard-widgets-main-content' class='has-sidebar-contentxx'>
+<div id='normal-sortables' class='meta-box-sortablesxx'>
+<div id="dashboard_right_now" class="postboxxx" >
+<div class="handlediv" title="Click to toggle">
+</div>
+<div class="outerbar">
+	<div dojoType="dojox.widget.FisheyeList"
+		itemWidth="50" itemHeight="50"
+		itemMaxWidth="200" itemMaxHeight="200"
+		orientation="horizontal"
+		effectUnits="2"
+		itemPadding="10"
+		attachEdge="top"
+		labelEdge="bottom"
+		id="fisheye1"
+	>
+{%for dojoLink in dojoLinks%}
+	<div dojoType="dojox.widget.FisheyeListItem"
+		label="{{dojoLink.description}}",
+		onClick="window.open('{{dojoLink.URL}}','mywindow','width=800,height=500')",
+		iconSrc="{{dojoLink.icon}}">
+	</div>
+{%endfor%}
+
+</div></div>
+
+{%block body%}{%endblock%}
+<br/><br/><br/>
+<b>Feedback:</b>  
+<form name=feedbackForm action="/submitFeedback" method="post">
+<input type=radio name=feedbackRating id=feedbackRating value="1" onclick="javascript:showOrHideReason()">1 (bad)&nbsp;&nbsp;&nbsp;
+<input type=radio name=feedbackRating id=feedbackRating value="2"onclick="javascript:showOrHideReason()">2 (poor)&nbsp;&nbsp;&nbsp;
+<input type=radio name=feedbackRating id=feedbackRating value="3" onclick="javascript:showOrHideReason()">3 (avg)&nbsp;&nbsp;&nbsp;
+<input type=radio name=feedbackRating id=feedbackRating value="4" onclick="javascript:showOrHideReason()">4 (good)&nbsp;&nbsp;&nbsp;
+<input type=radio name=feedbackRating id=feedbackRating value="5" onclick="javascript:showOrHideReason()">5 (great)&nbsp;&nbsp;&nbsp;
+<br/>
+<input type=hidden name=relatedURL value="{{URL}}">
+<div id=FeedbackReasonBlock>
+Reason for feedback: 
+<input type=checkbox name=isDefect>I found a defect&nbsp;   
+<input type=checkbox name=isCumbersome>It's cumbersome&nbsp;   
+<input type=checkbox name=isUgly>It's ugly&nbsp;   
+<input type=checkbox name=isImStuck>I'm stuck&nbsp; 
+<br/>
+</div>
+<b>Feedback Comments</b> (please provide as much detail as possible):<br/>
+<textarea rows=3 cols=70 name=feedbackComments>
+</textarea> 
+<br/>
+<input type="Submit" value="Submit Feedback">
+</form>
+<br/><br/>
+
+<!--
+<a href="javascript:hideReasonDiv()">Hide div</a>
+<br/>
+<a href="javascript:showReasonDiv()">Show div</a> 
+<br/>
+-->
+
+
+
+<SCRIPT language="JavaScript">
+function showOrHideReason() 
+{
+   //alert ("Value=" + getRadioButtonValue()) 
+   if (getRadioButtonValue() <= "2")
+   {
+      showReasonDiv(); 
+   }
+   else
+   {
+      hideReasonDiv(); 
+   }
+}
+
+function getRadioButtonValue() 
+{
+   for (var i=0; i < document.feedbackForm.feedbackRating.length; i++)
+   {
+      if (document.feedbackForm.feedbackRating[i].checked)
+      {
+         var rad_val = document.feedbackForm.feedbackRating[i].value;
+      }
+   }
+   return rad_val; 
+}
+
+function hideReasonDiv() 
+{
+    if (document.getElementById) 
+	{ // DOM3 = IE5, NS6
+        document.getElementById('FeedbackReasonBlock').style.display = 'none'; 
+        document.getElementById('FeedbackReasonBlock').style.visibility = 'hidden'; 
+    }
+    else 
+	{
+        if (document.layers) 
+		{ // Netscape 4
+            document.hideShow.visibility = 'hidden';
+        }
+        else 
+	    { // IE 4
+            document.all.hideShow.style.visibility = 'hidden';
+        }
+	}
+} 
+
+function showReasonDiv()
+{
+   if (document.getElementById) 
+   { // DOM3 = IE5, NS6
+       document.getElementById('FeedbackReasonBlock').style.visibility = 'visible';
+       document.getElementById('FeedbackReasonBlock').style.display = ''; 
+   }
+   else 
+   {
+      if (document.layers) 
+	  { // Netscape 4
+          document.hideShow.visibility = 'visible';
+      }
+      else 
+      { // IE 4
+         document.all.hideShow.style.visibility = 'visible';
+      }
+   }
+} 
+
+
+</SCRIPT> 
+
+</div> <!--id="dashboard_right_now"-->
+</div> <!--id='normal-sortables'--> 
+</div> <!--id='dashboard-widgets-main-content' -->
+</div> <!--id='post-body'--> 
+
+</div> <!--id="wpbody-content"-->
+</div> <!--id="wpbody"-->
+</body>
+</html>

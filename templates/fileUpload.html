@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+{%block body%}
+<h2>Test File Upload</h2>
+
+Debug={{ debugText }}
+
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="fileUpload">
+File to upload: <INPUT TYPE=FILE NAME="upfile" size=80><BR>
+<INPUT TYPE=SUBMIT VALUE="Submit">
+</FORM>
+
+
+{%endblock%}

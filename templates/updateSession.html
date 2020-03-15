@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+{%block body%}
+<h2>Update Session Variables</h2>
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="updSession">
+<table border=1>
+<tr>
+  <td>Send All Emails To:</td>
+  <td>
+    <input type=text size=36 name=sendEmailsTo value="{{sendEmailsTo}}">
+  </td>
+  <td>
+    Turn this off if you want to re-route all emails 
+  </td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td><input type=submit></td>
+  <td>
+    &nbsp;
+  </td>
+</tr>
+</table>
+
+<BR><BR>
+{{message}} 
+<BR><BR>
+
+</form>
+
+
+{%endblock%}

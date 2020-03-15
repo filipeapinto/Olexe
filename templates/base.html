@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>3WCloud - Provisioning System</title>
+  <link type="text/css" rel="stylesheet" href="/static/styles.css">
+  <script type="text/javascript" src="/static/script.js"></script>
+</head>
+
+<STYLE>
+    td, th
+		{
+		font-family: arial, trebuchet ms;
+		font-size: small;
+		color: black;
+		}
+	dummyPlaceHolderForHowToUnderline {text-decoration: underline;}
+</STYLE>
+
+<body>
+<h1>3WCloud.com - Provisioning System  {% ifequal environment 'test' %}
+<font color='red'>Environment={{environment}}</font> {% endifequal %}</h1>
+
+<font face="Arial" size="2">
+{%block body%}
+{%endblock%}
+<!--
+<a href="/">1) page1-Password Generator1</a>
+| <a href="page2">2) page2 (just concept of second page) </a>
+| <a href="test">3) Test (Using Template/Substitution)</a>
+-->
+
+<br/>
+</font>
+
+</body>
+</html>

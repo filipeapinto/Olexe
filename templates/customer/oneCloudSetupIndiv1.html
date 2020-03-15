@@ -1,0 +1,186 @@
+{%extends "oneCloudSetupIndivBase.html"%}
+{%block body%}
+<body class="m flex flex_m flex1 trebuchet small blues monocolumn skin custom">
+{% include "commonOrderHeader.html" %}
+
+<div id="body" class="body">
+<div id="ext_main">
+<div id="main" class="main">
+<div class="pad"><div class="entry" id="entry-1272">
+<div class="entry_header">
+
+<div class="spacer"></div>
+{% include "commonTabs.html" %}
+
+
+<div class="entry_author"></div>
+</div>
+
+<div class="entry_content">
+
+<div class="wpcf7" id="wpcf7-f10-p1272-o1">
+<form action="{{action}}" method="post" class="wpcf7-form" enctype="multipart/form-data">
+<div style="display: none;"><input type="hidden" name="_wpcf7" value="10" /><input type="hidden" name="_wpcf7_version" value="1.9.5.1" /><input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f10-p1272-o1" /></div>
+
+<fieldset id="admin"><legend>Set Up Your Domain</legend>
+
+<p>Prior to being able to setup your oneCloud, you need to reserve your domain.  In case you didn't reserve your domain yet, please <a href="http://3WCloud.com/products/domain" target="_blank">click here to reserve your domain</a>.  If you already have your domain, please proceed.</p>
+
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="domain">Domain Name:<span class="req" title="Required"> *</span>
+	</label>
+    <input type="text" name="domain" class="input_field" size=40 
+	{%if session.domain%} value="{{session.domain}}" {%else%} value=""{%endif%}
+	>&nbsp;
+    <span class="helpTxt">(e.g. JohnDoe.com, Jane-Cloud.com)</span>
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="domain">Domain Registrar:<span class="req" title="Required"> *</span>
+	</label>
+    <select name="registrarURL">
+    {% for registrar in registrars %}
+      <option value="{{registrar.value}}"
+	{% if registrar.selected  %}
+	selected
+	{% endif %}
+	   >{{registrar.value}}</option>
+	{% endfor %}
+
+</select>
+
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="domain">Other:<span class="req" title="Required"></span>
+	</label>
+    <input type="text" name="registrarURL2" size=30 class="input_field" 
+    {%if session.registrarURL2%} value="{{session.registrarURL2}}" {%else%} value=""{%endif%} >&nbsp;
+    <!--<span class="helpTxt">(only use if your registrar was not available in the box above)</span>--> 
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="domain">Domain Registrar Userid:<span class="req" title="Required"> *</span>
+	</label>
+    <input type="text" name="registrarUserid" class="input_field" 
+	{%if session.domain%} value="{{session.registrarUserid}}" {%else%} value=""{%endif%}
+	>&nbsp;
+</span>
+</div>
+
+<div class="input">
+  <span class="errorbox-good">
+    <label for="domain">Domain Registrar Password:<span class="req" title="Required"> *</span>
+	</label>
+    <input type="password" name="registrarPassword" class="input_field" 
+	{%if session.domain%} value="{{session.registrarPassword}}" {%else%} value=""{%endif%}
+	>&nbsp;
+</span>
+</div>
+
+
+<fieldset id="admin"><legend>Set Up Your Language</legend>
+
+
+<p>Language (one included with your oneCloud) <span style="color: rgb(204, 0, 0);">*</span><br />
+
+<table border=1>
+  <tr>
+     <!-- <th>&nbsp;</th> --> 
+     <th>Your<br>Primary<br>Language</th>
+	 {% if multilanguage %}
+     <th>select multiple secondary languages</th>
+	 {% else %} 
+	 <th>Language</th>
+	 {% endif %}
+  </tr>
+{{forloop.counter}}
+	{% for language in languages %}
+	<!--
+	<tr>
+	 <td>
+	   <img src="{{language.imageURL}}">&nbsp;&nbsp; <span class="wpcf7-form-control-wrap language_sp"><span class="wpcf7-checkbox"><span class="wpcf7-list-item">
+	 </td>
+    --> 
+	 <td>
+	   <input type="radio" name="primaryLanguage" value="{{language.name}}" 
+	{% if language.isPrimary  %}
+	checked
+	{% endif %}
+	   />&nbsp;
+	 </td>
+    
+	 <td>
+	 {% if multilanguage %}
+	   <input type="checkbox" name="language" value="{{language.name}}" 
+	     {% if language.selected  %}checked{% endif %}
+	   />&nbsp;
+	{% endif %}
+	   <span class="wpcf7-list-item-label">{{language.name}}</span>
+	 </td>
+   
+    </tr>
+	{% endfor %}
+</table>
+
+
+<p>Other desired language(s) for your oneCloud web site:<br />
+    <span class="wpcf7-form-control-wrap otherLanguages"><input type="text" name="otherLanguages" 
+	{%if session.otherLanguages%} value="{{session.otherLanguages}}" {%else%} value=""{%endif%}
+     size="40" /></span> </p>
+<!--
+<p>Do you plan to make your oneCloud multi-language? If so, please let us know what other languages will you be using.</br><br />
+<span class="wpcf7-form-control-wrap other-languages"><textarea name="otherLanguageNotes" cols="40" rows="10"></textarea></span></p>
+-->
+</fieldset>
+
+{% include "commonOrderButtons.html" %}
+</form>
+
+
+<div class="entry_actions">
+<div class="spacer"></div>
+<div class="entry_comments">
+<div class="spacer"></div>
+</div>
+</div>
+</div>
+</div><!-- #main -->
+
+<div class="spacer"></div>
+</div><!-- #ext_main -->
+
+<div class="spacer"></div>
+
+</div><!-- #body -->
+
+<div id="footer" class="footer">
+<div class="pad">
+<div id="copyright_notice" class="copyright_notice">Copyright 2009</div><!-- #copyright_notice -->
+<div id="footer_nav" class="footer_nav inline_menu"><div>
+<span class="nav_home nav__home"><a href="http://3wcloud.com">Home</a></span>
+</div>
+</div><!-- #footer_nav -->
+<div class="spacer"></div>
+</div>
+</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<div class="spacer"></div>
+
+</div><!-- #shadow -->
+<div id="shadow_bottom"></div>
+</div><!-- #ext_wrapper -->
+<div class="spacer"></div>
+{%endblock%}
+
+

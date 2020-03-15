@@ -1,0 +1,119 @@
+{%extends "base.html"%}
+{%block body%}
+
+<h2>iCloud Provisioning</h2>
+
+<b>Errors:</b> {{ form.errors }}
+<br/><br/>
+<b>DebugText:</b> {{ debugText }}
+<br/><br/>
+
+Current Session: customerDomain={{customerDomain}} 
+&nbsp;&nbsp;&nbsp;
+processCode={{processCode}}
+<form action="provision?processCode={{processCode}}" method="post">
+<input type="hidden" name="ynChangeSession"    value="Y">
+<table border=1>
+<tr>
+<td>Customer Domain:
+</td>
+<td>
+<!-- <input type="text"   name="customerDomain"   value="" size=50> -->
+<SELECT NAME=customerDomain>
+{%for customerOrder in customerOrdersList%} 
+<OPTION value='{{customerOrder.domain}}' {% ifequal customerDomain customerOrder.domain %} SELECTED {% endifequal %}>{{customerOrder.domain}}</OPTION>
+{%endfor%}
+</td>
+</tr>
+</table>
+<input type="submit" value="Change/Set Variables"></td></tr>
+</form>
+<br/>
+{% ifequal customerDomain None %}
+<font color='red'>Note: Please select a customer domain before continuing.</font>
+{% endifequal %}
+<hr>
+
+<table border=1>
+<tr>
+<th>Sequence</th>
+<th>TaskCode</th>
+<th>Task Description</th>
+<th>Click the Start button when you begin the task</th>
+<th>Select the Result, type in any issues, and click the Completed button when you have completed this task</th>
+</tr>
+
+{%for Task in Tasks%} 
+<tr>
+<!-- MISC DATA COLUMNS -->
+<td>{{Task.sequence}}</td>
+<td>{{Task.taskCode}}<BR><BR>Debug:{{Task.debug}}</td>
+<td>{{Task.taskDescription}}</td>
+
+
+<td>
+{% ifnotequal Task.ynStartedNotStored "Y" %}
+<!--  START BUTTON  -->
+<form action="provision?processCode={{processCode}}" method="post">
+<input type="hidden" name="ynStartTask" value="Y">
+<input type="hidden" name="taskCode"   value="{{Task.taskCode}}">
+<input type="submit" value="Start">
+<!--<br/>Estimated Completion Time = {{Task.estimatedCompletionTime}} Minutes-->
+</form>
+{% else %} 
+Started at <BR/>
+{{Task.eventStartedDateTimeNS}}
+<input type="hidden" name="taskStartedDateTime"   value="{{Task.eventStartedDateTimeNS}}">
+{% endifnotequal %}
+</td>
+
+<td>
+{% ifnotequal Task.ynCompletedNotStored "Y" %}
+{% ifnotequal Task.priorIssuesNS "N" %}
+Prior Issue(s): {{Task.priorIssuesNS}}
+<BR>
+{% endifnotequal %}
+
+<!--  COMPLETED BUTTON(with status/issues)  -->
+<form action="provision?processCode={{processCode}}" method="post">
+<input type="hidden" name="ynCompleteTask" value="Y">
+<input type="hidden" name="taskCode"   value="{{Task.taskCode}}">
+<table border=1>
+<tr>
+<td>Result: </td>
+<td>
+Success <input type="radio" name="resultFlag" checked value="Success">
+<BR>Issue(s) <input type="radio" name="resultFlag" value="Issues">
+<BR>ShowStopper <input type="radio" name="resultFlag" value="ShowStopper">
+</td>
+</tr>
+<tr>
+<td>Issues (if any)</td>
+<td><TextArea rows=5 cols=60 name="issues"> 
+{% ifnotequal Task.priorIssuesNS  "N" %}
+{{Task.eventCompletedDateTimeNS}}:{{Task.priorIssuesNS}}
+{{now}}
+{% endifnotequal %}
+</TextArea>
+</td>
+</tr>
+</table>
+<input type="submit" value="Completed"> 
+</form>
+{% else %}
+<!-- Even though task is now completed, it might have had issues previously --> 
+{% ifnotequal Task.priorIssuesNS "N" %}
+Prior Issue(s): {{Task.priorIssuesNS}}
+<BR>
+{% endifnotequal %}
+Completed Successfully at <BR/>
+{{Task.eventCompletedDateTimeNS}}
+{% endifnotequal %}
+
+</td>
+</tr>
+{%endfor%}
+
+</table>
+
+{%endblock%}

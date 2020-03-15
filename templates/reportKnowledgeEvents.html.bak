@@ -1,0 +1,40 @@
+
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>KnowledgeEventReport</h3>
+<a href='/updKnowledgeEvent?cmd=ADD&ksKey={{knowledgeEvent.knowledgeSource.key}}'>Add new KnowledgeEvent</a> <br/><br/>
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>KnowledgeSource<br/>name</th>
+  <th>EventType</th>
+  <th>PayloadType</th>
+  <th>MicroBlog</th>
+  <th>DateTimeCreated</th>
+  <th>DateTimeModified</th>
+</tr>
+{%for knowledgeEvent in knowledgeEventList%} 
+<tr>
+    <td><a href='/updKnowledgeEvent?ksKey={{knowledgeEvent.knowledgeSource.key}}&key={{knowledgeEvent.key}}'>&nbsp;{{forloop.counter}}&nbsp;</a></td>
+    <td>{{knowledgeEvent.knowledgeSource.name}}</td>
+    <td>{{knowledgeEvent.eventType}}</td>
+    <td>{{knowledgeEvent.payloadType}}</td>
+    <td>{{knowledgeEvent.microBlog}}</td>
+    <td>{{knowledgeEvent.dateTimeCreated|date:_("m/d/y H:i:s")}}</td>
+    <td>{{knowledgeEvent.dateTimeModified|date:_("m/d/y H:i:s")}}</td>
+</tr>
+{%endfor%}
+<!--Add or Remove this submit button as needed <tr>
+   <td><input type=submit value="Update"></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+/<tr>
+--></table>
+<br/><br/><br/>
+{%endblock%}

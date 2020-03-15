@@ -1,0 +1,78 @@
+
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>
+{% ifequal command 'ADD' %}
+Add Goal
+{%else%}
+Update Goal
+{%endifequal%} 
+</h3>
+<form action=/updGoal method=post>
+<table border=1>
+<tr>
+  <td>&nbsp;Name:</td>
+  <td>
+  &nbsp;<input type=text name=name size=36 value="{{goal.name}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;GoalType:</td>
+  <td>
+   <select id="goalType" name="goalType"> 
+     <option value="">Select One</option> 
+     {% for item in goalTypeChoices %} 
+     <option value="{{item.value}}" {% if item.selected %} selected {% endif %}>{{item.value}}</option>   
+     {% endfor %} 
+   </select> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;StartDate:</td>
+  <td>
+  &nbsp;<input type=text name=startDate size=10 value="{{goal.startDate|date:_("m/d/Y")}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;PlannedCompletionDate:</td>
+  <td>
+  &nbsp;<input type=text name=plannedCompletionDate size=10 value="{{goal.plannedCompletionDate|date:_("m/d/Y")}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;ShareWithFriends:</td>
+  <td>
+ &nbsp;True: <input type=radio name=shareWithFriends value="True" 
+  {%if goal.shareWithFriends%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=shareWithFriends value="False" 
+  {%if not goal.shareWithFriends%} checked {% endif %}> 
+  </td>
+</tr>
+{% ifnotequal command 'ADD' %}
+<tr>
+  <td>&nbsp;DateTimeCreated:</td>
+  <td>
+  &nbsp;{{goal.dateTimeCreated|date:_("m/d/Y h:i:s")}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeModified:</td>
+  <td>
+  &nbsp;{{goal.dateTimeModified|date:_("m/d/Y h:i:s")}}
+  </td>
+</tr>
+{% endifnotequal %}
+
+
+<tr>
+   <td>&nbsp;</td>
+   <td><input type=submit value="Update"</td>
+<tr>
+</table>
+
+{% ifnotequal command 'ADD' %}
+<input type="hidden" name="key" value="{{goal.key}}">
+{% endifnotequal %}
+</form>
+<br/><br/><br/>
+{%endblock%}

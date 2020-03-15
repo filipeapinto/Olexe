@@ -1,0 +1,124 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Update Order</h2>
+
+<!-- first show related data that cannot be changed --> 
+<table border=1>
+<tr>
+  <th>Order<BR>ID</th>
+  <th>Order Date</th>
+  <th>Type</th>   
+  <th>Firstname</th>
+  <th>Lastname</th>
+</tr>
+<tr>
+  <td>&nbsp;{{order.key.id}}</td>
+  <td>&nbsp;{{order.orderDate|date:_("m/d/y h:i:s")}}</td>
+  <td>&nbsp;{{order.orderType}}<!-- add/change/cancel --></td>
+  <td>&nbsp;{{order.subscriber.firstname}}</td>
+  <td>&nbsp;{{order.subscriber.lastname}}</td>
+</tr>
+</table>
+<BR>
+
+<h3>Only the fields in this table can be changed:</h3>
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="updOrder">
+<table border=1>
+
+<tr>
+  <td>Order State</td>
+  <td>
+<select name="orderState" >
+	{% for orderState in orderStates %}
+      <option value="{{orderState.value}}"
+	{% if orderState.selected  %}
+	selected
+	{% endif %}
+	   >{{orderState.value}}</option>
+	{% endfor %}
+</select>
+  </td>
+</tr>
+
+<tr>
+  <td>Financial State</td>
+  <td>
+<select name="financialStatus" >
+	{% for orderFinancialState in orderFinancialStates %}
+      <option value="{{orderFinancialState.value}}"
+	{% if orderFinancialState.selected  %}
+	selected
+	{% endif %}
+	   >{{orderFinancialState.value}}</option>
+	{% endfor %}
+</select>
+  </td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td><input type=submit value="Submit Update"></td>
+</tr>
+</table>
+<input type=hidden name=key value='{{order.key}}'>
+
+</form>
+
+<BR>
+
+<h3>Contact Information</h3>
+<table border=1>
+<tr>
+  <td>&nbsp;Firstname</td>
+  <td>&nbsp;{{order.subscriber.firstname}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Lastname</td>
+  <td>&nbsp;{{order.subscriber.lastname}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Organization Name</td>
+  <td>&nbsp;{{order.subscriber.organizationname}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Address1</td>
+  <td>&nbsp;{{order.subscriber.address1}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Address2</td>
+  <td>&nbsp;{{order.subscriber.address2}}</td>
+</tr>
+<tr>
+  <td>&nbsp;City</td>
+  <td>&nbsp;{{order.subscriber.city}}</td>
+</tr>
+<tr>
+  <td>&nbsp;State</td>
+  <td>&nbsp;{{order.subscriber.state}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Zip</td>
+  <td>&nbsp;{{order.subscriber.zip}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Country</td>
+  <td>&nbsp;{{order.subscriber.country}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Phone</td>
+  <td>&nbsp;{{order.subscriber.phone}}</td>
+</tr>
+<tr>
+  <td>&nbsp;TimeZone</td>
+  <td>&nbsp;{{order.subscriber.timezone}}</td>
+</tr>
+</table> 
+
+<BR>
+<h3>Xref Reports</h3>
+   <a href="reportServices?orderId={{order.key.id}}">Services</a><BR>
+   <a href="reportIPN?orderId={{order.key.id}}">Financial Transactions</a><BR>
+<BR>
+
+{%endblock%}

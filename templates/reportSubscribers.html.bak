@@ -1,0 +1,65 @@
+{%extends "baseMain.html"%}
+{%block body%}
+{% ifequal domainstartswith ''  %}
+<h2>Subscribers Report - Ordered by Lastname, Firstname</h2>
+{% else %}
+<h2>Subscribers Report - Ordered by Domain</h2>
+{% endifequal %}
+<FORM METHOD=GET ENCTYPE="multipart/form-data" ACTION="reportSubscribers">
+Lastname Starts With: <input type=text size=30 name=lastnamestartswith
+value={{lastnameStartsWith}}>
+<BR>
+Email Starts With: <input type=text size=30 name=emailstartswith
+value={{emailStartsWith}}>
+<BR>Sort: <input type=radio name=sortOrder value="name" 
+{%ifequal sortOrder "name"%} checked{%endifequal%}>Last/First Name
+&nbsp;&nbsp;<input type=radio name=sortOrder value="dateTimeCreated"
+{%ifequal sortOrder "dateTimeCreated"%} checked{%endifequal%}>DateTimeCreated
+&nbsp;&nbsp;<input type=radio name=sortOrder value="email"
+{%ifequal sortOrder "email"%} checked{%endifequal%}>Email
+<input type=submit>&nbsp;&nbsp;
+<a href=/reportSubscribers>Requery with no filter</a> 
+</FORM>
+<br/>
+
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Id</th>
+  <th>FirstName</th>
+  <th>LastName</th>
+  <th>State</th>
+  <th>Country</th>
+  <th>Company Name</th>
+  <th>Email</th>
+  <th>Date/Time<BR>Created</th>
+  <th>Is-Admin</th>
+  <th>Is-Worker</th>
+  <th>Xref</th>
+  <th>Xref</th>
+</tr>
+
+{%for subscriber in subscriberList%} 
+
+<tr>
+  <td><a href="detailSubscriber?key={{subscriber.key}}">&nbsp;{{forloop.counter}}&nbsp;</a></td> 
+  <td>{{subscriber.key.id}}</td> 
+  <td>{{subscriber.firstname}}</td>
+  <td>{{subscriber.lastname}}</td>
+  <td>{{subscriber.state}}</td>
+  <td>{{subscriber.countryName}}</td>
+  <td>{% if subscriber.organizationname %}{{subscriber.organizationname}}{% endif %}&nbsp;</td>
+  <td>{{subscriber.userEmail}}</td>
+  <td>{{subscriber.dateTimeCreated|date:_("m/d/y h:i:s")}}</td>
+  <td>&nbsp;{%if subscriber.isAdmin%}{{subscriber.isAdmin}}{%endif%}</td>
+  <td>&nbsp;{%if subscriber.isWorker%}{{subscriber.isWorker}}{%endif%}</td>
+  <td>&nbsp;<a href="reportOrders?subscriberkey={{subscriber.key}}">Orders</a></td> 
+  <td>&nbsp;<a href="reportServices?subscriberkey={{subscriber.key}}">Services</a></td>
+</tr>
+
+{%endfor%}
+
+</table>
+<br/><br/>
+
+{%endblock%}

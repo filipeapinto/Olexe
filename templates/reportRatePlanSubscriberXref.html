@@ -1,0 +1,80 @@
+{%extends "baseMain.html"%}
+{%block body%}
+{# apparently, the subdirectory for custom-filters must be called "templatetags" #}
+{# load customTags #}
+<!--
+<form action="reportratePlans" method="post">
+<SELECT NAME=customerDomain>
+<OPTION value='ALL' {% ifequal customerDomain 'ALL' %} SELECTED {% endifequal %}>ALL</OPTION>
+{%for customerOrder in customerOrdersList%}
+<OPTION value='{{customerOrder.domain}}' {% ifequal customerDomain customerOrder.domain %} SELECTED {% endifequal %}>{{customerOrder.domain}}</OPTION>
+{%endfor%}
+<input type=submit>
+</form>
+-->
+
+<h2>RatePlan Subscriber Xref</h2>
+<table border=1>
+<tr>
+  <th>RatePlan<BR>Code</th>
+  <th>Name</th>
+  <th>Description</th>
+  <th>OneTime<BR>amount</th>
+  <th>Recurring<BR>Amount</th>
+  <th>Billing<BR>Period</th>
+</tr>
+<tr>
+  <td>{{ratePlan.code}}</td>
+  <td>{{ratePlan.name}}</td>
+  <td>{{ratePlan.description}}</td>
+  <td>&nbsp;{{ratePlan.getOnetimeAmountFormatted}}</td>
+  <td>&nbsp;{{ratePlan.getRecurringAmountFormatted}}</td>
+  <td>&nbsp;&nbsp;{{ratePlan.billingPeriod}}</td>
+</tr>
+</table>
+<BR>
+<BR>
+
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Service<BR>Id</th>
+  <th>Service Domain</th>
+  <th>Service State</th>
+  <th>Order<BR>Id</th>
+  <th>OrderDate</th>
+  <th>Financial<BR>Status</th>
+  <th>Order<BR>State</th>
+  <th>Firstname</th>
+  <th>Lastname</th>
+</tr>
+
+{%for serviceRatePlan in serviceRatePlanList%}
+<tr>
+  <td>{{forloop.counter}}</td>
+  <td>&nbsp;<a href='updService?key={{serviceRatePlan.service.key}}'>{{serviceRatePlan.service.key.id}}</a></td>
+  <td>
+    {% if serviceRatePlan.service.domain %}
+      {{serviceRatePlan.service.domain}}
+    {% else %}
+      &nbsp;&nbsp;NA&nbsp;&nbsp;
+    {% endif %}
+  </td>
+  <td>{{serviceRatePlan.service.serviceState}}</td>
+
+  <td>&nbsp;<a href='updOrder?orderId={{serviceRatePlan.service.order.key.id}}'>{{serviceRatePlan.service.order.key.id}}</a>&nbsp;</td>
+  <td>{{serviceRatePlan.service.order.orderDate|date:_("m/d/y h:i:s")}}</td>
+  <td>{{serviceRatePlan.service.order.financialStatus}}</td>
+  <td>{{serviceRatePlan.service.order.orderState}}</td>
+  <td>{{serviceRatePlan.service.order.subscriber.firstname}}</td>
+  <td>{{serviceRatePlan.service.order.subscriber.lastname}}</td>
+
+</tr>
+
+
+{%endfor%}
+
+</table>
+
+
+{%endblock%}

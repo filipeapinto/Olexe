@@ -1,0 +1,73 @@
+
+<SCRIPT language="JavaScript">
+function submitform()
+{
+  hideDiv();
+  document.PaypalForm.submit();
+  window.setTimeout(showDiv,4000);  // show the div text after 4 seconds 
+}
+function hideDiv() {
+    if (document.getElementById) { // DOM3 = IE5, NS6
+        document.getElementById('myText').style.visibility = 'hidden'; 
+        }
+    else {
+        if (document.layers) { // Netscape 4
+            document.hideShow.visibility = 'hidden';
+    }
+    else { // IE 4
+        document.all.hideShow.style.visibility = 'hidden';
+        }
+    }
+} 
+function showDiv()
+{
+   if (document.getElementById) { // DOM3 = IE5, NS6
+       document.getElementById('myText').style.visibility = 'visible';
+      }
+   else {
+      if (document.layers) { // Netscape 4
+          document.hideShow.visibility = 'visible';
+   }
+   else { // IE 4
+      document.all.hideShow.style.visibility = 'visible';
+   }
+} 
+}
+
+</SCRIPT> 
+
+<body onload="submitform()" >
+  <div id=myText>
+     <h2>Big Ugly Text Here</h2>
+             <form name=PaypalForm action="https://www.beta-sandbox.paypal.com/cgi-bin/webscr" method="post"> 
+        <!--  <form name=PaypalForm action="https://www.paypal.com/us/cgi-bin/webscr" method="post"> -->
+                 <input type="hidden" name="cmd" value="_xclick-subscriptions" />
+                 <input type="hidden" name="image_url" value="http://3wcloud.com/images/PaypalLogo.png" />
+                 <input type="hidden" name="item_name" value="oneCloud-Individual" />
+                 <input type="hidden" name="a3" value='.01' />
+                 <input type="hidden" name="p3" value='1' />
+                 <input type="hidden" name="t3" value='M' />
+                 <input type="hidden" name="a1" value='.02' />
+                 <input type="hidden" name="p1" value='1' />
+                 <input type="hidden" name="t1" value='D' />
+                 <input type="hidden" name="src" value='1' />
+                 <input type="hidden" name="sra" value='1' />
+                 <input type="hidden" name="on0" value='Subscription Option:' />
+                 <input type="hidden" name="os0" value='$12 monthly membership ' />
+                 <input type="hidden" name="on1" value='One Time Setup Fee' />
+                 <input type="hidden" name="os1" value='$25 one time setup fee charged first day ' />
+                 <input type="hidden" name="no_note" value='1' />
+                 <input type="image" src="http://3wcloud.com/wp-content/plugins/wordpress-simple-paypal-shopping-cart/images/paypal_checkout.png" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" />
+                 <input type="hidden" name="return"        value="http://3wcloud.com/PaypalPaid" />
+                 <input type="hidden" name="cancel_return" value="http://3wcloud.com/PaypalCancelled" />
+                 <input type="hidden" name="business" value="ComTrans@m2msys.net" />
+                 <input type="hidden" name="currency_code" value="USD" />
+                 <input type="hidden" name="upload" value="1" />
+             </form>
+   </div>
+<!-- links for testing only 
+<a href="javascript:hideDiv()">Hide div</a>
+<BR>
+<a href="javascript:showDiv()">show div</a> 
+-->
+<body> 

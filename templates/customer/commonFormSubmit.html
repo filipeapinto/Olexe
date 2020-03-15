@@ -1,0 +1,82 @@
+{%extends "oneCloudSetupIndivBase.html"%}
+{%block body%}
+<body class="m flex flex_m flex1 trebuchet small blues monocolumn skin custom">
+{% include "commonOrderHeader.html" %}
+
+<div id="body" class="body">
+<div id="ext_main">
+<div id="main" class="main">
+<div class="pad"><div class="entry" id="entry-1272">
+<div class="entry_header">
+
+<div class="spacer"></div>
+<div class="entry_author"></div>
+</div>
+
+<div class="entry_content">
+{% include "commonTabs.html" %}
+
+<div class="wpcf7" id="wpcf7-f10-p1272-o1">
+<form action="{{action}}" method="post" class="wpcf7-form" enctype="multipart/form-data">
+
+
+{% if showSubmitErrors  %}
+You can submit your {{orderType}} after correcting the following:
+<BR>
+{% ifequal showSubmitErrors "NoData" %}
+<font color=red>No Data has been submitted on any prior page. 
+Please click the "Back" button below and fill in data on the form.</font>
+{% else %}
+<font color=red>{{showSubmitErrors}}</font>
+{% endifequal %} 
+{% else %} 
+You have provided all necessary fields; 
+please click the "Paypal" button to finalize your {{orderType}} and provide payment.
+After confirming the payment, please be sure and click "Return to Merchant" from Paypal,
+to return to this site to make sure you payment is immediately registered. 
+<!-- <input type="submit" name="submit" value="Submit {{orderType}}" /> --> 
+<input type='hidden' name='submit' value='Submit'>
+<input type="image"                value="Submit" src="https://fpdbs.paypal.com/dynamicimageweb?cmd=_dynamic-image&pal=4K4HRRVKBJNJU">
+{% endif%}
+
+{% include "commonOrderButtons.html" %}
+</form>
+
+<div class="entry_actions">
+<div class="spacer"></div>
+<div class="entry_comments">
+<div class="spacer"></div>
+</div>
+</div>
+</div>
+</div><!-- #main -->
+
+<div class="spacer"></div>
+</div><!-- #ext_main -->
+
+<div class="spacer"></div>
+
+</div><!-- #body -->
+
+<div id="footer" class="footer">
+<div class="pad">
+<div id="copyright_notice" class="copyright_notice">Copyright 2009</div><!-- #copyright_notice -->
+<div id="footer_nav" class="footer_nav inline_menu"><div>
+<span class="nav_home nav__home"><a href="http://3wcloud.com">Home</a></span>
+</div>
+</div><!-- #footer_nav -->
+<div class="spacer"></div>
+</div>
+</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<div class="spacer"></div>
+
+</div><!-- #shadow -->
+<div id="shadow_bottom"></div>
+</div><!-- #ext_wrapper -->
+<div class="spacer"></div>
+{%endblock%}
+
+

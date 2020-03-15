@@ -1,0 +1,144 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Subscriber Detail</h2>
+
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="todo">
+<table border=1>
+<!-- domain is on a different table --> 
+<!--
+{% ifequal subscriber.key '' %}
+<tr>
+  <td>Domain</td>
+  <td><input type=text size=45 value='{{subscriber.domain}}' name=domain></td>
+</tr>
+{% else %} 
+<tr>
+  <td>Domain (cannot change)</td>
+  <td><input type=text size=45 value='{{subscriber.domain}}' readonly name=domain></td>
+</tr>
+{% endifequal %} 
+-->
+<tr>
+  <td>FirstName</td>
+  <td><input type=text size=45 value='{{subscriber.firstname}}' readonly name=firstname></td>
+</tr>
+<tr>
+  <td>LastName</td>
+  <td><input type=text size=45 value='{{subscriber.lastname}}' readonly name=lastname></td>
+</tr>
+<tr>
+  <td>Organization Name</td>
+  <td><input type=text size=45 value='{{subscriber.organizationname}}' readonly name=organizationname></td>
+</tr>
+<tr>
+  <td>Email</td>
+  <td><input type=text size=45 value='{{subscriber.userEmail}}' readonly name=userEmail></td>
+</tr>
+<tr>
+  <td>Address 1</td>
+  <td><input type=text size=30 value='{{subscriber.address1}}' readonly name=address1></td>
+</tr>
+<tr>
+  <td>Address 2</td>
+  <td><input type=text size=30 value='{{subscriber.address2}}' readonly name=address2></td>
+</tr>
+<tr>
+  <td>City</td>
+  <td><input type=text size=20 value='{{subscriber.city}}' readonly name=city></td>
+</tr>
+<tr>
+  <td>State</td>
+  <td><input type=text size=20 value='{{subscriber.state}}' readonly name=state></td>
+</tr>
+<tr>
+  <td>Zip</td>
+  <td><input type=text size=10 value='{{subscriber.zip}}' readonly name=zip></td>
+</tr>
+<tr>
+  <td>Country</td>
+  <td><input type=text size=30 value='{{country}}' readonly name=country></td>
+</tr>
+<tr>
+  <td>Phone</td>
+  <td><input type=text size=12 value='{{subscriber.phoneland}}' readonly name=phoneland></td>
+</tr>
+<tr>
+  <td>CellPhone</td>
+  <td><input type=text size=12 value='{{subscriber.phonecell}}' readonly name=phonecell></td>
+</tr>
+<tr>
+  <td>Cell Provider</td>
+  <td><input type=text size=20 value='{{subscriber.cellprovider}}' readonly name=cellprovider></td>
+</tr>
+<tr>
+  <td>Cell Provider (Other)</td>
+  <td><input type=text size=20 value='{{subscriber.cellproviderother}}' readonly name=cellproviderother></td>
+</tr>
+<tr>
+  <td>Timezone</td>
+  <td><input type=text size=20 value='{{subscriber.timezone}}' readonly name=timezone></td>
+</tr>
+<tr>
+  <td>Reset Password Request<BR>Date/Time</td>
+  <td><input type=text size=20 value='{{subscriber.resetPasswordRequestDateTime}}' readonly name=resetPasswordRequestDateTime></td>
+</tr>
+<tr>
+  <td>Reset Password Request<BR>GUID</td>
+  <td><input type=text size=20 value='{{subscriber.resetPasswordGuid}}' readonly name=resetPasswordGuid></td>
+</tr>
+
+<tr>
+  <td>XREF:</td>
+  <td>
+  Show customer <a href="reportOrders?subscriberkey={{subscriber.key}}">Orders</a> 
+  &nbsp;&nbsp;
+  <a href="reportServices?subscriberkey={{subscriber.key}}">Services</a> 
+  </td>
+</tr>
+
+<tr>
+  <td>PHOTO/RESUME:</td>
+  <td>
+  To download resume or view user/photo, please click on "Services" <BR>
+  above, and   select the related oneCloud Service. 
+  &nbsp;
+  </td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td>
+    {%if isAdmin %} 
+    <a href="subscriberAdmin?subscriberkey={{subscriber.key}}&command=RemoveAdmin">Remove Admin</a> 
+	{%else%} 
+    <a href="subscriberAdmin?subscriberkey={{subscriber.key}}&command=MakeAdmin">Make Admin</a> 
+	{%endif%}
+
+&nbsp;&nbsp;
+
+    {%if isStaff %} 
+    <a href="subscriberAdmin?subscriberkey={{subscriber.key}}&command=RemoveStaff">Remove Staff</a> 
+	{%else%} 
+    <a href="subscriberAdmin?subscriberkey={{subscriber.key}}&command=MakeStaff">Make Staff</a> 
+	{%endif%}
+
+  </td>
+</tr>
+
+
+
+
+<!-- this is not an update form 
+<tr>
+  <td>&nbsp;</td>
+  <td><input type=submit></td>
+</tr>
+-->
+</table>
+<input type=hidden name=key value='{{subscriber.key}}'>
+
+</form>
+
+
+{%endblock%}

@@ -1,0 +1,4 @@
+cron:
+- description: BPMN Error Handler 
+  url: /taskCron
+  schedule: every 60 minutes

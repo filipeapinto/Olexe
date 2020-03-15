@@ -1,0 +1,70 @@
+
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>TaskStatusReport</h3>
+<!--<a href='/updTaskStatus?cmd=ADD'>Add new TaskStatus</a> <br/><br/>-->
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Id</th>
+  <th>Process<br/>Code</th>
+  <th>TaskCode</th>
+  <th>TaskError</th>
+  <th>Num<br/>Retries</th>
+  <th>Seq Num</th>
+  <th>Is<br/>Manual</th>
+  <th>ManualAcceptance</th>
+  <th>DateTime<br/>CurrTaskStarted</th>
+  <th>DateTime<br/>CurrTaskCompleted</th>
+  <th>DateTime<br/>ProcessStarted</th>
+  <th>DateTime<br/>ManualNotification</th>
+</tr>
+{%for taskStatus in taskStatusList%} 
+<tr>
+    <td><a href='/detailTaskStatus?key={{taskStatus.key}}'>&nbsp;{{forloop.counter}}&nbsp;</a></td>
+	<td>&nbsp;{{taskStatus.key.id}}&nbsp;</td>
+    <td>&nbsp;{{taskStatus.processCode}}</td>
+    <td>{{taskStatus.currentTaskCode}}</td>
+    <td>{{taskStatus.currentTaskError}}</td>
+    <td>&nbsp;{{taskStatus.numOfRetries}}</td>
+    <td>&nbsp;{{taskStatus.currentSeqNum}}</td>
+    <td>{{taskStatus.isManual}}</td>
+    <td>
+	{% if taskStatus.isAssignedToCurrentSubscriber %}
+	   Me <a href="{{taskStatus.completedURL}}">Completed</a>
+	{% else %} 
+	{% if taskStatus.isManualAccepted %}
+	    {{taskStatus.acceptedBySubscriber.firstname}} 
+	    {{taskStatus.acceptedBySubscriber.lastname}}
+	  {% else %}
+	    {{taskStatus.isManualAccepted}}
+	  {% endif %} 
+    {% endif %} 
+	</td>
+    <td>{{taskStatus.dateTimeCurrTaskStarted|date:_("m/d/y H:i:s")}}</td>
+    <td>{{taskStatus.dateTimeCurrTaskCompleted|date:_("m/d/y H:i:s")}}</td>
+    <td>{{taskStatus.dateTimeProcessStarted|date:_("m/d/y H:i:s")}}</td>
+    <td>{{taskStatus.dateTimeManualNotification|date:_("m/d/y H:i:s")}}</td>
+</tr>
+{%endfor%}
+<!--Add or Remove this submit button as needed <tr>
+   <td><input type=submit value="Update"></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+/<tr>
+--></table>
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/>
+{%endblock%}

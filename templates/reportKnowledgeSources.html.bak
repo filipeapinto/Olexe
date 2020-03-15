@@ -1,0 +1,80 @@
+
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>KnowledgeSource Report</h3>
+  {%if selectedGoal %}
+<h5>For Goal: <u>{{selectedGoal.name}}</u></h5>
+<a href='/updKnowledgeSource?cmd=ADD&goalKey={{goal.key}}'>Add new KnowledgeSource</a> <br/><br/>
+{%else%}
+<a href='/updKnowledgeSource?cmd=ADD'>Add new KnowledgeSource</a> <br/><br/>
+  {%endif%}
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Name</th>
+  <th>Knowledge<br/>Events</th>
+  <th>Isbn</th>
+  {%if showSubscriber %}
+  <th>Subscriber<br/>firstname</th>
+  <th>Subscriber<br/>lastname</th>
+  {%endif%}
+  <th>Knowledge<br/>Type</th>
+  <th>AuthorName</th>
+  <th>Pages</th>
+  <th>Minutes</th>
+  <th>MeetingLocation</th>
+  <th>Meeting<br/>StartDateTime</th>
+  <th>Meeting<br/>StopDateTime</th>
+  <th>DateTime<br/>Created</th>
+  <th>DateTime<br/>Modified</th>
+</tr>
+{%for goal in goalList%} 
+{%if not selectedGoal %}
+<tr>
+<td colspan=12>&nbsp;<b>Goal: <u>{{goal.name}}</u> <b></td>
+</tr>
+{%endif%} 
+{%for knowledgeSource in goal.getKnowledgeSources%} 
+<tr>
+<td><a href='/updKnowledgeSource?key={{knowledgeSource.key}}&goalKey={{knowledgeSource.goal.key}}'>&nbsp;{{forloop.counter}}&nbsp;</a></td>    <td>{{knowledgeSource.name}}</td>
+    <td>
+	    &nbsp;
+	    <a href='/reportKnowledgeEvents?ksKey={{knowledgeSource.key}}'>View</a>  
+	    <a href='/updKnowledgeEvent?cmd=ADD&ksKey={{knowledgeSource.key}}'>Add</a> 
+    </td>
+    <td>{{knowledgeSource.isbn}}</td>
+  {%if showSubscriber %}
+    <td>{{knowledgeSource.subscriber.firstname}}</td>
+    <td>{{knowledgeSource.subscriber.lastname}}</td>
+  {%endif%}
+    <td>{{knowledgeSource.knowledgeType}}</td>
+    <td>{{knowledgeSource.authorName}}</td>
+    <td>{{knowledgeSource.pages}}</td>
+    <td>{{knowledgeSource.minutes}}</td>
+    <td>{{knowledgeSource.meetingLocation}}</td>
+    <td>{{knowledgeSource.meetingStartDateTime|date:_("m/d/y H:i:s")}}</td>
+    <td>{{knowledgeSource.meetingStopDateTime|date:_("m/d/y H:i:s")}}</td>
+    <td>{{knowledgeSource.dateTimeCreated|date:_("m/d/y H:i:s")}}</td>
+    <td>{{knowledgeSource.dateTimeModified|date:_("m/d/y H:i:s")}}</td>
+</tr>
+{%endfor%}
+{%endfor%}
+<!--Add or Remove this submit button as needed <tr>
+   <td><input type=submit value="Update"></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+/<tr>
+--></table>
+<br/><br/><br/>
+{%endblock%}

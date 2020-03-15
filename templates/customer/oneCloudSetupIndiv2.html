@@ -1,0 +1,107 @@
+{%extends "oneCloudSetupIndivBase.html"%}
+{%block body%}
+<body class="m flex flex_m flex1 trebuchet small blues monocolumn skin custom">
+{% include "commonOrderHeader.html" %}
+
+<div id="body" class="body">
+<div id="ext_main">
+<div id="main" class="main">
+<div class="pad"><div class="entry" id="entry-1272">
+<div class="entry_header">
+
+<div class="spacer"></div>
+<div class="entry_author"></div>
+</div>
+
+<div class="entry_content">
+{% include "commonTabs.html" %}
+
+<div class="wpcf7" id="wpcf7-f10-p1272-o1">
+<form action="{{action}}" method="post" class="wpcf7-form" enctype="multipart/form-data">
+<div style="display: none;"><input type="hidden" name="_wpcf7" value="10" /><input type="hidden" name="_wpcf7_version" value="1.9.5.1" />
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f10-p1272-o1" /></div> 
+<fieldset id="admin"><legend>Your Professional Experience</legend>
+{% if session.resume %} 
+<p>We have your resume on file, but you can replace it if you would like.  The filename uploaded was: {{session.resumeFilename}} <br/><br />
+{% else %}
+<p>Please upload your resume<br/><br />
+{% endif %} 
+<span class="wpcf7-form-control-wrap resume"><input type="file" name="resume" value="someFileNameHere.doc" size=90/></span> </p>
+{% if session.photo %} 
+<p>We have the photo below on file, but you can replace it if you would like.  The filename uploaded was: {{session.photoFilename}}<br/><br />
+{% else %}
+<p>Please upload your professional photo<br/><br />
+{% endif %} 
+ <span class="wpcf7-form-control-wrap Professional_photo"><input type="file" name="photo" value="1" size=90/></span> </p>
+
+{% if session.photo %} 
+The photo you have uploaded:<br/> 
+ <img src='userPhoto'></img>
+{% endif %} 
+
+<fieldset id="admin"><legend>Your Social Networks</legend><fieldset>
+
+Please check only the boxes for services you already use, then fill in the corresponding URL.  We will use these links to automatically build your "My Social" page on your new oneCloud website. <br/><br/>
+
+<table border=1> 
+
+<tr>
+<th>Service</th>
+<th>Your URL if you have an account</th>
+</tr> 
+
+	{% for socialNetwork in socialNetworks %}
+	 <tr>
+	   <td>{{socialNetwork.category}} ({{socialNetwork.examples}})</td>
+	   <!--
+	   <td><input type="checkbox" name="socialSite" value="{{socialNetwork.category}}" 
+	{% if socialNetwork.selected  %}
+	checked
+	{% endif %}
+	   />
+	   </td>
+	   -->
+	   <td>
+	     <input type="text" name="socialUrl" value="{{socialNetwork.socialUrl}}" size="40" /
+	   </td>
+	{% endfor %}
+
+
+
+</table> 
+
+</fieldset>
+{% include "commonOrderButtons.html" %}
+</form>
+
+
+</div><!-- #main -->
+
+<div class="spacer"></div>
+</div><!-- #ext_main -->
+
+<div class="spacer"></div>
+
+</div><!-- #body -->
+
+<div id="footer" class="footer">
+<div class="pad">
+<div id="copyright_notice" class="copyright_notice">Copyright 2009</div><!-- #copyright_notice -->
+<div id="footer_nav" class="footer_nav inline_menu"><div>
+<span class="nav_home nav__home"><a href="http://3wcloud.com">Home</a></span>
+</div>
+
+</div><!-- #footer_nav -->
+<div class="spacer"></div>
+</div>
+</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<div class="spacer"></div>
+
+</div><!-- #shadow -->
+<div id="shadow_bottom"></div>
+</div><!-- #ext_wrapper -->
+<div class="spacer"></div>
+{%endblock%}

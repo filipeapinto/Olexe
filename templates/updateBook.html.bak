@@ -1,0 +1,52 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>Update Book</h3>
+<form action=/updBook method=post>
+<table border=1>
+<tr>
+  <td>&nbsp;Name:</td>
+  <td>
+  &nbsp;<input type=text name=name size=32 value="{{book.name}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Keywordprefix:</td>
+  <td>
+  &nbsp;<input type=text name=keywordPrefix size=16 value="{{book.keywordPrefix}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Appliesto:</td>
+  <td>
+   <select id="appliesTo" name="appliesTo"> 
+     {% for item in appliesToChoices %} 
+     <option value="{{item.value}}" {% if item.selected %} selected {% endif %}>{{item.value}}</option>   
+     {% endfor %} 
+   </select> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Servicetype:</td>
+  <td>
+   <select id="serviceType" name="serviceType"> 
+     <option value="">Select One</option> 
+     {% for item1 in serviceTypeList %} 
+     <option value="{{item1.key}}" {% ifequal item1.name book.serviceType %} selected {% endifequal %}>{{item1.name}}</option>   
+     {% endfor %} 
+   </select> 
+  </td>
+</tr>
+</tr>
+
+<tr>
+   <td>&nbsp;</td>
+   <td><input type=submit value="Update"></td>
+<tr>
+</table>
+{% ifnotequal command "ADD" %} 
+<input type="hidden" name="key" value="{{book.key}}">
+{% endifnotequal %} 
+</form>
+
+{%endblock%}
+

@@ -1,0 +1,83 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>
+{% ifequal command "ADD" %} 
+Add
+{% else %} 
+Update 
+{% endifequal %} 
+Knowledge
+</h3>
+<form action=/updKnowledgeEvent method=post>
+<table border=1>
+<tr>
+  <td>&nbsp;EventType:</td>
+  <td>&nbsp;
+   <select id="eventType" name="eventType"> 
+     <option value="">Select One</option> 
+     {% for item in eventTypeChoices %} 
+     <option value="{{item.value}}" {% if item.selected %} selected {% endif %}>{{item.value}}</option>   
+     {% endfor %} 
+   </select> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;PayloadType:</td>
+  <td>&nbsp;
+   <select id="payloadType" name="payloadType"> 
+     <option value="">Select One</option> 
+     {% for item in payloadTypeChoices %} 
+     <option value="{{item.value}}" {% if item.selected %} selected {% endif %}>{{item.value}}</option>   
+     {% endfor %} 
+   </select> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;MicroBlog (optional):</td>
+  <td>
+  &nbsp;
+  <textarea rows=3 cols=60 name=microBlog>{{knowledgeEvent.microBlog}}</textarea>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Post MicroBlog To:</td>
+  <td>
+     {% for provider in providerList %}
+	 &nbsp;
+	 <input type=checkbox name='{{provider.name}}' value='{{provider.name}}'
+	 {% if not provider.available %} 
+	 disable 
+	 {% endif %} 
+	 >&nbsp;{{provider.name}}
+	 {% if not provider.available %} 
+	 (not configured) 
+	 {% endif %} 
+
+	 <br/>
+	 {% endfor %} 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeCreated:</td>
+  <td>&nbsp;{{knowledgeEvent.dateTimeCreated|date:_("m/d/y H:i:s")}}</td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeModified:</td>
+  <td>&nbsp;{{knowledgeEvent.dateTimeModified|date:_("m/d/y H:i:s")}}</td>
+</tr>
+
+<tr>
+   <td>&nbsp;</td>
+   <td><input type=submit value="Update"</td>
+<tr>
+</table>
+
+{% ifnotequal command 'ADD' %}
+<input type="hidden" name="key" value="{{knowledgeEvent.key}}">
+{% endifnotequal %}
+
+<input type="hidden" name="ksKey" value="{{ksKey}}">
+
+</form>
+<br/><br/><br/>
+{%endblock%}

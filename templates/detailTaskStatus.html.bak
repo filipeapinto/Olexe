@@ -1,0 +1,138 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>Detail TaskStatus</h3>
+{{msg}}
+
+<form action=/updTaskStatus method=post>
+<table border=1>
+<tr>
+  <td>&nbsp;ProcessCode:</td>
+  <td>
+  &nbsp;{{taskStatus.processCode}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;CurrentTaskCode:</td>
+  <td>
+  &nbsp;{{taskStatus.currentTaskCode}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;CurrentTaskError:</td>
+  <td>
+  &nbsp;{{taskStatus.currentTaskError}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;CurrentSeqNum:</td>
+  <td>
+  &nbsp;{{taskStatus.currentSeqNum}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;NumOfRetries:</td>
+  <td>
+  &nbsp;{{taskStatus.numOfRetries}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;IsManual:</td>
+  <td>
+ &nbsp;True: <input type=radio name=isManual value="True" 
+  {%if taskStatus.isManual%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isManual value="False" 
+  {%if not taskStatus.isManual%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;IsManualAccepted:</td>
+  <td>
+ &nbsp;True: <input type=radio name=isManualAccepted value="True" 
+  {%if taskStatus.isManualAccepted%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isManualAccepted value="False" 
+  {%if not taskStatus.isManualAccepted%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;IsManualNotificationComplete:</td>
+  <td>
+ &nbsp;True: <input type=radio name=isManualNotificationComplete value="True" 
+  {%if taskStatus.isManualNotificationComplete%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isManualNotificationComplete value="False" 
+  {%if not taskStatus.isManualNotificationComplete%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;IsInRetriesExceededState:</td>
+  <td>
+ &nbsp;True: <input type=radio name=isInRetriesExceededState value="True" 
+  {%if taskStatus.isInRetriesExceededState%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isInRetriesExceededState value="False" 
+  {%if not taskStatus.isInRetriesExceededState%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeCurrTaskStarted:</td>
+  <td>
+  &nbsp;{{taskStatus.dateTimeCurrTaskStarted}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeCurrTaskCompleted:</td>
+  <td>
+  &nbsp;{{taskStatus.dateTimeCurrTaskCompleted}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeProcessStarted:</td>
+  <td>
+  &nbsp;{{taskStatus.dateTimeProcessStarted}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeProcessCompleted:</td>
+  <td>
+  &nbsp;{{taskStatus.dateTimeProcessCompleted}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeManualNotification:</td>
+  <td>
+  &nbsp;{{taskStatus.dateTimeManualNotification}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeManualAccepted:</td>
+  <td>
+  &nbsp;{{taskStatus.dateTimeManualAccepted}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeErrorNotification:</td>
+  <td>
+  &nbsp;{{taskStatus.dateTimeErrorNotification}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;JsonPickledCommonTaskMsg:</td>
+  <td>
+  &nbsp;{{taskStatus.jsonPickledCommonTaskMsg}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeManualNotification:</td>
+  <td>
+  &nbsp;{{taskStatus.dateTimeManualNotification}}
+  </td>
+</tr>
+<!00
+<tr>
+   <td>&nbsp;</td>
+   <td><input type=submit value="Update"</td>
+<tr>
+-->
+</table>
+{% ifnotequal command 'ADD' %}<input type="hidden" name="key" value="{{taskStatus.key}}">
+{% endifnotequal %}</form>
+<br/><br/><br/>
+{%endblock%}

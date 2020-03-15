@@ -1,0 +1,74 @@
+
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>Update Tasks</h3>
+{{validationErrors}}
+<form action=/updTask method=post>
+<table border=1>
+<tr>
+  <td>&nbsp;TaskCode:</td>
+  <td>
+  &nbsp;<input type=text name=taskCode size=24 value="{{tasks.taskCode}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;TaskDescription:</td>
+  <td>
+  &nbsp;<input type=text name=taskDescription size=24 value="{{tasks.taskDescription}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;ProcessCode:</td>
+  <td>
+  &nbsp;<input type=text name=processCode size=24 value="{{tasks.processCode}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Sequence:</td>
+  <td>
+  &nbsp;<input type=text name=sequence size=24 value="{{tasks.sequence}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;IsManual:</td>
+  <td>
+ &nbsp;True: <input type=radio name=isManual value="True" 
+  {%if tasks.isManual%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isManual value="False" 
+  {%if not tasks.isManual%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeCreated:</td>
+  <td>
+  &nbsp;{{tasks.dateTimeCreated}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeLastModified:</td>
+  <td>
+  &nbsp;{{tasks.dateTimeLastModified}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;UserEmailCreated:</td>
+  <td>
+  &nbsp;{{tasks.userEmailCreated}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;UserEmailLastModified:</td>
+  <td>
+  &nbsp;{{tasks.userEmailLastModified}}
+  </td>
+</tr>
+
+<tr>
+   <td>&nbsp;</td>
+   <td><input type=submit value="Update"</td>
+<tr>
+</table>
+{% ifnotequal command 'ADD' %}<input type="hidden" name="key" value="{{tasks.key}}">
+{% endifnotequal %}</form>
+<br/><br/><br/>
+{%endblock%}

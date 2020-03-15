@@ -1,0 +1,62 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Add/Update RatePlan</h2>
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="/updateRatePlan{%if debug%}?debug{%endif%}">
+<table border=1>
+<tr>
+  <td>Code</td>
+  <td><input type=text size=15 value='{{ratePlan.code}}' name=code></td>
+</tr>
+
+<tr>
+  <td>Name</td>
+  <td><input type=text size=24 value='{{ratePlan.name}}' name=name></td>
+</tr>
+
+<tr>
+  <td>Description</td>
+  <td><input type=text size=40 value='{{ratePlan.description}}' name=description></td>
+</tr>
+
+<tr>
+  <td>One Time Amount</td>
+  <td><input type=text size=15 value='{{ratePlan.getOnetimeAmount}}' name=onetimeAmount></td>
+</tr>
+
+<tr>
+  <td>Recurring Amount</td>
+  <td><input type=text size=15 value='{{ratePlan.getRecurringAmount}}' name=recurringAmount></td>
+</tr>
+
+<tr>
+  <td>Billing Period (M/D/W/Y) </td>
+  <td><input type=text size=15 value='{{ratePlan.billingPeriod}}' name=billingPeriod></td>
+</tr>
+
+<tr>
+  <td>Billing Interval<BR>(Every x weeks/months)</td>
+  <td><input type=text size=15 value='{{ratePlan.billingInterval}}' name=billingInterval></td>
+</tr>
+
+<tr>
+  <td>Limited Number<BR>Of Payments<BR>(Set to zero if pay until cancel)</td>
+  <td><input type=text size=15 value='{{ratePlan.numberOfPayments}}' name=numberOfPayments></td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td><input type=submit value="Submit Update"></td>
+</tr>
+</table>
+
+ <input type=hidden name=command value='{{command}}'>  
+{% ifnotequal command 'ADD' %} 
+ <input type=hidden name=key value='{{ratePlan.key}}'>  
+{% endifnotequal %} 
+
+</form>
+
+
+{%endblock%}
+

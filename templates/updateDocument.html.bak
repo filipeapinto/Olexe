@@ -1,0 +1,115 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>Update document</h3>
+<form action=/updDocument method=post>
+<table border=1>
+<tr>
+  <td>&nbsp;docId:</td>
+  <td>&nbsp;{{document.docId}}</td>
+</tr>
+<tr>
+  <td>&nbsp;docName:</td>
+  <td>&nbsp;<input type=text name=docName size=50 value="{{document.docName}}"></td>
+</tr>
+<tr>
+  <td>&nbsp;title:</td>
+  <td>&nbsp;<input type=text name=title size=70 value="{{document.title}}"></td>
+</tr>
+<tr>
+  <td>&nbsp;subtitle:</td>
+  <td>&nbsp;<input type=text name=subtitle size=70 value="{{document.subtitle}}"></td>
+</tr>
+<tr>
+  <td>&nbsp;summary:</td>
+  <td>&nbsp;<input type=text name=summary size=50 value="{{document.summary}}"></td>
+</tr>
+<tr>
+  <td>&nbsp;authorName:</td>
+  <td>&nbsp;<input type=text name=authorName size=32 value="{{document.authorName}}"></td>
+</tr>
+<tr>
+  <td>&nbsp;authorEmail:</td>
+  <td>&nbsp;<input type=text name=authorEmail size=32 value="{{document.authorEmail}}"></td>
+</tr>
+<tr>
+  <td>&nbsp;mediaType:</td>
+  <td>
+   <select id="mediaType" name="mediaType"> 
+     <option value="">Select One<option> 
+     {% for item in mediaTypeChoices %} 
+     <option value="{{item.value}}" {% if item.selected %} selected {% endif %}>{{item.value}}</option>  
+     {% endfor %} 
+   </select>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;isGDoc:</td>
+  <td>
+ True: <input type=radio name=isGDoc value="True" 
+  {%if document.isGDoc%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isGDoc value="False" 
+  {%if not document.isGDoc%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;isExternalLink:</td>
+  <td>
+ True: <input type=radio name=isExternalLink value="True" 
+  {%if document.isExternalLink%} checked {% endif %}>
+ &nbsp;&nbsp;False: <input type=radio name=isExternalLink value="False" 
+  {%if not document.isExternalLink%} checked {% endif %}> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;externalLink:</td>
+  <td>&nbsp;<input type=text name=externalLink size=70 value="{{document.externalLink}}"></td>
+</tr>
+<tr>
+  <td>&nbsp;language:</td>
+  <td>&nbsp;<input type=text name=language size=24 value="{{document.language}}"></td>
+</tr>
+<tr>
+  <td>&nbsp;dateTimePublished:</td>
+  <td>&nbsp;<input type=text name=dateTimePublished size=24 value="{{document.dateTimePublished|date:_("m/d/y h:i:s")}}"></td>
+</tr>
+<tr>
+  <td>&nbsp;dateTimeCreated:</td>
+  <td>&nbsp;{{document.dateTimeCreated|date:_("m/d/y h:i:s")}}</td>
+</tr>
+<tr>
+  <td>&nbsp;dateTimeLastModified:</td>
+  <td>&nbsp;{{document.dateTimeLastModified|date:_("m/d/y h:i:s")}}</td>
+</tr>
+<tr>
+  <td>&nbsp;userEmailCreated:</td>
+  <td>&nbsp;{{document.userEmailCreated}}</td>
+</tr>
+<tr>
+  <td>&nbsp;userEmailLastModified:</td>
+  <td>&nbsp;{{document.userEmailLastModified}}</td>
+</tr>
+</tr>
+
+<tr>
+   <td>&nbsp;</td>
+   <td><input type=submit value="Update"</td>
+<tr>
+</table>
+{% ifnotequal command "ADD" %}
+{# calling key function with a Null doocument will result in "NotSavedError" in Django template #} 
+<input type="hidden" name="key" value="{{document.key}}">
+{% endifnotequal %} 
+<input type="hidden" name="command" value="{{command}}">
+</form>
+
+ Number of Existing Keywords: {{numKeywords1}}
+<BR>
+<BR>
+{% if htmlFileContents %} 
+<HR>
+<h2 style="color:red">Content of Document appears below </h2>
+<HR>
+{{htmlFileContents}}
+<BR>
+{% endif %} 
+{%endblock%}

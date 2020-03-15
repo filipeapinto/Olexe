@@ -1,0 +1,53 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Sessions Report (by DateTimeModified descending)</h2>
+
+
+<FORM METHOD=GET ENCTYPE="multipart/form-data" ACTION="reportSessions">
+Optional: Filter by LastName: 
+All <input type=radio name=filter value="All" {% ifequal filter "All"%}checked{%endifequal%}>&nbsp;&nbsp;
+Submitted<input type=radio name=filter value="Submitted" {% ifequal filter "Submitted"%}checked{%endifequal%}>&nbsp;&nbsp;
+Not-Submitted<input type=radio name=filter value="Not-Submitted" {% ifequal filter "Not-Submitted"%}checked{%endifequal%}>
+<input type=submit>
+</FORM>
+<br/>
+
+<!-- List of TaskLogs --> 
+
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Modified</th>
+  <th>Created</th>
+  <th>ServiceCode</th>
+  <th>Email/User</th>
+  <th>Password</th>
+  <th>Domain</th>
+  <th>Submitted</th>
+  <th>State</th>
+  <th>Country</th>
+  <th>key</th>
+</tr>
+
+{%for session in sessionList%} 
+
+<tr>
+  <td><a href="detailSession?key={{session.key}}">&nbsp;{{forloop.counter}}&nbsp;</a></td>  
+  <td>{{session.dateTimeModified|date:_("m/d/y h:i:s")}}</td>
+  <td>{{session.dateTimeCreated|date:_("m/d/y h:i:s")}}</td>
+  <td>{{session.serviceCode}}</td>
+  <td>{{session.userEmail}}</td>
+  <td>{{session.userPassword}}</td>
+  <td>{{session.domain}}&nbsp;</td>
+  <td>{{session.submitted}}</td>
+  <td>{{session.state}}</td>
+  <td>{{session.country}}</td>
+  <td>{{session.key}}</td>
+</tr>
+
+{%endfor%}
+
+</table>
+
+
+{%endblock%}

@@ -1,0 +1,46 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<!--
+<form action="reportServiceTypes" method="post">
+<SELECT NAME=customerDomain>
+<OPTION value='ALL' {% ifequal customerDomain 'ALL' %} SELECTED {% endifequal %}>ALL</OPTION>
+{%for customerOrder in customerOrdersList%} 
+<OPTION value='{{customerOrder.domain}}' {% ifequal customerDomain customerOrder.domain %} SELECTED {% endifequal %}>{{customerOrder.domain}}</OPTION>
+{%endfor%}
+<input type=submit>
+</form>
+--> 
+
+<h2>List ServiceTypes</h2>
+
+<table border=1>
+<tr>
+  <th>Row</th> 
+  <th>Code</th>
+  <th>Xref to<BR>Subscribers</th>
+  <th>Name</th>
+  <th>Description</th>
+  <th>InfrastructureName</th>
+  <th>IsSellable?</th>
+
+
+{%for serviceType in serviceTypes%} 
+
+<tr>
+  <td><a href="updServiceType?key={{serviceType.key}}">&nbsp;{{forloop.counter}}&nbsp;</a></td> 
+  <td>{{serviceType.code}}</td>
+  <td>&nbsp;&nbsp;{%if serviceType.isSellable%}<a href="reportServiceTypeSubscriberXref?key={{serviceType.key}}">xref{%else%}NA{%endif%}</td>
+  <td>{{serviceType.name}}</td>
+  <td>{{serviceType.description}}</td>
+  <td>{{serviceType.infrastructureName}}</td>
+  <td>{{serviceType.isSellable}}</td>
+
+</tr>
+
+
+{%endfor%}
+
+</table>
+
+
+{%endblock%}

@@ -1,0 +1,79 @@
+{%extends "baseMain.html"%}
+{%block body%}
+
+{% ifequal domainstartswith ''  %}
+<h2>Services Report (by DomainName)</h2>
+{% else  %}
+<h2>Services Report
+{% if orderId %}
+(for OrderId = {{orderId}}) 
+{% endif%}
+</h2>
+{% if orderId %}
+<a href="/reportServices">Full Report of All Services</a> <br/><br/>
+{%else%}
+{% ifnotequal domainstartswith ''  %}
+<a href="/reportServices">Full Report of All Services</a> <br/><br/>
+{% endifnotequal %}
+{% endif %}
+{% endifequal %}
+<!--
+<FORM METHOD=GET ENCTYPE="multipart/form-data" ACTION="reportServices">
+Optional: Domain Starts With: <input type=text size=30 name=domainstartswith>
+<input type=submit>
+</FORM>
+<br/>
+ -->
+
+<form action=/deleteServices method=post> 
+<table border=1>
+<tr>
+{% if isServiceDeleteEnabled %}
+  <th>Select</th>
+{%endif%}
+  <th>Row</th>
+  <th>Service<BR>Id</th>
+  <th>Domain</th>
+  <th>Originating<BR>Order<BR>Id</th> 
+  <th>Order Date</th> 
+  <th>FirstName</th>
+  <th>LastName</th>
+  <th>service<BR>Type</th>
+  <th>service<BR>State</th>
+  <th>service<BR>State</th>
+</tr>
+
+<input type=hidden name=isServiceDeleteEnabled value={{isServiceDeleteEnabled}} >
+
+{%for service in servicesList%} 
+
+<tr>
+{% if isServiceDeleteEnabled %}
+  <td>&nbsp;&nbsp;<input name=deleteBox{{forloop.counter}} type=checkbox>
+      <input type=hidden name=key{{forloop.counter}} value={{service.key}}>
+  </td>
+{%endif%}
+  <td>&nbsp;{{forloop.counter}}&nbsp;</a></td>  
+  <td>&nbsp;<a href="updService?key={{service.key}}">{{service.key.id}}</a></td>
+  
+  <td>{{service.order.domain}}</td>
+  <td>&nbsp;<a href="updOrder?orderId={{service.order.key.id}}">{{service.order.key.id}}</a></td>
+  <td>{{service.order.orderDate|date:_("m/d/y h:i:s")}}</td>
+  <td>{{service.order.subscriber.firstname}}</td>
+  <td>{{service.order.subscriber.lastname}}</td>
+
+  <td>{{service.serviceType.code}}</td>
+  <td>{{service.serviceState}}</td>
+</tr>
+
+<input type=hidden name=numrows value={{numrows}}>
+
+{%endfor%}
+
+</table>
+{% if isServiceDeleteEnabled %}
+<input type=submit value="Delete checked items"> 
+{%endif%}
+</form>
+
+{%endblock%}

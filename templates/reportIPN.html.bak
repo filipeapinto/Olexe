@@ -1,0 +1,81 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>PaypalIPN Report - Ordered by DateCreated Descending</h2>
+
+<FORM METHOD=GET ENCTYPE="multipart/form-data" ACTION="reportIPN">
+Order Id: <input type=text size=7 name=orderId value={{orderId}}>
+<BR>Sort: <input type=radio name=sortOrder value="dateTimeCreated" 
+{%ifequal sortOrder "dateTimeCreated"%} checked{%endifequal%} value="dateTimeCreated desc">DateTime Desc
+&nbsp;&nbsp;<input type=radio name=sortOrder value="order"
+{%ifequal sortOrder "order"%} checked{%endifequal%}> OrderId
+<BR>Filter by Date cannot be mixed with other search criteria:<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;Start Date (mm/dd/yyyy):<input type=text name=startDate size=12 value="{{startDate}}"> (inclusive) 
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;Stop Date (mm/dd/yyyy): <input type=text name=stopDate size=12 value="{{stopDate}}"> (exclusive) 
+<BR>
+Txn-Type: <select name=txntype>
+           <option>ALL</option>
+           <option>subscr_payment</option>
+           <option>subscr_cancel</option>
+           <option>subscr_signup</option>
+           <option>subscr_eot</option>
+         </select>
+Value for last search was: {{txntype}}
+<BR>
+Status: <select name=status>
+           <option>ALL</option>
+           <option>Pending</option>
+           <option>Completed</option>
+         </select>
+Value for last search was: {{status}}
+<BR>
+Pay-Type: <select name=paytype>
+           <option>ALL</option>
+           <option>echeck</option>
+           <option>instant</option>
+         </select>
+Value for last search was: {{paytype}}
+<BR>
+Number Rows (max 1000): <input type=text name=numRows size=5 value="{{numRows}}"> 
+<input type=submit>&nbsp;&nbsp;
+<a href=/reportIPN>Requery with no filter</a> 
+</FORM>
+<br/>
+
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>IPN-Id</th>
+  <th>Date/Time Created</th>
+  <th>Source</th>
+  <th>Order</th>
+  <th>Txn Type</th>
+  <th>Payment</th>
+  <th>Payer Email</th>
+  <th>Status</th>
+  <th>Pay-Type</th>
+</tr>
+
+{%for PaypalIPN in PaypalIPNList%} 
+
+<tr>
+<!--  <td><a href="detailIPNTest?key={{PaypalIPNTest.key}}">&nbsp;{{forloop.counter}}&nbsp;</a></td> -->
+  <td>&nbsp;{{forloop.counter}}&nbsp;</td> 
+  <td>{{PaypalIPN.key.id}}</td> 
+  <td>{{PaypalIPN.dateTimeCreated|date:_("m/d/y h:i:s")}}</td> 
+  <td>&nbsp;&nbsp;{{PaypalIPN.source}}</td> 
+  <td><a href="updOrder?orderId={{PaypalIPN.invoice}}">{{PaypalIPN.invoice}}</a></td>
+  <td>{{PaypalIPN.txn_type}}</td> 
+  <td>&nbsp;&nbsp;{{PaypalIPN.payment_gross}}</td> 
+  <td>{{PaypalIPN.payer_email}}</td> 
+  <td>{{PaypalIPN.payment_status}}</td> 
+  <td>{{PaypalIPN.payment_type}}</td> 
+</tr>
+
+
+{%endfor%}
+
+</table>
+<br/><br/>
+
+{%endblock%}

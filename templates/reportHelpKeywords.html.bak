@@ -1,0 +1,174 @@
+{%extends "baseMain.html"%}
+{%block body%}
+
+<!--
+<FORM METHOD=GET ENCTYPE="multipart/form-data" ACTION="reportSubscribers">
+Lastname Starts With: <input type=text size=30 name=lastnamestartswith
+value={{lastnameStartsWith}}>
+<BR>
+Email Starts With: <input type=text size=30 name=emailstartswith
+value={{emailStartsWith}}>
+<BR>Sort: <input type=radio name=sortOrder value="name" 
+{%ifequal sortOrder "name"%} checked{%endifequal%}>Last/First Name
+&nbsp;&nbsp;<input type=radio name=sortOrder value="dateTimeCreated"
+{%ifequal sortOrder "dateTimeCreated"%} checked{%endifequal%}>DateTimeCreated
+&nbsp;&nbsp;<input type=radio name=sortOrder value="email"
+{%ifequal sortOrder "email"%} checked{%endifequal%}>Email
+<input type=submit>&nbsp;&nbsp;
+<a href=/reportSubscribers>Requery with no filter</a> 
+</FORM>
+<br/>
+-->
+
+
+{# ------------------------------------------------------------------------ #} 
+{% if feed %}
+<a href="/myHelpKeywords">Show list of keywords</a> 
+<h2>Matching Documents using Google Keyword Search</h2> 
+<h3>Keyword = {{keyword}}</h3>
+
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>DocName</th>
+  <th>DocId</th>
+
+</tr>
+{%for doc in feed.entry %} 
+
+<tr>
+  <td>&nbsp;{{forloop.counter}}&nbsp;</td> 
+  <!--
+  <td>{{doc.docName}}</td> 
+  <td>{{doc.keywords}}</td> 
+  -->
+  <td><a href="myHelpKeywords?docId={{doc.resourceId.text}}">{{doc.title.text}}</a>
+  {% if doc.subtitle %}<BR>{{doc.subtitle}}{%endif%}
+  </td> 
+  <td>{{doc.summary}}</td> 
+</tr>
+
+{%endfor%}
+</table>
+<br/>
+Number Docs: {{numDocs}} 
+
+{% endif %}
+
+{# ------------------------------------------------------------------------ #} 
+{% if keywordList and not bookView %}
+<h2>Keywords List</h2>
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Keyword</th>
+  <th>Num Docs</th>
+</tr>
+
+{%for keyword in keywordList %} 
+
+<tr>
+  <td>&nbsp;{{forloop.counter}}&nbsp;</td> 
+  <td><a href="myHelpKeywords?key={{keyword.key}}&keyword={{keyword.keyword}}">{{keyword.keyword}}</a></td> 
+  <td>&nbsp;&nbsp;&nbsp;{{keyword.referenceCounter}}</td> 
+</tr>
+
+{%endfor%}
+
+</table>
+
+{% endif %}
+
+{# ------------------------------------------------------------------------ #} 
+{% if bookView %}
+<h2>Book Title: {{book.name}}</h2>
+<table border=1>
+<tr>
+  <th>&nbsp;</th>
+  <th>Chapter/Section</th>
+  <th>Document</th>
+</tr>
+
+{%for keyword in keywordList %} 
+
+<tr>
+  <td>&nbsp;{{forloop.counter}}&nbsp;</td> 
+  <td>{{keyword.keywordDisplay}}</td>
+  <td>
+    {%for doc in keyword.documents %} 
+	  {%if doc.docId %}
+      &nbsp;<a href="myHelpKeywords?docId={{doc.docId}}&key={{doc.key}}&keyword={{keyword.keyword}}&bookPrefix={{bookPrefix}}">{{doc.title}}</a>
+	  {%else%}
+      {{doc.title}} <span style="color:red">(This document has no Google Docs DocId)</span> 
+	  {%endif%}
+	  <br/>
+    {%endfor%}
+  </td>
+</tr>
+
+{%endfor%}
+
+</table>
+
+{% endif %}
+
+{# ------------------------------------------------------------------------ #} 
+{% if documentList %}
+<a href="/myHelpKeywords">Back to keyword list</a> 
+&nbsp;&nbsp;
+<h2>Documents Matching Keyword</h2>
+<h3>Keyword = {{keyword}}</h3>
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>DocName</th>
+  <th>Info</th>
+  <th>Summary</th>
+</tr>
+
+{%for doc in documentList  %} 
+
+<tr>
+  <td>&nbsp;{{forloop.counter}}&nbsp;</td> 
+  <td>
+  {% if doc.docId %}
+  <a href="myHelpKeywords?docId={{doc.docId}}&key={{key}}&keyword={{keyword}}">{{doc.title}}</a>
+  {%else%}
+  <a target="_blank" href="{{doc.externalLink}}">{{doc.title}}</a>
+  {%endif%}
+  {% if doc.subtitle %}
+  <BR>{{doc.subtitle}}{%endif%}
+  </td> 
+  <td>{% if doc.isExternalLink %} External {%else%} {{doc.mediaType}} {%endif%}&nbsp;</td> 
+  <td>{{doc.summary}}</td> 
+</tr>
+
+{%endfor%}
+
+</table>
+
+{% endif %}
+
+{# ------------------------------------------------------------------------ #} 
+{% if docContents %}
+  {# TODO fix this title #} 
+  {% if book %}
+<a href="/bookChapters?book={{book}}">Back to list of Book Chapters</a> 
+  {% else %}
+<a href="/myHelpKeywords">Back to keyword list</a> 
+&nbsp;&nbsp;
+<a href="/myHelpKeywords?key={{key}}&keyword={{keyword}}">Back to documents matching keyword</a> 
+  {% endif %} 
+<h3>{{docTitle}}</h3>
+{{docContents}}
+<BR><BR>
+{% endif %}
+
+{# ------------------------------------------------------------------------ #} 
+
+<br/>
+<br/>
+<br/>
+
+
+{%endblock%}

@@ -1,0 +1,3 @@
+INFO     2009-08-19 13:37:34,203 commontaskhandler.py:273] Email:url = 
+
+http://localhost:8080/acceptManualTask?id=2663&key=ahgzd2Nsb3VkLWNvbS1wcm92aXNpb25pbmdyEQsSClRhc2tTdGF0dXMY5xQM&subscriberKey=ahgzd2Nsb3VkLWNvbS1wcm92aXNpb25pbmdyEQsSClN1YnNjcmliZXIYoAMM

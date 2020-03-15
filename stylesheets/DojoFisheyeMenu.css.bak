@@ -1,0 +1,74 @@
+table {  font-size:100%; }
+table.dojoTabular { 
+	border-collapse: collapse; 
+	border-spacing: 0; 
+	border: 1px solid #ccc; 
+	margin: 0 1.5em;
+} 
+.dojoTabular th { 
+	text-align: center; 
+	font-weight: bold;
+} 
+table.dojoTabular thead, table.dojoTabular tfoot { 
+	background-color: #efefef; 
+	border: 1px solid #ccc; 
+	border-width: 1px 0; 
+}
+table.dojoTabular thead tr th,
+table.dojoTabular thead tr td,
+table.dojoTabular tbody tr td,
+table.dojoTabular tfoot tr td { 
+	padding: 0.25em 0.5em;
+}
+
+.dojoxFisheyeListItemLabel {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #eee;
+	border: 2px solid #666;
+	padding: 2px;
+	text-align: center;
+	position: absolute;
+	display: none;
+	white-space:pre; 
+}
+.dojoxFisheyeListItemLabel.dojoxFishSelected {
+	display: block;
+}
+.dojoxFisheyeListItemImage {
+	border: 0px;
+	position: absolute;
+}
+.dojoxFisheyeListItem {
+	position: absolute;
+	z-index: 2;
+}
+.dojoxFisheyeListBar {
+	position: relative;
+}
+	
+		.dojoxFisheyeListBar {
+			margin: 0 auto;
+			text-align: center;
+		}
+		.outerbar {
+			/* background-color: #666; */
+			text-align: center;
+			position: relative;
+			left: 0px;
+			top: 0px;
+			height: 42px;
+			width: 100%;
+			border-bottom:2px solid #333;
+		}
+		
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			padding: 0;
+			margin: 0;
+			background-color:#fff;
+			background-image:none; 
+		}
+		
+		.page {
+			padding: 50px 20px 20px 20px;
+		}

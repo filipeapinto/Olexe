@@ -1,0 +1,1 @@
+"d:/Program Files/Python26/Python.exe" "c:/Program Files/Google/google_appengine/appcfg.py" update 3wcloud-com-provisioning

@@ -1,0 +1,100 @@
+<body onload="javascript:showOrHideReason()">
+Feedback:  
+<form name=feedbackForm action="http://localhost:8080/submitFeedback" method="post">
+<input type=radio name=feedbackRating id=feedbackRating value="1" onclick="javascript:showOrHideReason()">1 (bad)&nbsp;&nbsp;&nbsp;
+<input type=radio name=feedbackRating id=feedbackRating value="2"onclick="javascript:showOrHideReason()">2 (poor)&nbsp;&nbsp;&nbsp;
+<input type=radio name=feedbackRating id=feedbackRating value="3" onclick="javascript:showOrHideReason()">3 (avg)&nbsp;&nbsp;&nbsp;
+<input type=radio name=feedbackRating id=feedbackRating value="4" onclick="javascript:showOrHideReason()">4 (good)&nbsp;&nbsp;&nbsp;
+<input type=radio name=feedbackRating id=feedbackRating value="5" onclick="javascript:showOrHideReason()">5 (great)&nbsp;&nbsp;&nbsp;
+<br/>
+<div id=FeedbackReasonBlock>
+Reason for feedback: 
+<input type=checkbox name=isDefect>I found a defect&nbsp;   
+<input type=checkbox name=isCumbersome>It's cumbersome&nbsp;   
+<input type=checkbox name=isUgly>It's ugly&nbsp;   
+<input type=checkbox name=isImStuck>I'm stuck&nbsp; 
+<br/>
+</div>
+Comments (please provide as much detail as possible):<br/>
+<textarea rows=3 cols=70 name=feedbackComments>
+</textarea> 
+<br/>
+<input type="Submit" value="Submit Feedback">
+</form>
+<br/><br/>
+
+<!--
+<a href="javascript:hideReasonDiv()">Hide div</a>
+<br/>
+<a href="javascript:showReasonDiv()">Show div</a> 
+<br/>
+-->
+
+</body>
+
+<SCRIPT language="JavaScript">
+function showOrHideReason() 
+{
+   //alert ("Value=" + getRadioButtonValue()) 
+   if (getRadioButtonValue() <= "2")
+   {
+      showReasonDiv(); 
+   }
+   else
+   {
+      hideReasonDiv(); 
+   }
+}
+
+function getRadioButtonValue() 
+{
+   for (var i=0; i < document.feedbackForm.feedbackRating.length; i++)
+   {
+      if (document.feedbackForm.feedbackRating[i].checked)
+      {
+         var rad_val = document.feedbackForm.feedbackRating[i].value;
+      }
+   }
+   return rad_val; 
+}
+
+function hideReasonDiv() 
+{
+    if (document.getElementById) 
+	{ // DOM3 = IE5, NS6
+        document.getElementById('FeedbackReasonBlock').style.visibility = 'hidden'; 
+    }
+    else 
+	{
+        if (document.layers) 
+		{ // Netscape 4
+            document.hideShow.visibility = 'hidden';
+        }
+        else 
+	    { // IE 4
+            document.all.hideShow.style.visibility = 'hidden';
+        }
+	}
+} 
+
+function showReasonDiv()
+{
+   if (document.getElementById) 
+   { // DOM3 = IE5, NS6
+       document.getElementById('FeedbackReasonBlock').style.visibility = 'visible';
+   }
+   else 
+   {
+      if (document.layers) 
+	  { // Netscape 4
+          document.hideShow.visibility = 'visible';
+      }
+      else 
+      { // IE 4
+         document.all.hideShow.style.visibility = 'visible';
+      }
+   }
+} 
+
+
+</SCRIPT> 

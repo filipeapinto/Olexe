@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+	<title>3WCloud (Beta) &rsaquo; Log In</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel='stylesheet' href='http://3wcloud.com/wp-admin/css/login.css?ver=20081210' type='text/css' media='all' />
+
+<link rel='stylesheet' href='http://3wcloud.com/wp-admin/css/colors-fresh.css?ver=20081210' type='text/css' media='all' />
+
+</head>
+<body class="login">
+
+<center> 
+<br/><br/><br/>
+<table border=0>
+<tr>
+<td>
+<img src='/images/login-form-v2-medium.png'>
+</td>
+<td>
+<div id="login">
+
+
+
+<form name="loginform" id="loginform" action="{{action}}" method="post">
+
+	<p>
+		<label>Email<br />
+		<input type="text" name="log" id="user_login" class="input" 
+{% ifequal resetPassword "Y" %} 
+   value="{{userEmail}}" 
+{% else %} 
+   value="" 
+{% endifequal %}
+
+		size="36" tabindex="10" /></label>
+	</p>
+{% ifnotequal lostPassword "Y" %} 
+	<p>
+		<label>Password<br />
+
+		<input type="password" name="pwd" id="user_pass" class="input" value="" size="20" tabindex="20" /></label>
+	</p>
+{% endifnotequal %}
+<!--
+	<p class="forgetmenot"><label>
+	<input name="rememberme" type="checkbox" id="rememberme" value="forever" tabindex="90" /> Remember Me</label></p>
+-->
+{% ifnotequal showSubmitButton "N" %}
+	<p class="submit">
+		<input type="submit" name="wp-submit" id="wp-submit" tabindex="100"
+{% ifequal lostPassword "Y" %} 
+value="Send Email to Reset Password" 
+{% else %}
+   {% ifequal resetPassword "Y" %} 
+value="Reset Password" 
+   {% else %}
+value="Log In" 
+   {% endifequal %}
+{% endifequal %}
+ />
+{% endifnotequal %} 
+<!--
+		<input type="hidden" name="redirect_to" value="http://3wcloud.com/wp-admin/" />
+		<input type="hidden" name="testcookie" value="1" />
+-->
+		<input type="hidden" name="resetCode" value="{{resetCode}}" />
+	</p>
+
+</form>
+
+<p id="nav">
+{{signinError}}
+</p>
+
+
+{% ifnotequal lostPassword "Y" %} 
+<p id="nav">
+<a href="lostpassword" title="Password Lost and Found">Lost your password?</a>
+</p>
+{% endifnotequal %}
+
+</div>
+</td>
+</tr>
+</table>
+</center>
+
+<!--
+<p id="backtoblog"><a href="oneCloudSetupIndiv1" title="Return to the form">&larr; Back to setup form </a></p>
+-->
+<p id="backtoblog"><a href="http://3wcloud.com" title="Return to the website Home">&larr; Home </a></p>
+
+<script type="text/javascript">
+try{document.getElementById('user_login').focus();}catch(e){}
+</script>
+</body>
+</html>
+

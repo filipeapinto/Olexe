@@ -1,0 +1,53 @@
+{%extends "baseMain.html"%}
+{%block body%}
+{% ifequal type 'admin'  %}
+<h2>Subscriber/Admin Report - (By Lastname, Firstname)</h2>
+{% else  %}
+  {% ifequal type 'worker'  %}
+  <h2>Subscriber/Workers Report (By Lastname, Firstname)</h2>
+  {% else  %}
+  <!-- This combination is nto allowed becaused BigTable cannot have an or test on two fields --> 
+  <h2>Subscriber/Admin And Workers Report (By Lastname, Firstname))</h2>
+  {% endifequal %}
+{% endifequal %}
+<FORM METHOD=GET ENCTYPE="multipart/form-data" ACTION="reportWorkers">
+Admin:   <input type=radio name=type value=admin>  
+Worker:  <input type=radio name=type value=worker>  
+<input type=submit>
+</FORM>
+<br/>
+
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Id</th>
+  <th>FirstName</th>
+  <th>LastName</th>
+  <th>State</th>
+  <th>Country</th>
+  <th>Email</th>
+  <th>isAdmin</th>
+  <th>isWorker</th>
+</tr>
+
+{%for subscriber in subscriberList%} 
+
+<tr>
+  <td><a href="detailSubscriber?key={{subscriber.key}}">&nbsp;{{forloop.counter}}&nbsp;</a></td> 
+  <td>{{subscriber.key.id}}</td> 
+  <td>{{subscriber.firstname}}</td>
+  <td>{{subscriber.lastname}}</td>
+  <td>{{subscriber.state}}</td>
+  <td>{{subscriber.country}}</td>
+  <td>{{subscriber.userEmail}}</td>
+  <td>{{subscriber.isAdmin}}</td>
+  <td>{{subscriber.isWorker}}</td>
+</tr>
+
+
+{%endfor%}
+
+</table>
+<br/><br/>
+
+{%endblock%}

@@ -1,0 +1,11 @@
+{%extends "baseMain.html"%}
+{%block body%}
+{% ifequal domainstartswith ''  %}
+<h2>{{genericReportTitle}}</h2>
+{% else  %}
+<h2>{{genericReportTitle}}</h2>
+{% endifequal %}
+
+{{genericText}}
+
+{%endblock%}

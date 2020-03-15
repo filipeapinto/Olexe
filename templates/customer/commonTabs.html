@@ -1,0 +1,4 @@
+<ul class="progressBox clearfix">
+    {# next step is to put class="current", and maybe make these clickable links, but they need to submit current page first #} 
+    {% for tab in tabs %}{%ifequal forloop.counter currentPageNum%}<li class="current">{%else%}<li class="done">{%endifequal%}{{tab.description}}</li>{%endfor%}
+</ul>

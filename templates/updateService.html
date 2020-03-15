@@ -1,0 +1,164 @@
+{%extends "baseMain.html"%}
+{%block body%}
+<h2>Update Service</h2>
+
+<!-- first show related data that cannot be changed --> 
+<table border=1>
+<tr>
+  <th>Service<BR>Id</th>
+  <th>ServiceType.code</th>
+  <th>Description</th>
+  <th>Domain</th>
+  <th>Firstname</th>
+  <th>Lastname</th>
+</tr>
+<tr>
+  <td>&nbsp;{{service.key.id}}</td>
+  <td>{{service.serviceType.code}}</td>
+  <td>{{service.serviceType.name}}</td>
+  {% if service.domain %} 
+  <td>{{service.domain}}</td>
+  {% else %} 
+  <td>&nbsp;&nbsp;NA&nbsp;&nbsp;</td>
+  {%endif%} 
+  <td>{{service.subscriber.firstname}}</td>
+  <td>{{service.subscriber.lastname}}</td>
+</tr>
+</table>
+<BR>
+
+<h3>Order Xref</h3>
+<table border=1>
+<tr>
+  <th>Order<BR>ID</th>
+  <th>Order<BR>Date</th>
+  <th>Order<BR>Type</th>
+  <th>Financial<BR>Status</th>
+  <th>Order<BR>State</th>
+</tr>
+{%for order in service.getOrders %} 
+<tr>
+  <td>&nbsp;<a href="updOrder?orderId={{order.key.id}}">{{order.key.id}}</a></td>
+  <td>{{order.orderDate|date:_("m/d/y h:i:s")}}</td>
+  <td>{{order.orderType}}</td>
+  <td>{{order.financialStatus}}</td>
+  <td>{{order.orderState}}</td>
+</tr>
+{%endfor%}
+</table>
+<BR>
+
+<h3>Only the fields in this table can be changed:</h3>
+
+<FORM METHOD=POST ENCTYPE="multipart/form-data" ACTION="updService">
+<table border=1>
+<tr>
+  <td>Service State</td>
+  <td>
+    <input type=radio name=serviceState value="Active"  
+	{% ifequal service.serviceState "Active" %}checked{%endifequal%}> Active &nbsp;&nbsp;
+    <input type=radio name=serviceState value="Inactive" 
+	{% ifequal service.serviceState "Inactive" %}checked{%endifequal%}> Inactive 
+  </td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td><input type=submit value="Submit Update"></td>
+</tr>
+</table>
+<input type=hidden name=key value='{{service.key}}'>
+
+</form>
+
+<BR>
+<BR>
+<BR>
+
+<hr>
+The fields below cannot be changed by Admin: 
+<hr>
+<h3>Subscriber Resume</h3>
+Uploaded Filename: {{service.resumeFilename}}
+&nbsp;&nbsp;&nbsp;<a href="resumeDownload?servicekey={{service.key}}">Download Resume</a> 
+
+<h3>Uploaded Photo</h3>
+Uploaded Filename: {{service.photoFilename}}
+<BR>
+<img src='userPhotoFromService?key={{service.key}}'>
+
+<h3>BIO</h3>
+<textarea rows=5 cols=60>
+{{service.bio}}
+</textarea>
+
+
+<h3>Tags</h3>
+<OL>
+{%for tag in service.tags%} 
+   {# CSS was keeping OL from showing number #} 
+   <LI>{{forloop.counter}}) {{tag}}
+{%endfor%}
+</OL>
+
+<h3>Social Sites</h3>
+<table border=1>
+{{socialHTML}}
+</table>
+
+<h3>Languages</h3>
+Primary Language: {{service.primaryLanguage}}<BR>
+Other Languages:  {{service.otherLanguages}}
+
+<h3>Contact Information</h3>
+<table border=1>
+<tr>
+  <td>&nbsp;Firstname</td>
+  <td>&nbsp;{{service.subscriber.firstname}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Lastname</td>
+  <td>&nbsp;{{service.subscriber.lastname}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Organization Name</td>
+  <td>&nbsp;{{service.subscriber.organizationname}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Address1</td>
+  <td>&nbsp;{{service.subscriber.address1}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Address2</td>
+  <td>&nbsp;{{service.subscriber.address2}}</td>
+</tr>
+<tr>
+  <td>&nbsp;City</td>
+  <td>&nbsp;{{service.subscriber.city}}</td>
+</tr>
+<tr>
+  <td>&nbsp;State</td>
+  <td>&nbsp;{{service.subscriber.state}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Zip</td>
+  <td>&nbsp;{{service.subscriber.zip}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Country</td>
+  <td>&nbsp;{{service.subscriber.country}}</td>
+</tr>
+<tr>
+  <td>&nbsp;Phone</td>
+  <td>&nbsp;{{service.subscriber.phone}}</td>
+</tr>
+<tr>
+  <td>&nbsp;TimeZone</td>
+  <td>&nbsp;{{service.subscriber.timezone}}</td>
+</tr>
+</table> 
+
+<BR>
+<BR>
+
+{%endblock%}

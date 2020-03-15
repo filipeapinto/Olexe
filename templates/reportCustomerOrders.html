@@ -1,0 +1,45 @@
+{%extends "base.html"%}
+{%block body%}
+{% ifequal domainstartswith ''  %}
+<h2>CustomerOrders Report - Ordered by Date Descending</h2>
+{% else  %}
+<h2>CustomerOrders Report - Ordered by DomainName</h2>
+{% endifequal %}
+<FORM METHOD=GET ENCTYPE="multipart/form-data" ACTION="reportCustomerOrders">
+Optional: Domain Starts With: <input type=text size=30 name=domainstartswith>
+<input type=submit>
+</FORM>
+<br/>
+
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Domain</th>
+  <th>Company Name</th>
+  <th>Email</th>
+  <th>FirstName</th>
+  <th>LastName</th>
+  <th>Order<br/>Date/Time</th>
+  <th>Product<br/>ProcessCode</th>
+</tr>
+
+{%for custord in CustomerOrdersList%} 
+
+<tr>
+  <td><a href="updCustomerOrder?key={{custord.key}}">&nbsp;{{forloop.counter}}&nbsp;</a></td> 
+  <td>{{custord.domain}}</td>
+  <td>{{custord.companyname}}</td>
+  <td>{{custord.email}}</td>
+  <td>{{custord.firstname}}</td>
+  <td>{{custord.lastname}}</td>
+  <td>{{custord.orderDateTime}}</td>
+  <td>{{custord.processCode}}</td>
+</tr>
+
+
+{%endfor%}
+
+</table>
+
+
+{%endblock%}

@@ -1,0 +1,112 @@
+{%extends "oneCloudSetupIndivBase.html"%}
+{%block body%}
+<!-- JavaScript to show/limit number of characters in a textarea --> 
+<script language="javascript" type="text/javascript">
+function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+</script>
+
+<!-- TODO - show length of bio when form first loads (based on existing text size)
+Tried "onload" event - but nothing happened --> 
+<body class="m flex flex_m flex1 trebuchet small blues monocolumn skin custom"
+onload="limitText(form1.bio,form1.countdown,160);" >
+{% include "commonOrderHeader.html" %}
+
+
+<div id="body" class="body">
+<div id="ext_main">
+<div id="main" class="main">
+<div class="pad"><div class="entry" id="entry-1272">
+<div class="entry_header">
+
+<div class="spacer"></div>
+
+<div class="entry_content">
+{% include "commonTabs.html" %}
+
+<div class="wpcf7" id="wpcf7-f10-p1272-o1">
+<form id=form1 name=form1 
+action="{{action}}" method="post" class="wpcf7-form" enctype="multipart/form-data">
+<div style="display: none;"><input type="hidden" name="_wpcf7" value="10" /><input type="hidden" name="_wpcf7_version" value="1.9.5.1" /><input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f10-p1272-o1" /></div>
+<fieldset id="Your Bio And Tags"><legend>Your Bio and Tags</legend>
+
+<p>The web is all about first impressions. Your bio is like the newspaper headline. If you don't make eye catching, your readers won't read your content.  Also think of it as your 15-second elevator speech.</p>
+
+<p>For example: Mary is a passionate about psychology and marketing. Her bio reads: <span style="background-color: rgb(255, 242, 204);">"Mary is a marketing innovator working on neuromarketing to better understand how women buy beauty products and luxury goods"</span>. Consider making your bio very hypnotic.  Make it super exciting.</p>
+<p>Please define yourself in no more than 160 characters <br/><br />
+  <span class="wpcf7-form-control-wrap bio">
+  <textarea name="bio" cols="40" rows="3" onKeyDown="limitText(this.form.bio,this.form.countdown,160);" 
+onKeyUp="limitText(this.form.bio,this.form.countdown,160);">{%if session.bio%}{{session.bio}} {%endif%}</textarea></span> 
+You have <input readonly type="text" name="countdown" size="3" value="160"> characters left.</font>
+</p>
+<p>Tags - Every page on the internet is searched based on tags. Tags help search engines find a needle in a haystack. You are about to be part of the internet and we want you to focus your activities around a narrow set of tags about which you are either very passionate or your have a lot of expertise.</p>
+<p>Example: John is an expert on "Business Process Management" and he uses IBM products a lot.  Even though John is passionate about Bikram Yoga, it is not something that will assist him achieve his goals.  He lives in San Francisco, loves Tokyo and speaks fluent Japanese and would only leave San Francisco to go to Japan.  Therefore John would pick the following tags: <span style="background-color: rgb(255, 242, 204);">"business process management"</span>, <span style="background-color: rgb(255, 242, 204);">"IBM websphere"</span>, <span style="background-color: rgb(255, 242, 204);">"Japanese"</span>, <span style="background-color: rgb(255, 242, 204);">"Tokyo"</span>, <span style="background-color: rgb(255, 242, 204);">"San Francisco"</span>.  Every time John writes on the internet, he tries to keep faithful to his tags.</p>
+
+<p>Please define 3-6 tags that better describe you<br/><br />
+
+	{% for tag in session.tags %}
+	tag {{forloop.counter}}: &nbsp;&nbsp; 
+	<input type="text" name="tag" value="{{tag}}" size="40" />
+	<br />
+	{% endfor %}
+
+<!--
+<h2>6.Your Remarks</h2>
+<hr/>
+<p>In case we didn't ask you something you consider to be very important, please use the following text area, to send any special instructions.</p>
+<p>Special instructions<br />
+    <span class="wpcf7-form-control-wrap special_instructions"><textarea name="specialInstructions" cols="40" rows="10">{%if session.specialInstructions%} {{session.specialInstructions}}{%endif%}</textarea></span> </p>
+-->
+<fieldset id="Legal Terms"><legend>Legal Terms</legend>
+
+<!-- This hidden field should match the terms displayed on the screen, 
+and is saved in the database matching the terms as of the date/time that 
+the user accepted --> 
+<textarea name=legalTerms readonly rows=12 cols=80>
+{{legalTerms}}
+</textarea>
+<br>I Agree <input type=checkbox {%if session.legalTermsAccepted %} checked {% endif %} name=acceptLegalTerms> 
+
+</fieldset></fieldset>
+{% include "commonOrderButtons.html" %}
+</form>
+
+<div class="wpcf7-response-output"></div>
+</div>
+
+
+</div><!-- #main -->
+
+<div class="spacer"></div>
+</div><!-- #ext_main -->
+
+<div class="spacer"></div>
+
+</div><!-- #body -->
+
+<div id="footer" class="footer">
+<div class="pad">
+<div id="copyright_notice" class="copyright_notice">Copyright 2009</div><!-- #copyright_notice -->
+<div id="footer_nav" class="footer_nav inline_menu"><div>
+<span class="nav_home nav__home"><a href="http://3wcloud.com">Home</a></span>
+</div>
+
+</div><!-- #footer_nav -->
+<div class="spacer"></div>
+</div>
+</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<div class="spacer"></div>
+
+</div><!-- #shadow -->
+<div id="shadow_bottom"></div>
+</div><!-- #ext_wrapper -->
+<div class="spacer"></div>
+{%endblock%}

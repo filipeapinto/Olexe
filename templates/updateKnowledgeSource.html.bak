@@ -1,0 +1,125 @@
+
+{%extends "baseMain.html"%}
+{%block body%}
+<h3>
+{% ifequal command "ADD"%}
+Add
+{%else%}
+Update 
+{%endifequal%}
+KnowledgeSource
+</h3>
+{% if goal.name %}
+<b>For Goal = {{goal.name}}</b>  <br/>
+{%endif%}
+<span style="color:red"> {{validationErrors}}</span><br/>
+<form action=/updKnowledgeSource method=post>
+<table border=1>
+
+{% if not goal.name %} 
+<tr>
+  <td>&nbsp;Goal:<span style="color:red"> *</span></td>
+  <td>
+   <select id="goal" name="goal"> 
+     <option value="">Select One</option> 
+     {% for item1 in goalList %} 
+     <option value="{{item1.key}}" {% ifequal item1.name  Goal.goal %} selected {% endifequal %}>{{item1.name }}</option>   
+     {% endfor %} 
+   </select> 
+  </td>
+</tr>
+{% endif %} 
+
+<tr>
+  <td>&nbsp;Full Name (Title):<span style="color:red"> *</span></td>
+  <td>
+  &nbsp;<input type=text name=name size=60 value="{{knowledgeSource.name}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Short Name (24 char's):<span style="color:red"> *</span>
+  <BR>Used to create Google Document Name
+  </td>
+  <td>
+  &nbsp;<input type=text name=shortName size=24 maxlength=24 value="{{knowledgeSource.shortName}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Isbn:</td>
+  <td>
+  &nbsp;<input type=text name=isbn size=16 value="{{knowledgeSource.isbn}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;KnowledgeType:<span style="color:red"> *</span></td>
+  <td>
+   <select id="knowledgeType" name="knowledgeType"> 
+     <option value="">Select One</option> 
+     {% for item in knowledgeTypeChoices %} 
+     <option value="{{item.value}}" {% if item.selected %} selected {% endif %}>{{item.value}}</option>   
+     {% endfor %} 
+   </select> 
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;AuthorName:</td>
+  <td>
+  &nbsp;<input type=text name=authorName size=24 value="{{knowledgeSource.authorName}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Pages:</td>
+  <td>
+  &nbsp;<input type=text name=pages size=24 value="{{dstrPages}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;Minutes:</td>
+  <td>
+  &nbsp;<input type=text name=minutes size=24 value="{{strMinutes}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;MeetingLocation:</td>
+  <td>
+  &nbsp;<input type=text name=meetingLocation size=24 value="{{knowledgeSource.meetingLocation}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;MeetingStartDateTime:</td>
+  <td>
+  &nbsp;<input type=text name=meetingStartDateTime size=24 value="{{strMeetingStartDateTime}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;MeetingStopDateTime:</td>
+  <td>
+  &nbsp;<input type=text name=meetingStopDateTime size=24 value="{{strMeetingStopDateTime}}">
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeCreated:</td>
+  <td>
+  &nbsp;{{knowledgeSource.dateTimeCreated|date:_("m/d/y H:i:s")}}
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;DateTimeModified:</td>
+  <td>
+  &nbsp;{{knowledgeSource.dateTimeModified|date:_("m/d/y H:i:s")}}
+  </td>
+</tr>
+
+<tr>
+   <td>&nbsp;</td>
+   <td><input type=submit value="Update"</td>
+<tr>
+</table>
+<span style="color:red"> *</span> (Required field) 
+{% ifnotequal command 'ADD' %}<input type="hidden" name="key" value="{{knowledgeSource.key}}">
+{% endifnotequal %}
+{% if goal%}<input type="hidden" name="goalKey" value="{{goal.key}}">
+{% endif %}
+</form>
+<br/><br/><br/>
+{%endblock%}

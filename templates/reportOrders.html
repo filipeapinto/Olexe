@@ -1,0 +1,113 @@
+{%extends "baseMain.html"%}
+{%block body%}
+{% ifequal domainstartswith ''  %}
+<h2>Orders Report (by Date Descending)</h2>
+{% else  %}
+<h2>Orders Report (by DomainName)</h2>
+{% endifequal %}
+{% if showDomainQuery %}
+<FORM METHOD=GET ENCTYPE="multipart/form-data" ACTION="reportOrders">
+<table border=1>
+<tr>
+<td>Optional: Domain Starts With: </td>
+<td>
+<input type=text size=30 name=domainstartswith value={{domainStartsWith}}>
+</td>
+</tr>
+
+<tr>
+<td>Order State</td>
+<td>
+<select name="orderState" >
+	{% for orderState in orderStates %}
+      <option value="{{orderState.value}}"
+	{% if orderState.selected  %}
+	selected
+	{% endif %}
+	   >{{orderState.value}}</option>
+	{% endfor %}
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Financial Status:</td>
+<td>
+<select name="financialStatus" >
+	{% for orderFinancialState in orderFinancialStates %}
+      <option value="{{orderFinancialState.value}}"
+	{% if orderFinancialState.selected  %}
+	selected
+	{% endif %}
+	   >{{orderFinancialState.value}}</option>
+	{% endfor %}
+</select>
+</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td>
+  <input type=submit>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<BR>
+<a href="/reportOrders">Requery with no filter</a>
+<BR>
+</FORM>
+<br/>
+{% endif %} 
+
+<table border=1>
+<tr>
+  <th>Row</th>
+  <th>Order<BR>ID</th>
+  <th>Domain</th>
+  <th>Order Date</th> 
+  <th>FirstName</th>
+  <th>LastName</th>
+  <th>Order<BR>Type</th>
+  <th>Order<BR>State</th>
+  <th>Financial<BR>State</th>
+  <th>Payment<BR>History</th>
+  <th>Services</th>
+</tr>
+
+{%for order in ordersList %} 
+
+<tr>
+  <!-- <td><a href="detailOrder?key={{order.key}}">&nbsp;{{forloop.counter}}&nbsp;</a></td>  --> 
+  <td>&nbsp;{{forloop.counter}}&nbsp;</a></td> 
+  <td><a href="updOrder?orderId={{order.key.id}}">{{order.key.id}}</a></td>
+  <td>{{order.domain}}</td>
+  <td>{{order.orderDate|date:_("m/d/y h:i:s")}}</td>
+  <td>{{order.subscriber.lastname}}</td>
+  <td>{{order.subscriber.firstname}}</td>
+  <td>{{order.orderType}}</td>
+  <td>{{order.orderState}}</td>
+  <td>{{order.financialStatus}}{%if order.showPaymentLink%}<BR><a href="{{order.URL}}">Resubmit</a>{%endif%}
+  <td>&nbsp;<a href="reportIPN?orderId={{order.key.id}}">xref</a></td>
+  <input type=hidden name=debugShowPaymentLink value={{order.showPaymentLink}}>
+  </td>
+  <td>
+    <table border=0>
+	   {%for service in order.services %} 
+	   <tr>
+	     <!-- <td>{{forloop.counter}}</td>  -->
+         <td><a href="updService?key={{service.key}}">{{service.key.id}}</a></td>
+	     <td>{{service.serviceType.code}} </td>
+		 <td>{{service.serviceState}}</td>
+	   </tr>
+       {%endfor%}
+	</table>
+  </td>
+</tr>
+
+
+{%endfor%}
+
+</table>
+
+
+{%endblock%}

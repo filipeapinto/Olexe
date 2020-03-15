@@ -1,0 +1,29 @@
+{%extends "base.html"%}
+{%block body%}
+<h2>Create Task Log</h2>
+
+<form action="{%url views.edit %}" method="post">
+<table>
+
+<tr><th><label for="id_customerDomain">CustomerDomain:</label></th>
+<td><input type="text" name="customerDomain" id="id_customerDomain" size="40" /></td>
+</tr>
+
+<tr><th><label for="id_taskCode">TaskCode:</label></th>
+<td><input type="text" name="taskCode" id="id_taskCode" /></td></tr>
+
+<tr><th><label <label for="id_resultFlag">ResultFlag:</label></th>
+<td><input type="text" name="resultFlag" id="id_resultFlag" value="0"/></td>
+</tr>
+
+<tr><th><label for="id_issues">Issue(s) - if any:</label></th>
+<td><input type="text" name="issues" id="id_issues" size="80"/></td>
+<td>-1=Started,0=Completed Successfully, 1=Minor Issue, 2=ShowStopper Issue 
+</tr>
+
+
+<tr><td><input type="submit" value="Create Task Log"></td></tr>
+</table>
+</form>
+
+{%endblock%}

@@ -1,0 +1,48 @@
+{%extends "baseMain.html"%}
+{%block body%}
+{# apparently, the subdirectory for custom-filters must be called "templatetags" #} 
+{# load customTags #}  
+<!--
+<form action="reportratePlans" method="post">
+<SELECT NAME=customerDomain>
+<OPTION value='ALL' {% ifequal customerDomain 'ALL' %} SELECTED {% endifequal %}>ALL</OPTION>
+{%for customerOrder in customerOrdersList%} 
+<OPTION value='{{customerOrder.domain}}' {% ifequal customerDomain customerOrder.domain %} SELECTED {% endifequal %}>{{customerOrder.domain}}</OPTION>
+{%endfor%}
+<input type=submit>
+</form>
+--> 
+
+<a href="updateRatePlan?cmd=ADD">Add New Rate Plan</a> 
+<h2>List RatePlans</h2>
+
+<table border=1>
+<tr>
+  <th>Row</th> 
+  <th>Code</th>
+  <th>Name</th>
+  <th>Description</th>
+  <th>Recurring<BR>Amount</th>
+  <th>One-Time<BR>Amount</th>
+  <th>Show<BR>Subscribers</th>
+
+
+{%for ratePlan in ratePlans%} 
+
+<tr>
+  <td><a href="updRatePlan?key={{ratePlan.key}}">&nbsp;{{forloop.counter}}&nbsp;</a></td> 
+  <td>{{ratePlan.code}}</td>
+  <td>{{ratePlan.name}}</td>
+  <td>{{ratePlan.description}}</td>
+  <td>{{ratePlan.getRecurringAmountFormatted}}</td>
+  <td>{{ratePlan.getOnetimeAmountFormatted}}</td>
+  <td>&nbsp;&nbsp;<a href="reportRatePlanSubscriberXref?key={{ratePlan.key}}">xref</td>
+</tr>
+
+
+{%endfor%}
+
+</table>
+
+
+{%endblock%}
